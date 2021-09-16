@@ -1,6 +1,0 @@
-framework module Pods_LiquidAvatar {
-  umbrella header "Pods-LiquidAvatar-umbrella.h"
-
-  export *
-  module * { export * }
-}
