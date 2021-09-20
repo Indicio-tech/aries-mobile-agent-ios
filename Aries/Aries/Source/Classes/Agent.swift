@@ -14,7 +14,8 @@ public class Agent {
         print("Agent initted!")
     }
     
-    public var ariesWallets = [AriesWallet]()
+    // Need some exposed public objects, including a wallet, and a set of connections.
+    // Need some private objects - the storage, transport service
     
     
     

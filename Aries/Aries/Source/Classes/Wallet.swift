@@ -11,8 +11,19 @@ import Indy
 
 public class AriesWallet {
 
-    public init (){}
+    // Should have a create wallet method.
+    // Implement some kind of Indy error handling
+    //
     
+    init (){}
+    
+
+    
+    
+    convenience init (walletId: String, passcode: String){
+        
+        self.init()
+    }
     
     public func createWallet(id: String, key: String){
         let sharedInstance = IndyWallet.sharedInstance()
