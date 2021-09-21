@@ -8,10 +8,9 @@
 import Foundation
 import Indy
 
-
 public class AriesWallet {
 
-    static let ariesWalletSharedInstance = IndyWallet.sharedInstance()
+    private static let ariesWalletSharedInstance = IndyWallet.sharedInstance()
     
     public func createWallet(id: String, key: String){
         
@@ -40,3 +39,8 @@ public class AriesWallet {
     
     
 }
+
+// AMA-Android
+// Instantiated with a JSON string. I think we should be able to just use the wallet name and password
+// It creates a new wallet, throws an error if it has one to be thrown
+// 
