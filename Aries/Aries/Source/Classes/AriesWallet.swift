@@ -11,23 +11,9 @@ import Indy
 
 public class AriesWallet {
 
-    // Should have a create wallet method.
-    // Implement some kind of Indy error handling
-    //
-    
-    init (){}
-    
-
-    
-    
-    convenience init (walletId: String, passcode: String){
-        
-        self.init()
-    }
+    static let ariesWalletSharedInstance = IndyWallet.sharedInstance()
     
     public func createWallet(id: String, key: String){
-        let sharedInstance = IndyWallet.sharedInstance()
-        print("Create wallet called!")
         
         let configDict = ["id":id]
         let credentialsDict = ["key":key]
@@ -43,8 +29,7 @@ public class AriesWallet {
             print(credentialsString)
         }
         
-        if let sharedInstance = sharedInstance {
-            print("Shared instance is up!")
+        if let sharedInstance = AriesWallet.ariesWalletSharedInstance {
             sharedInstance.createWallet(withConfig: configString, credentials: credentialsString) { err in
                 print(err.debugDescription)
             }

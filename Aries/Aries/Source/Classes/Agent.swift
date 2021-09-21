@@ -10,12 +10,16 @@ import Indy
 
 public class Agent {
     
-    public init(){
-        print("Agent initted!")
-    }
+    static let sharedAgent = Agent()
+    private let sharedWalletInstance = IndyWallet.sharedInstance()
     
-    // Need some exposed public objects, including a wallet, and a set of connections.
-    // Need some private objects - the storage, transport service
+    func createWallet(identifier: String, key: String){
+        
+        
+        
+    }
+
+    
     
     
     
