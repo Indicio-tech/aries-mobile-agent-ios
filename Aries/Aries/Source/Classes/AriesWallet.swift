@@ -10,9 +10,46 @@ import Indy
 
 public class AriesWallet {
 
-    private static let ariesWalletSharedInstance = IndyWallet.sharedInstance()
+    private static let sharedInstance = IndyWallet.sharedInstance()
+    static let wallet = AriesWallet()
+
+    private func createWallet(id: String, key: String){
     
-    public func createWallet(id: String, key: String){
+        let configDict = ["id":id]
+        let credentialsDict = ["key":key]
+        var configString = ""
+        var credentialsString = ""
+        
+        if let JSONData = try? JSONSerialization.data(withJSONObject: configDict, options: []){
+            configString = String(data: JSONData, encoding: .ascii)!
+            print(configString)
+        }
+        if let JSONData = try? JSONSerialization.data(withJSONObject: credentialsDict, options: []){
+            credentialsString = String(data: JSONData, encoding: .ascii)!
+            print(credentialsString)
+        }
+        
+        if let sharedInstance = AriesWallet.sharedInstance {
+            sharedInstance.createWallet(withConfig: configString, credentials: credentialsString) { err in
+                print(err.debugDescription)
+            }
+        }
+    }
+    
+    public func setupWallet(){
+//      Check to see if wallet already exists
+        
+//      If it doesn't exist, create it
+        createWallet(id: "default", key: "password")
+        
+        
+        
+    }
+    
+    
+    
+    public func deleteWallet(id: String, key: String){
+        
         
         let configDict = ["id":id]
         let credentialsDict = ["key":key]
@@ -28,19 +65,11 @@ public class AriesWallet {
             print(credentialsString)
         }
         
-        if let sharedInstance = AriesWallet.ariesWalletSharedInstance {
-            sharedInstance.createWallet(withConfig: configString, credentials: credentialsString) { err in
+        
+        if let sharedInstance = AriesWallet.sharedInstance {
+            sharedInstance.delete(withConfig: configString, credentials: credentialsString) { err in
                 print(err.debugDescription)
             }
         }
     }
-    
-    
-    
-    
 }
-
-// AMA-Android
-// Instantiated with a JSON string. I think we should be able to just use the wallet name and password
-// It creates a new wallet, throws an error if it has one to be thrown
-// 

@@ -11,15 +11,19 @@ import Indy
 public class Agent {
     
     static let sharedAgent = Agent()
-    private let sharedWalletInstance = IndyWallet.sharedInstance()
     
-    func createWallet(identifier: String, key: String){
-        
-        
-        
+//  For this implementation, we're using a default wallet with the "default" identifier and "password" as the key.
+//  We'll set up the ability to set/change passwords in later versions.
+    
+    func setupWallet(){
+        let wallet = AriesWallet.wallet
+        wallet.setupWallet()
     }
 
-    
+    func deleteWallet(){
+        let wallet = AriesWallet.wallet
+        wallet.deleteWallet(id: "default", key: "password")
+    }
     
     
     
