@@ -1,0 +1,11 @@
+framework module Aries {
+  umbrella header "Aries.h"
+
+  export *
+  module * { export * }
+}
+
+module Aries.Swift {
+    header "Aries-Swift.h"
+    requires objc
+}
