@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37F484B826FCF37E003A878E /* BaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484B726FCF37E003A878E /* BaseRecord.swift */; };
+		37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484BD27021C8F003A878E /* BaseMessage.swift */; };
 		632686FC26FBADC3008EC5E9 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632686FB26FBADC3008EC5E9 /* HTTPService.swift */; };
 		632686FE26FBADCF008EC5E9 /* WSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632686FD26FBADCF008EC5E9 /* WSService.swift */; };
 		633F73A126F3E1A600474D73 /* Aries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633F739726F3E1A600474D73 /* Aries.framework */; };
@@ -47,6 +48,7 @@
 
 /* Begin PBXFileReference section */
 		37F484B726FCF37E003A878E /* BaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecord.swift; sourceTree = "<group>"; };
+		37F484BD27021C8F003A878E /* BaseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessage.swift; sourceTree = "<group>"; };
 		632686FB26FBADC3008EC5E9 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
 		632686FD26FBADCF008EC5E9 /* WSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSService.swift; sourceTree = "<group>"; };
 		633F739726F3E1A600474D73 /* Aries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				37F484B726FCF37E003A878E /* BaseRecord.swift */,
+				37F484BD27021C8F003A878E /* BaseMessage.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				63494B5926F6C48500C5F2F2 /* AriesErrors.swift in Sources */,
 				6357106426F52F1500EC9A8E /* AriesConnections.swift in Sources */,
 				633F73B326F3E1CB00474D73 /* Agent.swift in Sources */,
+				37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */,
 				632686FE26FBADCF008EC5E9 /* WSService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

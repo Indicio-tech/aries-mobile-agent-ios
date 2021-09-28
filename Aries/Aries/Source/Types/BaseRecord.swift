@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+public class BaseRecord {
+    let type = ""
+    let id = ""
+    let tags = JSONDecoder()
+//    public JSONObject tags;
+    let getType = ""
+}
