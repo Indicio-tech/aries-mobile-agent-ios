@@ -15,7 +15,8 @@ public class MessageReceiver{
     }
     
     public func receiveMessage(message: Data){
-        let messageString = String(message)
-        print("Message received: "+messageString)
+        if let messageString = String(data: message, encoding: .utf8){
+            print("Message received: " + messageString)
+        }
     }
 }

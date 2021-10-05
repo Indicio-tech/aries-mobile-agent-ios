@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class PublicKey: Codable{
+public class PublicKey: Codable {
     public let id:String
     public let type:String
     public let controller:String

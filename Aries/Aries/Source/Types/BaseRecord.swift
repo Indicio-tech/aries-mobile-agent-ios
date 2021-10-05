@@ -17,8 +17,5 @@ public class BaseRecord: Codable{
         self.id = UUID().uuidString;
         self.tags = [String:String]();
     }
-    
-    public func getType(){
-        return self.type;
-    }
+
 }

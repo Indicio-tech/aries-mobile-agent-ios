@@ -37,7 +37,7 @@ public class MessageSender{
         let data = try! encoder.encode(message)
         let messageJson = String(data: data, encoding: .utf8)
         
-        print("Sending message of type: "+message.type+" to endpoint: "+endpoint+"\n message: "+messageJson)
+        print("Sending message of type: "+message.type+" to endpoint: "+endpoint+"\n message: "+ messageJson)
         
         //Pack message
         let packedMessage = ariesWallet.packMessage(message: message, recipientKeys: recipientKeys, senderVerkey: senderVerkey)
