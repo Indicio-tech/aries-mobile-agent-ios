@@ -7,10 +7,18 @@
 
 import Foundation
 
-public class BaseRecord {
-    let type = ""
-    let id = ""
-    let tags = JSONDecoder()
+public class BaseRecord: Codable{
+    public let type = "base_record"
+    public let id:String
+    public let tags:[String:String]
 //    public JSONObject tags;
-    let getType = ""
+    
+    public init(){
+        self.id = UUID().uuidString;
+        self.tags = [String:String]();
+    }
+    
+    public func getType(){
+        return self.type;
+    }
 }
