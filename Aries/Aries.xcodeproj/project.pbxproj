@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3755DC80270E1FC100371A69 /* ConnectionResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */; };
+		3755DC82270E204600371A69 /* ThreadDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC81270E204600371A69 /* ThreadDecorator.swift */; };
+		3755DC84270E213600371A69 /* SignatureDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC83270E213600371A69 /* SignatureDecorator.swift */; };
+		3755DC86270E23A300371A69 /* TrustPingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC85270E23A300371A69 /* TrustPingMessage.swift */; };
+		3755DC88270E241600371A69 /* TimingDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC87270E241600371A69 /* TimingDecorator.swift */; };
 		37F484B826FCF37E003A878E /* BaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484B726FCF37E003A878E /* BaseRecord.swift */; };
 		37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484BD27021C8F003A878E /* BaseMessage.swift */; };
 		632686FC26FBADC3008EC5E9 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632686FB26FBADC3008EC5E9 /* HTTPService.swift */; };
@@ -60,6 +65,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionResponseMessage.swift; sourceTree = "<group>"; };
+		3755DC81270E204600371A69 /* ThreadDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDecorator.swift; sourceTree = "<group>"; };
+		3755DC83270E213600371A69 /* SignatureDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureDecorator.swift; sourceTree = "<group>"; };
+		3755DC85270E23A300371A69 /* TrustPingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustPingMessage.swift; sourceTree = "<group>"; };
+		3755DC87270E241600371A69 /* TimingDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingDecorator.swift; sourceTree = "<group>"; };
 		37F484B726FCF37E003A878E /* BaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecord.swift; sourceTree = "<group>"; };
 		37F484BD27021C8F003A878E /* BaseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessage.swift; sourceTree = "<group>"; };
 		632686FB26FBADC3008EC5E9 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
@@ -208,6 +218,8 @@
 			children = (
 				63E70782270CD4AB00C76D02 /* InvitationMessage.swift */,
 				8F49416D270D064F0080ED04 /* ConnectionRequestMessage.swift */,
+				3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */,
+				3755DC85270E23A300371A69 /* TrustPingMessage.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -228,6 +240,9 @@
 			isa = PBXGroup;
 			children = (
 				8FA2133F270E1C3600AE80F0 /* TransportDecorator.swift */,
+				3755DC81270E204600371A69 /* ThreadDecorator.swift */,
+				3755DC83270E213600371A69 /* SignatureDecorator.swift */,
+				3755DC87270E241600371A69 /* TimingDecorator.swift */,
 			);
 			path = Decorators;
 			sourceTree = "<group>";
@@ -342,15 +357,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3755DC86270E23A300371A69 /* TrustPingMessage.swift in Sources */,
+				3755DC84270E213600371A69 /* SignatureDecorator.swift in Sources */,
 				63E7078B270CD4AB00C76D02 /* PublicKey.swift in Sources */,
 				63E70789270CD4AB00C76D02 /* InvitationMessage.swift in Sources */,
 				63E7078E270CD4AB00C76D02 /* ConnectionRecord.swift in Sources */,
+				3755DC82270E204600371A69 /* ThreadDecorator.swift in Sources */,
 				63E7078A270CD4AB00C76D02 /* IndyService.swift in Sources */,
 				8FA2133D270E0B0600AE80F0 /* Types.swift in Sources */,
 				632686FC26FBADC3008EC5E9 /* HTTPService.swift in Sources */,
+				3755DC80270E1FC100371A69 /* ConnectionResponseMessage.swift in Sources */,
 				63E7077E270CD10200C76D02 /* TransportService.swift in Sources */,
 				6357106126F52DD000EC9A8E /* AriesWallet.swift in Sources */,
 				63E7077F270CD10200C76D02 /* MessageSender.swift in Sources */,
+				3755DC88270E241600371A69 /* TimingDecorator.swift in Sources */,
 				37F484B826FCF37E003A878E /* BaseRecord.swift in Sources */,
 				63494B5926F6C48500C5F2F2 /* AriesErrors.swift in Sources */,
 				6357106426F52F1500EC9A8E /* AriesConnections.swift in Sources */,
