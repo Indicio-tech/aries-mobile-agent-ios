@@ -20,7 +20,7 @@ public class MessageSender{
         let endpoint:String
         let recipientKeys:[String]
         
-        if(connectionRecord.theirDidDoc){
+        if(connectionRecord.theirDidDoc != nil){
             let service = selectService(services: connectionRecord.theirDidDoc.service)
             endpoint = service.serviceEndpoint
             recipientKeys = service.recipientKeys
@@ -37,10 +37,12 @@ public class MessageSender{
         let data = try! encoder.encode(message)
         let messageJson = String(data: data, encoding: .utf8)
         
-        print("Sending message of type: "+message.type+" to endpoint: "+endpoint+"\n message: "+ messageJson)
+        print("Sending message of type: "+message.type+" to endpoint: "+endpoint+"\n message: "+messageJson)
         
         //Pack message
         let packedMessage = ariesWallet.packMessage(message: message, recipientKeys: recipientKeys, senderVerkey: senderVerkey)
+        
+        self.transportService.send(message: packedMessage, endpoint: endpoint, connection: connectionRecord)
     }
     
     private func selectService(services: [IndyService], protocolPreference:[String] = ["wss", "ws", "https", "http"]) -> IndyService{

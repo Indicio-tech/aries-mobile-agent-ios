@@ -16,6 +16,11 @@ public enum MessageType: String, Codable {
     case basicMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/basicmessage/1.0/message"
 }
 
+public enum RecordType: String, Codable {
+    case baseRecord = "base_record"
+    case connectionRecord = "connectionRecord"
+}
+
 
 //[{"@id": "asdf",
 //    "@type": "https://didcomm.org/connections/1.0/invitation",

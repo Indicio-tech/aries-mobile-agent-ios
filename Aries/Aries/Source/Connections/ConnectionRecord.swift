@@ -8,23 +8,22 @@
 import Foundation
 
 public class ConnectionRecord: BaseRecord{
-    override let type = "connection"
     
-    public let createdAt:String
-    public let invitation:InvitationMessage
-    public let state:ConnectionState
-    public let autoAcceptConnection:Bool
+    public var createdAt:String
+    public var invitation:InvitationMessage
+    public var state:ConnectionState
+    public var autoAcceptConnection:Bool
     
-    public let role:String
-    public let did:String
-    public let didDoc: DIDDoc
-    public let verkey:String
-    public let label:String
+    public var role:String
+    public var did:String?
+    public var didDoc: DIDDoc?
+    public var verkey:String?
+    public var label:String
     
-    public let theirDid:String
-    public let theirDidDoc: DIDDoc
-    public let theirLabel:String
-    public let threadId:String
+    public var theirDid:String?
+    public var theirDidDoc: DIDDoc?
+    public var theirLabel:String?
+    public var threadId:String?
     
     public init(
         id: String,
@@ -36,6 +35,7 @@ public class ConnectionRecord: BaseRecord{
         label: String,
         tags: [String:String]
     ){
+        self.type = RecordType.connectionRecord
         self.id = id
         self.createdAt = createdAt
         self.invitation = invitation
