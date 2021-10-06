@@ -7,22 +7,24 @@
 
 import Foundation
 
-public class TrustPingMessage: BaseMessage {
+public struct TrustPingMessage: BaseMessage {
     
+    public let type: MessageType
+    public let id: String
     public let responseRequested: Bool
     public let comment: String
     public let timing: TimingDecorator
     public let transport: TransportDecorator
     
     public init(responseRequested: Bool, comment: String, returnRoute: String) {
-        super.init()
+        self.id = UUID().uuidString
         self.type = MessageType.trustPingMessage
         self.responseRequested = responseRequested
         self.comment = comment
         self.transport = TransportDecorator(returnRoute: returnRoute)
     }
     public init(returnRoute: String) {
-        super.init()
+        self.id = UUID().uuidString
         self.type = MessageType.trustPingMessage
         self.transport = TransportDecorator(returnRoute: returnRoute)
     }
@@ -33,6 +35,7 @@ public class TrustPingMessage: BaseMessage {
         case responseRequested = "response_requested"
         case timing = "~timing"
         case transport = "~transport"
+        case comment
     }
     
 }

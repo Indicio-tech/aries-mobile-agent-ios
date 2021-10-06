@@ -7,19 +7,20 @@
 
 import Foundation
 
-public class ConnectionResponse: BaseMessage {
+public struct ConnectionResponse: BaseMessage {
+    
+    public let type: MessageType
+    public let id: String
     public let thread: ThreadDecorator
-    
     public let label: String
-    
     public let connection: AriesConnection
-    
     public let signedConnection: SignatureDecorator
     
     public init(label: String, connection: AriesConnection) {
         self.type = MessageType.connectionResponseMessage
         self.label = label
         self.connection = connection
+        self.id = UUID().uuidString
     }
     
     enum CodingKeys : String, CodingKey {
@@ -27,6 +28,8 @@ public class ConnectionResponse: BaseMessage {
         case id = "@id"
         case thread = "~thread"
         case signedConnection = "connection~sig"
+        case label
+        case connection
     }
 }
 

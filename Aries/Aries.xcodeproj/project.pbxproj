@@ -12,6 +12,9 @@
 		3755DC84270E213600371A69 /* SignatureDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC83270E213600371A69 /* SignatureDecorator.swift */; };
 		3755DC86270E23A300371A69 /* TrustPingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC85270E23A300371A69 /* TrustPingMessage.swift */; };
 		3755DC88270E241600371A69 /* TimingDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC87270E241600371A69 /* TimingDecorator.swift */; };
+		3755DC8D270E345300371A69 /* AdminBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC8C270E345300371A69 /* AdminBasicMessage.swift */; };
+		3755DC8F270E34D600371A69 /* BasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC8E270E34D600371A69 /* BasicMessage.swift */; };
+		3755DC91270E365400371A69 /* LocalizationDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC90270E365400371A69 /* LocalizationDecorator.swift */; };
 		37F484B826FCF37E003A878E /* BaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484B726FCF37E003A878E /* BaseRecord.swift */; };
 		37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484BD27021C8F003A878E /* BaseMessage.swift */; };
 		632686FC26FBADC3008EC5E9 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632686FB26FBADC3008EC5E9 /* HTTPService.swift */; };
@@ -70,6 +73,9 @@
 		3755DC83270E213600371A69 /* SignatureDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureDecorator.swift; sourceTree = "<group>"; };
 		3755DC85270E23A300371A69 /* TrustPingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustPingMessage.swift; sourceTree = "<group>"; };
 		3755DC87270E241600371A69 /* TimingDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingDecorator.swift; sourceTree = "<group>"; };
+		3755DC8C270E345300371A69 /* AdminBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminBasicMessage.swift; sourceTree = "<group>"; };
+		3755DC8E270E34D600371A69 /* BasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMessage.swift; sourceTree = "<group>"; };
+		3755DC90270E365400371A69 /* LocalizationDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationDecorator.swift; sourceTree = "<group>"; };
 		37F484B726FCF37E003A878E /* BaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecord.swift; sourceTree = "<group>"; };
 		37F484BD27021C8F003A878E /* BaseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessage.swift; sourceTree = "<group>"; };
 		632686FB26FBADC3008EC5E9 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
@@ -120,6 +126,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3755DC89270E340000371A69 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				3755DC8A270E341100371A69 /* basicMessaging */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		3755DC8A270E341100371A69 /* basicMessaging */ = {
+			isa = PBXGroup;
+			children = (
+				3755DC8B270E342F00371A69 /* Messages */,
+			);
+			path = basicMessaging;
+			sourceTree = "<group>";
+		};
+		3755DC8B270E342F00371A69 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				3755DC8C270E345300371A69 /* AdminBasicMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		37F484B626FCF35A003A878E /* Types */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +157,7 @@
 				37F484B726FCF37E003A878E /* BaseRecord.swift */,
 				37F484BD27021C8F003A878E /* BaseMessage.swift */,
 				8FA2133C270E0B0600AE80F0 /* Types.swift */,
+				3755DC8E270E34D600371A69 /* BasicMessage.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -184,6 +215,7 @@
 		633F73B126F3E1B400474D73 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3755DC89270E340000371A69 /* Admin */,
 				63E70780270CD4AB00C76D02 /* Connections */,
 				37F484B626FCF35A003A878E /* Types */,
 				632686FA26FBADB2008EC5E9 /* Services */,
@@ -243,6 +275,7 @@
 				3755DC81270E204600371A69 /* ThreadDecorator.swift */,
 				3755DC83270E213600371A69 /* SignatureDecorator.swift */,
 				3755DC87270E241600371A69 /* TimingDecorator.swift */,
+				3755DC90270E365400371A69 /* LocalizationDecorator.swift */,
 			);
 			path = Decorators;
 			sourceTree = "<group>";
@@ -380,7 +413,10 @@
 				632686FE26FBADCF008EC5E9 /* WSService.swift in Sources */,
 				63E7077D270CD10200C76D02 /* MessageReceiver.swift in Sources */,
 				63E7078D270CD4AB00C76D02 /* Authentication.swift in Sources */,
+				3755DC8D270E345300371A69 /* AdminBasicMessage.swift in Sources */,
+				3755DC8F270E34D600371A69 /* BasicMessage.swift in Sources */,
 				8F49416E270D064F0080ED04 /* ConnectionRequestMessage.swift in Sources */,
+				3755DC91270E365400371A69 /* LocalizationDecorator.swift in Sources */,
 				8FA21342270E1D6200AE80F0 /* AriesConnection.swift in Sources */,
 				8FA21340270E1C3600AE80F0 /* TransportDecorator.swift in Sources */,
 			);
@@ -533,7 +569,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = YQUAGSUXSU;
+				DEVELOPMENT_TEAM = J4P6TU282J;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -565,7 +601,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = WL5BDB9B45;
+				DEVELOPMENT_TEAM = J4P6TU282J;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

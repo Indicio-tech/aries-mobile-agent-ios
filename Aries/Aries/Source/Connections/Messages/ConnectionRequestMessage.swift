@@ -7,35 +7,36 @@
 
 import Foundation
 
-public class ConnectionRequest: BaseMessage{
-    public let label: String
-    public let connection: AriesConnection
-    public let transport: TransportDecorator
-    
-    public init(label: String, connection: AriesConnection){
-        super.init()
-        self.label = label
-        self.connection = connection
-        self.transport =  TransportDecorator(returnRoute: "all")
-    }
-    
-    public init(label: String, connection: AriesConnection, id: String){
-        self.id = id
-        self.label = label
-        self.connection = connection
-        self.transport =  TransportDecorator(returnRoute: "all")
-    }
-    
-    required init(from decoder: Decoder) throws {
-        try super.init(from: decoder)
-    }
+struct ConnectionRequest: BaseMessage {
+    let type: MessageType
+    let id: String
+    let label: String
+    let connection: AriesConnection
+    let transport: TransportDecorator
     
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"
         case transport = "~transport"
+        case label = "label"
+        case connection = "connection"
     }
     
+    public init(label: String, connection: AriesConnection) {
+        self.label = label
+        self.connection = connection
+        self.transport =  TransportDecorator(returnRoute: "all")
+        self.id = UUID().uuidString
+        self.type = .connectionRequestMessage
+    }
+
+    public init(label: String, connection: AriesConnection, id: String){
+        self.label = label
+        self.connection = connection
+        self.transport =  TransportDecorator(returnRoute: "all")
+        self.id = id
+        self.type = .connectionRequestMessage
+    }
 }
 
 

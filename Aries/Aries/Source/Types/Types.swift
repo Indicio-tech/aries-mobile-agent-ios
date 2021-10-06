@@ -13,6 +13,7 @@ public enum MessageType: String, Codable {
     case connectionRequestMessage = "https://didcomm.org/connections/1.0/request"
     case connectionResponseMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/response"
     case trustPingMessage = "https://didcomm.org/trust_ping/1.0/ping"
+    case basicMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/basicmessage/1.0/message"
 }
 
 

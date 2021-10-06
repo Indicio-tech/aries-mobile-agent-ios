@@ -8,20 +8,13 @@
 import Foundation
 import Indy
 
-public class BaseMessage: Codable {
-    var type = MessageType.baseMessage
-    
+
+protocol BaseMessage: Codable, Identifiable {
+    var type: MessageType { get }
+    var id: String { get }
+}
+
+struct TypeContainerMessage: BaseMessage {
+    var type: MessageType
     var id: String
-    
-    //Info on JSON encoding: https://benscheirman.com/2017/06/swift-json/
-    
-    public init(){
-        self.id = UUID().uuidString;
-    }
-    
-    
-    enum CodingKeys : String, CodingKey {
-        case type = "@type"
-        case id = "@id"
-    }
 }
