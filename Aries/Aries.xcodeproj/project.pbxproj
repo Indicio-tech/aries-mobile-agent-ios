@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37320E50270E621300C34367 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 37320E4F270E621300C34367 /* Starscream */; };
+		37320E52270E984100C34367 /* DeleteBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37320E51270E984100C34367 /* DeleteBasicMessage.swift */; };
+		37320E54270E993700C34367 /* NewBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37320E53270E993700C34367 /* NewBasicMessage.swift */; };
+		37320E57270E9A1300C34367 /* ReceivedBasicMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37320E56270E9A1300C34367 /* ReceivedBasicMessages.swift */; };
 		3755DC80270E1FC100371A69 /* ConnectionResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */; };
 		3755DC82270E204600371A69 /* ThreadDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC81270E204600371A69 /* ThreadDecorator.swift */; };
 		3755DC84270E213600371A69 /* SignatureDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC83270E213600371A69 /* SignatureDecorator.swift */; };
@@ -68,6 +72,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		37320E51270E984100C34367 /* DeleteBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteBasicMessage.swift; sourceTree = "<group>"; };
+		37320E53270E993700C34367 /* NewBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBasicMessage.swift; sourceTree = "<group>"; };
+		37320E56270E9A1300C34367 /* ReceivedBasicMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedBasicMessages.swift; sourceTree = "<group>"; };
 		3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionResponseMessage.swift; sourceTree = "<group>"; };
 		3755DC81270E204600371A69 /* ThreadDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDecorator.swift; sourceTree = "<group>"; };
 		3755DC83270E213600371A69 /* SignatureDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureDecorator.swift; sourceTree = "<group>"; };
@@ -112,6 +119,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				633F73B626F3E21700474D73 /* Indy.framework in Frameworks */,
+				37320E50270E621300C34367 /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +154,9 @@
 			isa = PBXGroup;
 			children = (
 				3755DC8C270E345300371A69 /* AdminBasicMessage.swift */,
+				37320E51270E984100C34367 /* DeleteBasicMessage.swift */,
+				37320E53270E993700C34367 /* NewBasicMessage.swift */,
+				37320E56270E9A1300C34367 /* ReceivedBasicMessages.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -309,6 +320,9 @@
 			dependencies = (
 			);
 			name = Aries;
+			packageProductDependencies = (
+				37320E4F270E621300C34367 /* Starscream */,
+			);
 			productName = Aries;
 			productReference = 633F739726F3E1A600474D73 /* Aries.framework */;
 			productType = "com.apple.product-type.framework";
@@ -358,6 +372,9 @@
 				Base,
 			);
 			mainGroup = 633F738D26F3E1A600474D73;
+			packageReferences = (
+				37320E4E270E621300C34367 /* XCRemoteSwiftPackageReference "Starscream" */,
+			);
 			productRefGroup = 633F739826F3E1A600474D73 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -397,6 +414,7 @@
 				63E7078E270CD4AB00C76D02 /* ConnectionRecord.swift in Sources */,
 				3755DC82270E204600371A69 /* ThreadDecorator.swift in Sources */,
 				63E7078A270CD4AB00C76D02 /* IndyService.swift in Sources */,
+				37320E52270E984100C34367 /* DeleteBasicMessage.swift in Sources */,
 				8FA2133D270E0B0600AE80F0 /* Types.swift in Sources */,
 				632686FC26FBADC3008EC5E9 /* HTTPService.swift in Sources */,
 				3755DC80270E1FC100371A69 /* ConnectionResponseMessage.swift in Sources */,
@@ -412,6 +430,7 @@
 				37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */,
 				632686FE26FBADCF008EC5E9 /* WSService.swift in Sources */,
 				63E7077D270CD10200C76D02 /* MessageReceiver.swift in Sources */,
+				37320E57270E9A1300C34367 /* ReceivedBasicMessages.swift in Sources */,
 				63E7078D270CD4AB00C76D02 /* Authentication.swift in Sources */,
 				3755DC8D270E345300371A69 /* AdminBasicMessage.swift in Sources */,
 				3755DC8F270E34D600371A69 /* BasicMessage.swift in Sources */,
@@ -419,6 +438,7 @@
 				3755DC91270E365400371A69 /* LocalizationDecorator.swift in Sources */,
 				8FA21342270E1D6200AE80F0 /* AriesConnection.swift in Sources */,
 				8FA21340270E1C3600AE80F0 /* TransportDecorator.swift in Sources */,
+				37320E54270E993700C34367 /* NewBasicMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +715,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		37320E4E270E621300C34367 /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		37320E4F270E621300C34367 /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 37320E4E270E621300C34367 /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 633F738E26F3E1A600474D73 /* Project object */;
 }

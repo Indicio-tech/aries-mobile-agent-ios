@@ -14,6 +14,7 @@ public enum MessageType: String, Codable {
     case connectionResponseMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/response"
     case trustPingMessage = "https://didcomm.org/trust_ping/1.0/ping"
     case basicMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/basicmessage/1.0/message"
+    case newBasicMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-basicmessage/0.1/new"
 }
 
 public enum RecordType: String, Codable {
