@@ -13,7 +13,7 @@ public class MessageSender{
     
     init(ariesWallet: AriesWallet, messageReceiver: MessageReceiver){
         self.ariesWallet = ariesWallet
-        self.transportService = TransportService(messageReceiver: messageReceiver, messageSender: self)
+        transportService = TransportService(messageReceiver: messageReceiver, messageSender: self)
     }
     
     public func sendMessage(message: BaseMessage, connectionRecord: ConnectionRecord){
@@ -42,7 +42,7 @@ public class MessageSender{
         //Pack message
         let packedMessage = ariesWallet.packMessage(message: message, recipientKeys: recipientKeys, senderVerkey: senderVerkey)
         
-        self.transportService.send(message: packedMessage, endpoint: endpoint, connection: connectionRecord)
+        transportService.send(message: packedMessage, endpoint: endpoint, connection: connectionRecord)
     }
     
     private func selectService(services: [IndyService], protocolPreference:[String] = ["wss", "ws", "https", "http"]) -> IndyService{
@@ -54,7 +54,7 @@ public class MessageSender{
                 }
             }
         }
-        //If prefered protocol isn't available return the first one
+        //If preferred protocol isn't available return the first one
         return services[0]
     }
 }

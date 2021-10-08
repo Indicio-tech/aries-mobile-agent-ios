@@ -7,15 +7,14 @@
 
 import Foundation
 
-public class BaseRecord: Codable{
-    public let type = "base_record"
-    public let id:String
-    public let tags:[String:String]
-//    public JSONObject tags;
-    
-    public init(){
-        self.id = UUID().uuidString;
-        self.tags = [String:String]();
-    }
+public protocol BaseRecord: Codable{
+    var type:RecordType { get }
+    var id:String { get }
+    var tags:[String:String] { get }
+}
 
+public struct TypeContainerRecord: BaseRecord {
+    public var type: RecordType
+    public var id: String
+    public var tags: [String:String]
 }

@@ -17,7 +17,6 @@ public class HTTPService{
     public func send(message: Data, endpoint: String) throws {
         
         //Based off of https://www.advancedswift.com/http-requests-in-swift/
-        
         guard
             let url = URL(string: endpoint)
         else{

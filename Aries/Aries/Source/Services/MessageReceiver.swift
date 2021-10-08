@@ -18,7 +18,7 @@ public class MessageReceiver{
         
     }
     
-//    private var arrayOfMessages = [BaseMessage]()
+    private var arrayOfMessages = [BaseMessage]()
     
     public func receiveMessage(message: Data) {
         //Receive packed message: Data
