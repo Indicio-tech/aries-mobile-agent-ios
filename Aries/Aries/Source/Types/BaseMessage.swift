@@ -9,12 +9,17 @@ import Foundation
 import Indy
 
 
-protocol BaseMessage: Codable, Identifiable {
+public protocol BaseMessage: Codable {
     var type: MessageType { get }
     var id: String { get }
 }
 
-struct TypeContainerMessage: BaseMessage {
-    var type: MessageType
-    var id: String
+public struct TypeContainerMessage: BaseMessage {
+    public var type: MessageType
+    public var id: String
+
+    enum CodingKeys : String, CodingKey {
+        case type = "@type"
+        case id = "@id"
+    }
 }
