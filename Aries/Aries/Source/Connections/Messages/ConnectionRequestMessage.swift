@@ -30,7 +30,7 @@ struct ConnectionRequest: BaseMessage {
         self.type = .connectionRequestMessage
     }
 
-    public init(label: String, connection: AriesConnection, id: String){
+    public init(label: String, connection: AriesConnection, id: String) {
         self.label = label
         self.connection = connection
         self.transport =  TransportDecorator(returnRoute: "all")
