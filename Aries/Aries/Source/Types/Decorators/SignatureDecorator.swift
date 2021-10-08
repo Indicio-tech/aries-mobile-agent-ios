@@ -23,6 +23,8 @@ public class SignatureDecorator: Codable {
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case sigData = "sig_data"
+        case signature
+        case signer
     }
 }
 

@@ -8,49 +8,32 @@
 import Foundation
 
 
-
-
-//public class DeleteBasicMessage extends BaseOutboundAdminMessage {
-//    @SerializedName("@type")
-//    public final static String type = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-basicmessage/0.1/delete";
-//
-//    @SerializedName("connection_id")
-//    public String connectionId;
-//
-//    @SerializedName("before_date")
-//    public String beforeDate;
-//
-//    @SerializedName("message_id")
-//    public String messageId;
-//
-//    //Deletes all basic messages
-//    public DeleteBasicMessage() {
-//        this.id = UUID.randomUUID().toString();
-//    }
-//
-//    //Deletes single basic message
-//    public DeleteBasicMessage(String messageId) {
-//        this();
-//        this.messageId = messageId;
-//    }
-//
-//
-//    /**
-//     * @param config {
-//     *               String connectionId (Optional): Connection ID to target
-//     *               String beforeDate (Optional): Delete before this date
-//     *               String messageID (Optional): Message ID to be deleted
-//     *               }
-//     */
-//    public DeleteBasicMessage(JsonObject config) {
-//        this();
-//        if (config.has("connectionId"))
-//            this.connectionId = config.get("connectionId").toString();
-//        if (config.has("beforeDate"))
-//            this.beforeDate = config.get("beforeDate").toString();
-//        if (config.has("messageId"))
-//            this.messageId = config.get("messageId").toString();
-//    }
-//
-//
-//}
+public struct DeleteBasicMessage: BaseOutboundAdminMessage {
+    
+    
+    public let transport: TransportDecorator
+    public let type: MessageType
+    public let id: String
+    public let connectionId: String?
+    public let beforeData: String?
+    public let messageId: String?
+    
+    public init(messageId: String?, connectionId: String?, beforeData: String?) {
+        self.type = MessageType.deleteBasicMessage
+        self.id = UUID().uuidString
+            self.messageId = messageId
+            self.connectionId = connectionId
+            self.beforeData = beforeData
+        self.transport = TransportDecorator(returnRoute: "all")
+    }
+    
+    
+    enum CodingKeys : String, CodingKey {
+        case type = "@type"
+        case id = "@id"
+        case connectionId = "connection_id"
+        case messageId = "message_id"
+        case beforeData = "before_data"
+        case transport = "~transport"
+    }
+}

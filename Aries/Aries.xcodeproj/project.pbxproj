@@ -19,6 +19,9 @@
 		3755DC8D270E345300371A69 /* AdminBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC8C270E345300371A69 /* AdminBasicMessage.swift */; };
 		3755DC8F270E34D600371A69 /* BasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC8E270E34D600371A69 /* BasicMessage.swift */; };
 		3755DC91270E365400371A69 /* LocalizationDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC90270E365400371A69 /* LocalizationDecorator.swift */; };
+		376B0670270FBA9000C0C42D /* BaseOutboundAdminMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B066F270FBA9000C0C42D /* BaseOutboundAdminMessage.swift */; };
+		376B06722710C90100C0C42D /* DeletedBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B06712710C90100C0C42D /* DeletedBasicMessage.swift */; };
+		376B06742710C92B00C0C42D /* BaseAdminConfirmationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B06732710C92B00C0C42D /* BaseAdminConfirmationMessage.swift */; };
 		37F484B826FCF37E003A878E /* BaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484B726FCF37E003A878E /* BaseRecord.swift */; };
 		37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484BD27021C8F003A878E /* BaseMessage.swift */; };
 		632686FC26FBADC3008EC5E9 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632686FB26FBADC3008EC5E9 /* HTTPService.swift */; };
@@ -83,6 +86,9 @@
 		3755DC8C270E345300371A69 /* AdminBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminBasicMessage.swift; sourceTree = "<group>"; };
 		3755DC8E270E34D600371A69 /* BasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMessage.swift; sourceTree = "<group>"; };
 		3755DC90270E365400371A69 /* LocalizationDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationDecorator.swift; sourceTree = "<group>"; };
+		376B066F270FBA9000C0C42D /* BaseOutboundAdminMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOutboundAdminMessage.swift; sourceTree = "<group>"; };
+		376B06712710C90100C0C42D /* DeletedBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedBasicMessage.swift; sourceTree = "<group>"; };
+		376B06732710C92B00C0C42D /* BaseAdminConfirmationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdminConfirmationMessage.swift; sourceTree = "<group>"; };
 		37F484B726FCF37E003A878E /* BaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecord.swift; sourceTree = "<group>"; };
 		37F484BD27021C8F003A878E /* BaseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessage.swift; sourceTree = "<group>"; };
 		632686FB26FBADC3008EC5E9 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 		3755DC89270E340000371A69 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				376B066E270FBA5C00C0C42D /* Messages */,
 				3755DC8A270E341100371A69 /* basicMessaging */,
 			);
 			path = Admin;
@@ -157,6 +164,16 @@
 				37320E51270E984100C34367 /* DeleteBasicMessage.swift */,
 				37320E53270E993700C34367 /* NewBasicMessage.swift */,
 				37320E56270E9A1300C34367 /* ReceivedBasicMessages.swift */,
+				376B06712710C90100C0C42D /* DeletedBasicMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		376B066E270FBA5C00C0C42D /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				376B066F270FBA9000C0C42D /* BaseOutboundAdminMessage.swift */,
+				376B06732710C92B00C0C42D /* BaseAdminConfirmationMessage.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -421,6 +438,8 @@
 				63E7077E270CD10200C76D02 /* TransportService.swift in Sources */,
 				6357106126F52DD000EC9A8E /* AriesWallet.swift in Sources */,
 				63E7077F270CD10200C76D02 /* MessageSender.swift in Sources */,
+				376B06722710C90100C0C42D /* DeletedBasicMessage.swift in Sources */,
+				376B06742710C92B00C0C42D /* BaseAdminConfirmationMessage.swift in Sources */,
 				3755DC88270E241600371A69 /* TimingDecorator.swift in Sources */,
 				37F484B826FCF37E003A878E /* BaseRecord.swift in Sources */,
 				63494B5926F6C48500C5F2F2 /* AriesErrors.swift in Sources */,
@@ -430,6 +449,7 @@
 				37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */,
 				632686FE26FBADCF008EC5E9 /* WSService.swift in Sources */,
 				63E7077D270CD10200C76D02 /* MessageReceiver.swift in Sources */,
+				376B0670270FBA9000C0C42D /* BaseOutboundAdminMessage.swift in Sources */,
 				37320E57270E9A1300C34367 /* ReceivedBasicMessages.swift in Sources */,
 				63E7078D270CD4AB00C76D02 /* Authentication.swift in Sources */,
 				3755DC8D270E345300371A69 /* AdminBasicMessage.swift in Sources */,
