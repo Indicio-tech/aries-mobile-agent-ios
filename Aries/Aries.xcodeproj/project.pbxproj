@@ -14,7 +14,6 @@
 		3755DC80270E1FC100371A69 /* ConnectionResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */; };
 		3755DC82270E204600371A69 /* ThreadDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC81270E204600371A69 /* ThreadDecorator.swift */; };
 		3755DC84270E213600371A69 /* SignatureDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC83270E213600371A69 /* SignatureDecorator.swift */; };
-		3755DC86270E23A300371A69 /* TrustPingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC85270E23A300371A69 /* TrustPingMessage.swift */; };
 		3755DC88270E241600371A69 /* TimingDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC87270E241600371A69 /* TimingDecorator.swift */; };
 		3755DC8D270E345300371A69 /* AdminBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC8C270E345300371A69 /* AdminBasicMessage.swift */; };
 		3755DC8F270E34D600371A69 /* BasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC8E270E34D600371A69 /* BasicMessage.swift */; };
@@ -24,6 +23,8 @@
 		376B06742710C92B00C0C42D /* BaseAdminConfirmationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 376B06732710C92B00C0C42D /* BaseAdminConfirmationMessage.swift */; };
 		37F484B826FCF37E003A878E /* BaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484B726FCF37E003A878E /* BaseRecord.swift */; };
 		37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F484BD27021C8F003A878E /* BaseMessage.swift */; };
+		58B2221A866212EC4AA31EB5 /* TrustPingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B22B2375C9D17B0897C350 /* TrustPingMessage.swift */; };
+		58B227DBBF522DD71CE20B0C /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B221BF856A22D8B7E09A79 /* Storage.swift */; };
 		632686FC26FBADC3008EC5E9 /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632686FB26FBADC3008EC5E9 /* HTTPService.swift */; };
 		632686FE26FBADCF008EC5E9 /* WSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632686FD26FBADCF008EC5E9 /* WSService.swift */; };
 		633F73A126F3E1A600474D73 /* Aries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633F739726F3E1A600474D73 /* Aries.framework */; };
@@ -81,7 +82,6 @@
 		3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionResponseMessage.swift; sourceTree = "<group>"; };
 		3755DC81270E204600371A69 /* ThreadDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDecorator.swift; sourceTree = "<group>"; };
 		3755DC83270E213600371A69 /* SignatureDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureDecorator.swift; sourceTree = "<group>"; };
-		3755DC85270E23A300371A69 /* TrustPingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustPingMessage.swift; sourceTree = "<group>"; };
 		3755DC87270E241600371A69 /* TimingDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingDecorator.swift; sourceTree = "<group>"; };
 		3755DC8C270E345300371A69 /* AdminBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminBasicMessage.swift; sourceTree = "<group>"; };
 		3755DC8E270E34D600371A69 /* BasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMessage.swift; sourceTree = "<group>"; };
@@ -91,6 +91,8 @@
 		376B06732710C92B00C0C42D /* BaseAdminConfirmationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdminConfirmationMessage.swift; sourceTree = "<group>"; };
 		37F484B726FCF37E003A878E /* BaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecord.swift; sourceTree = "<group>"; };
 		37F484BD27021C8F003A878E /* BaseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessage.swift; sourceTree = "<group>"; };
+		58B221BF856A22D8B7E09A79 /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		58B22B2375C9D17B0897C350 /* TrustPingMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrustPingMessage.swift; sourceTree = "<group>"; };
 		632686FB26FBADC3008EC5E9 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
 		632686FD26FBADCF008EC5E9 /* WSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSService.swift; sourceTree = "<group>"; };
 		633F739726F3E1A600474D73 /* Aries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +200,7 @@
 				63E7077C270CD10200C76D02 /* MessageSender.swift */,
 				63E7077B270CD10200C76D02 /* TransportService.swift */,
 				632686FD26FBADCF008EC5E9 /* WSService.swift */,
+				58B221BF856A22D8B7E09A79 /* Storage.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -279,7 +282,6 @@
 				63E70782270CD4AB00C76D02 /* InvitationMessage.swift */,
 				8F49416D270D064F0080ED04 /* ConnectionRequestMessage.swift */,
 				3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */,
-				3755DC85270E23A300371A69 /* TrustPingMessage.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -292,6 +294,7 @@
 				63E70786270CD4AB00C76D02 /* DIDDoc.swift */,
 				63E70787270CD4AB00C76D02 /* Authentication.swift */,
 				8FA21341270E1D6200AE80F0 /* AriesConnection.swift */,
+				58B22B2375C9D17B0897C350 /* TrustPingMessage.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -424,7 +427,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3755DC86270E23A300371A69 /* TrustPingMessage.swift in Sources */,
 				3755DC84270E213600371A69 /* SignatureDecorator.swift in Sources */,
 				63E7078B270CD4AB00C76D02 /* PublicKey.swift in Sources */,
 				63E70789270CD4AB00C76D02 /* InvitationMessage.swift in Sources */,
@@ -459,6 +461,8 @@
 				8FA21342270E1D6200AE80F0 /* AriesConnection.swift in Sources */,
 				8FA21340270E1C3600AE80F0 /* TransportDecorator.swift in Sources */,
 				37320E54270E993700C34367 /* NewBasicMessage.swift in Sources */,
+				58B227DBBF522DD71CE20B0C /* Storage.swift in Sources */,
+				58B2221A866212EC4AA31EB5 /* TrustPingMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,7 +613,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = J4P6TU282J;
+				DEVELOPMENT_TEAM = YCB9H9BT83;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -641,7 +645,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = J4P6TU282J;
+				DEVELOPMENT_TEAM = YCB9H9BT83;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
