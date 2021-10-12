@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67b5224a-aba7-4960-81aa-d8871cf70115" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Aries/Source/Connections/Connections.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Aries2.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aries.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Aries.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aries.xcodeproj/xcuserdata/patrickkenyon.xcuserdatad/xcschemes/xcschememanagement.plist" beforeDir="false" afterPath="$PROJECT_DIR$/Aries.xcodeproj/xcuserdata/patrickkenyon.xcuserdatad/xcschemes/xcschememanagement.plist" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Aries/Source/Classes/AriesWallet.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Classes/AriesWallet.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,7 +71,7 @@
       <workItem from="1633570262888" duration="854000" />
       <workItem from="1633571270395" duration="70000" />
       <workItem from="1633571360480" duration="14817000" />
-      <workItem from="1634054107920" duration="6630000" />
+      <workItem from="1634054107920" duration="6948000" />
     </task>
     <servers />
   </component>

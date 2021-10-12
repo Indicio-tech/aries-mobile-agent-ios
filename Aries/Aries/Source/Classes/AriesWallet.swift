@@ -77,7 +77,7 @@ public class AriesWallet {
                     completion(.success(()))
                 case .failure(_):
                     print("Failed to open wallet, trying to create a new one.")
-                    self.createWallet(id: "default", key: "password"){result1 in
+                    self.createWallet(id: id, key: key){result1 in
                         switch(result1){
                             case .success():
                                 print("Wallet created, retrying to open it")
