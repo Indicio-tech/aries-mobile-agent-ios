@@ -17,6 +17,18 @@ public enum MessageType: String, Codable {
     case newBasicMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-basicmessage/0.1/new"
     case deleteBasicMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-basicmessage/0.1/delete"
     case deletedBasicMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-basicmessage/0.1/deleted"
+    case getBasicMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-basicmessage/0.1/get"
+    case sendBasicMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-basicmessage/0.1/send"
+    case receivedBasicMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-basicmessage/0.1/messages"
+    case sentBasicMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-basicmessage/0.1/sent"
+    case connectedMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/connected"
+    case connectionListMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/list"
+    case connectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/connection"
+    case deleteConnectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/delete"
+    case deletedConnectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/deleted"
+    case getConnectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/get-list"
+    case receiveInvitationMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/receive-invitation"
+    case updateConnectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/update"
 }
 
 public enum RecordType: String, Codable {

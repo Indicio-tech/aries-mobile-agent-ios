@@ -11,6 +11,19 @@
 		37320E52270E984100C34367 /* DeleteBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37320E51270E984100C34367 /* DeleteBasicMessage.swift */; };
 		37320E54270E993700C34367 /* NewBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37320E53270E993700C34367 /* NewBasicMessage.swift */; };
 		37320E57270E9A1300C34367 /* ReceivedBasicMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37320E56270E9A1300C34367 /* ReceivedBasicMessages.swift */; };
+		375179562710EF3F00DEF248 /* GetBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375179552710EF3F00DEF248 /* GetBasicMessage.swift */; };
+		375179582711033C00DEF248 /* SendBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375179572711033C00DEF248 /* SendBasicMessage.swift */; };
+		3751795A2711045D00DEF248 /* SentBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375179592711045D00DEF248 /* SentBasicMessage.swift */; };
+		3751795E2711068600DEF248 /* ConnectedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751795D2711068600DEF248 /* ConnectedMessage.swift */; };
+		375179602711096300DEF248 /* ConnectionListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751795F2711096300DEF248 /* ConnectionListMessage.swift */; };
+		3751796227111A8D00DEF248 /* AdminConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751796127111A8D00DEF248 /* AdminConnection.swift */; };
+		375179642712407C00DEF248 /* ConnectionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375179632712407C00DEF248 /* ConnectionMessage.swift */; };
+		375179662714A99100DEF248 /* DeleteConnectionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375179652714A99100DEF248 /* DeleteConnectionMessage.swift */; };
+		375179682714CB4E00DEF248 /* DeletedConnectionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375179672714CB4E00DEF248 /* DeletedConnectionMessage.swift */; };
+		3751796A2714CD4900DEF248 /* GetConnectionListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375179692714CD4900DEF248 /* GetConnectionListMessage.swift */; };
+		3751796C2714CEE000DEF248 /* ReceiveInvitationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751796B2714CEE000DEF248 /* ReceiveInvitationMessage.swift */; };
+		3751796E2714E50600DEF248 /* UpdateConnectionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3751796D2714E50600DEF248 /* UpdateConnectionMessage.swift */; };
+		375179722714E65B00DEF248 /* CredentialExchangeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 375179712714E65B00DEF248 /* CredentialExchangeMessage.swift */; };
 		3755DC80270E1FC100371A69 /* ConnectionResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */; };
 		3755DC82270E204600371A69 /* ThreadDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC81270E204600371A69 /* ThreadDecorator.swift */; };
 		3755DC84270E213600371A69 /* SignatureDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3755DC83270E213600371A69 /* SignatureDecorator.swift */; };
@@ -79,6 +92,19 @@
 		37320E51270E984100C34367 /* DeleteBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteBasicMessage.swift; sourceTree = "<group>"; };
 		37320E53270E993700C34367 /* NewBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBasicMessage.swift; sourceTree = "<group>"; };
 		37320E56270E9A1300C34367 /* ReceivedBasicMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedBasicMessages.swift; sourceTree = "<group>"; };
+		375179552710EF3F00DEF248 /* GetBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBasicMessage.swift; sourceTree = "<group>"; };
+		375179572711033C00DEF248 /* SendBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBasicMessage.swift; sourceTree = "<group>"; };
+		375179592711045D00DEF248 /* SentBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentBasicMessage.swift; sourceTree = "<group>"; };
+		3751795D2711068600DEF248 /* ConnectedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedMessage.swift; sourceTree = "<group>"; };
+		3751795F2711096300DEF248 /* ConnectionListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionListMessage.swift; sourceTree = "<group>"; };
+		3751796127111A8D00DEF248 /* AdminConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConnection.swift; sourceTree = "<group>"; };
+		375179632712407C00DEF248 /* ConnectionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionMessage.swift; sourceTree = "<group>"; };
+		375179652714A99100DEF248 /* DeleteConnectionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteConnectionMessage.swift; sourceTree = "<group>"; };
+		375179672714CB4E00DEF248 /* DeletedConnectionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedConnectionMessage.swift; sourceTree = "<group>"; };
+		375179692714CD4900DEF248 /* GetConnectionListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConnectionListMessage.swift; sourceTree = "<group>"; };
+		3751796B2714CEE000DEF248 /* ReceiveInvitationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveInvitationMessage.swift; sourceTree = "<group>"; };
+		3751796D2714E50600DEF248 /* UpdateConnectionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConnectionMessage.swift; sourceTree = "<group>"; };
+		375179712714E65B00DEF248 /* CredentialExchangeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialExchangeMessage.swift; sourceTree = "<group>"; };
 		3755DC7F270E1FC100371A69 /* ConnectionResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionResponseMessage.swift; sourceTree = "<group>"; };
 		3755DC81270E204600371A69 /* ThreadDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDecorator.swift; sourceTree = "<group>"; };
 		3755DC83270E213600371A69 /* SignatureDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureDecorator.swift; sourceTree = "<group>"; };
@@ -142,9 +168,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3751795B2711065D00DEF248 /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				3751795C2711066800DEF248 /* Messages */,
+				3751796127111A8D00DEF248 /* AdminConnection.swift */,
+			);
+			path = Connections;
+			sourceTree = "<group>";
+		};
+		3751795C2711066800DEF248 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				3751795D2711068600DEF248 /* ConnectedMessage.swift */,
+				3751795F2711096300DEF248 /* ConnectionListMessage.swift */,
+				375179632712407C00DEF248 /* ConnectionMessage.swift */,
+				375179652714A99100DEF248 /* DeleteConnectionMessage.swift */,
+				375179672714CB4E00DEF248 /* DeletedConnectionMessage.swift */,
+				375179692714CD4900DEF248 /* GetConnectionListMessage.swift */,
+				3751796B2714CEE000DEF248 /* ReceiveInvitationMessage.swift */,
+				3751796D2714E50600DEF248 /* UpdateConnectionMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		3751796F2714E63D00DEF248 /* Credentials */ = {
+			isa = PBXGroup;
+			children = (
+				375179702714E64700DEF248 /* Messages */,
+			);
+			path = Credentials;
+			sourceTree = "<group>";
+		};
+		375179702714E64700DEF248 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				375179712714E65B00DEF248 /* CredentialExchangeMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		3755DC89270E340000371A69 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				3751796F2714E63D00DEF248 /* Credentials */,
+				3751795B2711065D00DEF248 /* Connections */,
 				376B066E270FBA5C00C0C42D /* Messages */,
 				3755DC8A270E341100371A69 /* basicMessaging */,
 			);
@@ -164,9 +232,12 @@
 			children = (
 				3755DC8C270E345300371A69 /* AdminBasicMessage.swift */,
 				37320E51270E984100C34367 /* DeleteBasicMessage.swift */,
+				376B06712710C90100C0C42D /* DeletedBasicMessage.swift */,
+				375179552710EF3F00DEF248 /* GetBasicMessage.swift */,
 				37320E53270E993700C34367 /* NewBasicMessage.swift */,
 				37320E56270E9A1300C34367 /* ReceivedBasicMessages.swift */,
-				376B06712710C90100C0C42D /* DeletedBasicMessage.swift */,
+				375179572711033C00DEF248 /* SendBasicMessage.swift */,
+				375179592711045D00DEF248 /* SentBasicMessage.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -427,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				375179582711033C00DEF248 /* SendBasicMessage.swift in Sources */,
 				3755DC84270E213600371A69 /* SignatureDecorator.swift in Sources */,
 				63E7078B270CD4AB00C76D02 /* PublicKey.swift in Sources */,
 				63E70789270CD4AB00C76D02 /* InvitationMessage.swift in Sources */,
@@ -434,16 +506,22 @@
 				3755DC82270E204600371A69 /* ThreadDecorator.swift in Sources */,
 				63E7078A270CD4AB00C76D02 /* IndyService.swift in Sources */,
 				37320E52270E984100C34367 /* DeleteBasicMessage.swift in Sources */,
+				375179662714A99100DEF248 /* DeleteConnectionMessage.swift in Sources */,
 				8FA2133D270E0B0600AE80F0 /* Types.swift in Sources */,
 				632686FC26FBADC3008EC5E9 /* HTTPService.swift in Sources */,
 				3755DC80270E1FC100371A69 /* ConnectionResponseMessage.swift in Sources */,
 				63E7077E270CD10200C76D02 /* TransportService.swift in Sources */,
 				6357106126F52DD000EC9A8E /* AriesWallet.swift in Sources */,
+				375179642712407C00DEF248 /* ConnectionMessage.swift in Sources */,
 				63E7077F270CD10200C76D02 /* MessageSender.swift in Sources */,
+				3751796E2714E50600DEF248 /* UpdateConnectionMessage.swift in Sources */,
 				376B06722710C90100C0C42D /* DeletedBasicMessage.swift in Sources */,
 				376B06742710C92B00C0C42D /* BaseAdminConfirmationMessage.swift in Sources */,
 				3755DC88270E241600371A69 /* TimingDecorator.swift in Sources */,
+				3751795E2711068600DEF248 /* ConnectedMessage.swift in Sources */,
+				375179562710EF3F00DEF248 /* GetBasicMessage.swift in Sources */,
 				37F484B826FCF37E003A878E /* BaseRecord.swift in Sources */,
+				375179682714CB4E00DEF248 /* DeletedConnectionMessage.swift in Sources */,
 				63494B5926F6C48500C5F2F2 /* AriesErrors.swift in Sources */,
 				6357106426F52F1500EC9A8E /* AriesConnections.swift in Sources */,
 				63E7078C270CD4AB00C76D02 /* DIDDoc.swift in Sources */,
@@ -452,17 +530,23 @@
 				632686FE26FBADCF008EC5E9 /* WSService.swift in Sources */,
 				63E7077D270CD10200C76D02 /* MessageReceiver.swift in Sources */,
 				376B0670270FBA9000C0C42D /* BaseOutboundAdminMessage.swift in Sources */,
+				3751796C2714CEE000DEF248 /* ReceiveInvitationMessage.swift in Sources */,
+				375179722714E65B00DEF248 /* CredentialExchangeMessage.swift in Sources */,
 				37320E57270E9A1300C34367 /* ReceivedBasicMessages.swift in Sources */,
 				63E7078D270CD4AB00C76D02 /* Authentication.swift in Sources */,
 				3755DC8D270E345300371A69 /* AdminBasicMessage.swift in Sources */,
 				3755DC8F270E34D600371A69 /* BasicMessage.swift in Sources */,
+				3751795A2711045D00DEF248 /* SentBasicMessage.swift in Sources */,
 				8F49416E270D064F0080ED04 /* ConnectionRequestMessage.swift in Sources */,
+				375179602711096300DEF248 /* ConnectionListMessage.swift in Sources */,
 				3755DC91270E365400371A69 /* LocalizationDecorator.swift in Sources */,
 				8FA21342270E1D6200AE80F0 /* AriesConnection.swift in Sources */,
 				8FA21340270E1C3600AE80F0 /* TransportDecorator.swift in Sources */,
 				37320E54270E993700C34367 /* NewBasicMessage.swift in Sources */,
 				58B227DBBF522DD71CE20B0C /* Storage.swift in Sources */,
 				58B2221A866212EC4AA31EB5 /* TrustPingMessage.swift in Sources */,
+				3751796A2714CD4900DEF248 /* GetConnectionListMessage.swift in Sources */,
+				3751796227111A8D00DEF248 /* AdminConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

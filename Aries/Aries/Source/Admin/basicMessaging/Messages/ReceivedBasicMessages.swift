@@ -18,6 +18,11 @@ public struct ReceivedBasicMessages: BaseMessage {
     public let remaining: Int
     public let messages: AdminBasicMessage
     
+    public init() {
+        self.type = MessageType.receivedBasicMessage
+        self.id = UUID().uuidString
+    }
+    
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"
