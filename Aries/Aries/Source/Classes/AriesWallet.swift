@@ -10,8 +10,8 @@ import Indy
 
 public class AriesWallet {
 
-    public  var indyWallet: IndyWallet
-    private let indyHandle: IndyHandle
+    public  var indyWallet: IndyWallet? = nil
+    private let indyHandle: IndyHandle? = nil
 
     private func createWallet(id: String, key: String, completion: @escaping (_ result: Result<Void, Error>)->Void) {
     
@@ -68,23 +68,31 @@ public class AriesWallet {
         }
     }
     
-    public init(completion: @escaping (_ result: Result<Void, Error>)->Void) {
+    public init(id:String = "default", key:String = "password", completion: @escaping (_ result: Result<Void, Error>)->Void) {
 //      Check to see if wallet already exists
-        openWallet(id: "default", key: "password"){ result in
+        openWallet(id: id, key: key){ result in
             switch(result){
                 case .success():
                     print("Wallet opened.")
                     completion(.success(()))
                 case .failure(_):
-                    self.createWallet(id: "default", key: "password"){res in
-                        switch(res){
+                    print("Failed to open wallet, trying to create a new one.")
+                    self.createWallet(id: id, key: key){result1 in
+                        switch(result1){
                             case .success():
-                                print("Wallet created.")
-                                completion(.success(()))
+                                print("Wallet created, retrying to open it")
+                                self.openWallet(id: id, key: key){result2 in
+                                    switch(result2) {
+                                    case .success():
+                                        print("Wallet opened.")
+                                        completion(.success(()))
+                                    case .failure(let error):
+                                        completion(.failure(error))
+                                    }
+                                }
                             case .failure(let error):
                                 completion(.failure(error))
                             }
-
                     }
             }
         }
@@ -101,7 +109,7 @@ public class AriesWallet {
 
         print("Packing message of type: "+message.type.rawValue+"\n\t"+messageJson!)
 
-        IndyCrypto.packMessage(data, receivers: recipientKeysJson, sender: senderVerkey, walletHandle: indyHandle) { error, data in
+        IndyCrypto.packMessage(data, receivers: recipientKeysJson, sender: senderVerkey, walletHandle: indyHandle!) { error, data in
                 if let error = error {
                     completion(.failure(error))
                 }
@@ -122,7 +130,7 @@ public class AriesWallet {
 
         print("Storing record...")
 
-        IndyNonSecrets.addRecordTags(inWallet: indyHandle, type: type, id: id, tagsJson: tagsJson){ _ in
+        IndyNonSecrets.addRecordTags(inWallet: indyHandle!, type: type, id: id, tagsJson: tagsJson){ _ in
             print("Record stored.")
         }
     }
@@ -137,12 +145,12 @@ public class AriesWallet {
 
         print("Updating record...")
 
-        IndyNonSecrets.updateRecordValue(inWallet: indyHandle, type: type, id: id, value: value){ _ in
+        IndyNonSecrets.updateRecordValue(inWallet: indyHandle!, type: type, id: id, value: value){ _ in
             print("Record updated.")
         }
 
         print("Updating tags...")
-        IndyNonSecrets.addRecordTags(inWallet: indyHandle, type: type, id: id, tagsJson: tagsJson){ _ in
+        IndyNonSecrets.addRecordTags(inWallet: indyHandle!, type: type, id: id, tagsJson: tagsJson){ _ in
             print("Tags updated.")
         }
     }
@@ -159,7 +167,7 @@ public class AriesWallet {
             let data = try encoder.encode(config)
             let configJson = String(data: data, encoding: .utf8)
 
-            IndyNonSecrets.getRecordFromWallet(indyHandle, type: type, id: id, optionsJson: configJson){ error, data in
+            IndyNonSecrets.getRecordFromWallet(indyHandle!, type: type, id: id, optionsJson: configJson){ error, data in
                 if let error = error {
                     completion(.failure(error))
                 }
