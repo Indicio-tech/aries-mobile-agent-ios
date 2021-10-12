@@ -9,20 +9,24 @@ import Foundation
 import Indy
 
 public class Agent {
-    
-    static let sharedAgent = Agent()
+    private var ariesWallet: AriesWallet
     
 //  For this implementation, we're using a default wallet with the "default" identifier and "password" as the key.
 //  We'll set up the ability to set/change passwords in later versions.
     
-    func setupWallet(){
-        let wallet = AriesWallet.wallet
-        wallet.setupWallet()
+    public init(){
+        ariesWallet = AriesWallet(){ result in
+            switch(result){
+            case(.success()):
+                print("Wallet opened")
+            case(.failure(let e)):
+                print(e.localizedDescription)
+            }
+        }
     }
 
     func deleteWallet(){
-        let wallet = AriesWallet.wallet
-        wallet.deleteWallet(id: "default", key: "password")
+//        wallet.deleteWallet(id: "default", key: "password")
     }
     
     

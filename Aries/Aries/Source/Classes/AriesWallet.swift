@@ -13,7 +13,7 @@ public class AriesWallet {
     public  var indyWallet: IndyWallet
     private let indyHandle: IndyHandle
 
-    private func createWallet(id: String, key: String) throws {
+    private func createWallet(id: String, key: String, completion: @escaping (_ result: Result<Void, Error>)->Void) {
     
         let configDict = ["id":id]
         let credentialsDict = ["key":key]
@@ -30,22 +30,18 @@ public class AriesWallet {
         }
 
         let tempWallet = IndyWallet()
-        var walletErr:Error?
 
         tempWallet.createWallet(withConfig: configString, credentials: credentialsString) { err in
             if let err = err {
-                walletErr = err
+                completion(.failure(err))
+            }else{
+                self.indyWallet = tempWallet
+                completion(.success(()))
             }
-        }
-
-        if(walletErr != nil){
-            throw walletErr!
-        }else{
-            indyWallet = tempWallet
         }
     }
     
-    private func openWallet(id: String, key: String) throws {
+    private func openWallet(id: String, key: String, completion: @escaping (_ result: Result<Void, Error>)->Void) {
         let configDict = ["id":id]
         let credentialsDict = ["key":key]
         var configString = ""
@@ -61,32 +57,40 @@ public class AriesWallet {
         }
         
         let tempWallet = IndyWallet()
-        var walletErr:Error?
 
-        tempWallet.open(withConfig: configString, credentials: credentialsString) { err, <#arg#> in
+        tempWallet.open(withConfig: configString, credentials: credentialsString) { err, _Arg in
             if let err = err {
-                walletErr = err
+                completion(.failure(err))
+            }else{
+                self.indyWallet = tempWallet
+                completion(.success(()))
             }
         }
-
-        if(walletErr != nil){
-            throw walletErr!
-        }else{
-            indyWallet = tempWallet
-        }
     }
     
-    public init() throws {
+    public init(completion: @escaping (_ result: Result<Void, Error>)->Void) {
 //      Check to see if wallet already exists
-        do {
-            try openWallet(id: "default", key: "password")
-        }catch {
-//          If it doesn't exist, create it
-            try createWallet(id: "default", key: "password")
+        openWallet(id: "default", key: "password"){ result in
+            switch(result){
+                case .success():
+                    print("Wallet opened.")
+                    completion(.success(()))
+                case .failure(_):
+                    self.createWallet(id: "default", key: "password"){res in
+                        switch(res){
+                            case .success():
+                                print("Wallet created.")
+                                completion(.success(()))
+                            case .failure(let error):
+                                completion(.failure(error))
+                            }
+
+                    }
+            }
         }
     }
     
-    public func packMessage(message: BaseMessage, recipientKeys: [String], senderVerkey: String) throws -> Data {
+    public func packMessage<SomeMessageType: BaseMessage>(message: SomeMessageType, recipientKeys: [String], senderVerkey: String, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
         //Encode message to JSON string
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -96,25 +100,17 @@ public class AriesWallet {
         let recipientKeysJson = String(data: recipientKeysData, encoding: .utf8)
 
         print("Packing message of type: "+message.type.rawValue+"\n\t"+messageJson!)
-        
-        var packedMessage:Data
-        var packingError:Error?
 
         IndyCrypto.packMessage(data, receivers: recipientKeysJson, sender: senderVerkey, walletHandle: indyHandle) { error, data in
                 if let error = error {
-                     packingError = error
+                    completion(.failure(error))
                 }
                 
                 if let data = data {
-                    packedMessage = data
+                    completion(.success(data))
                 }
         }
         
-        if(packingError != nil){
-            throw packingError!
-        }else{
-            return packedMessage
-        }
     }
 
     public func storeRecord(type: String, id: String, value: String, tags: [String: String]){
@@ -151,7 +147,7 @@ public class AriesWallet {
         }
     }
 
-    public func retrieveRecord(type: String, id: String) throws -> Data{
+    public func retrieveRecord(type: String, id: String, completion: @escaping (_ result: Result<String, Error>) -> Void) -> Void{
         let config = [
             "retrieveType": true,
             "retrieveValue": true,
@@ -159,27 +155,21 @@ public class AriesWallet {
         ]
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
-        let data = try! encoder.encode(config)
-        let configJson = String(data: data, encoding: .utf8)
+        do{
+            let data = try encoder.encode(config)
+            let configJson = String(data: data, encoding: .utf8)
 
-        var getRecordError:Error?
-        var recordData:Data
+            IndyNonSecrets.getRecordFromWallet(indyHandle, type: type, id: id, optionsJson: configJson){ error, data in
+                if let error = error {
+                    completion(.failure(error))
+                }
 
-        IndyNonSecrets.getRecordFromWallet(indyHandle, type: type, id: id, optionsJson: configJson){ error, data in
-            if let error = error {
-                getRecordError = error
+                if let data = data {
+                    completion(.success(data))
+                }
             }
-
-            if let data = data {
-                recordData = data.data(using: .utf8)!
-                
-            }
-        }
-
-        if(getRecordError != nil){
-            throw getRecordError!
-        }else{
-            return recordData
+        }catch{
+            completion(.failure(error))
         }
     }
 //

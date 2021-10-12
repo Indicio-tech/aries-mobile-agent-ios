@@ -8,11 +8,10 @@
 import Foundation
 
 public struct ConnectionRecord: BaseRecord{
-    
     public var type: RecordType
     public var id: String
-    public var tags: [String : String]
-    
+    public var tags: [String: String]
+
     public var createdAt:String
     public var invitation:InvitationMessage
     public var state:ConnectionState
@@ -50,7 +49,7 @@ public struct ConnectionRecord: BaseRecord{
         self.tags = tags
     }
     
-    public enum ConnectionState: Codable {
+    public enum ConnectionState: String, Codable {
         case INVITED
         case REQUESTED
         case RESPONDED
