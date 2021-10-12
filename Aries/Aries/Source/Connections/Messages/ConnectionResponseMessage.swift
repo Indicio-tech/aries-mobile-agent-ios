@@ -16,10 +16,12 @@ public struct ConnectionResponse: BaseMessage {
     public let connection: AriesConnection
     public let signedConnection: SignatureDecorator
     
-    public init(label: String, connection: AriesConnection) {
+    public init(label: String, connection: AriesConnection, thread: ThreadDecorator, signedConnection: SignatureDecorator) {
         self.type = MessageType.connectionResponseMessage
         self.label = label
+        self.thread = thread
         self.connection = connection
+        self.signedConnection = signedConnection
         self.id = UUID().uuidString
     }
     

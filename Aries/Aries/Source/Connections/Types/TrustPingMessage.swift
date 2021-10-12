@@ -11,9 +11,9 @@ public struct TrustPingMessage: BaseMessage {
     
     public let type: MessageType
     public let id: String
-    public let responseRequested: Bool
-    public let comment: String
-    public let timing: TimingDecorator
+    public let responseRequested: Bool?
+    public let comment: String?
+    public let timing: TimingDecorator?
     public let transport: TransportDecorator
     
     public init(responseRequested: Bool, comment: String, returnRoute: String) {
@@ -22,11 +22,15 @@ public struct TrustPingMessage: BaseMessage {
         self.responseRequested = responseRequested
         self.comment = comment
         self.transport = TransportDecorator(returnRoute: returnRoute)
+        self.timing = nil
     }
     public init(returnRoute: String) {
         self.id = UUID().uuidString
         self.type = MessageType.trustPingMessage
         self.transport = TransportDecorator(returnRoute: returnRoute)
+        self.timing = nil
+        self.comment = nil
+        self.responseRequested = nil
     }
     
     enum CodingKeys : String, CodingKey {
