@@ -36,7 +36,7 @@ public class AriesWallet {
                 completion(.failure(err))
             }else{
                 self.indyWallet = tempWallet
-                completion(.success(<#T##Void##Swift.Void#>))
+                completion(.success(()))
             }
         }
     }
@@ -58,12 +58,12 @@ public class AriesWallet {
         
         let tempWallet = IndyWallet()
 
-        tempWallet.open(withConfig: configString, credentials: credentialsString) { err, <#arg#> in
+        tempWallet.open(withConfig: configString, credentials: credentialsString) { err, _Arg in
             if let err = err {
                 completion(.failure(err))
             }else{
                 self.indyWallet = tempWallet
-                completion(.success(<#T##Void##Swift.Void#>))
+                completion(.success(()))
             }
         }
     }
@@ -71,16 +71,16 @@ public class AriesWallet {
     public init(completion: @escaping (_ result: Result<Void, Error>)->Void) {
 //      Check to see if wallet already exists
         openWallet(id: "default", key: "password"){ result in
-            switch result {
+            switch(result){
                 case .success():
                     print("Wallet opened.")
-                    completion(.success(<#T##Void##Swift.Void#>))
+                    completion(.success(()))
                 case .failure(_):
                     self.createWallet(id: "default", key: "password"){res in
                         switch(res){
                             case .success():
                                 print("Wallet created.")
-                                completion(.success(<#Void#>))
+                                completion(.success(()))
                             case .failure(let error):
                                 completion(.failure(error))
                             }

@@ -22,7 +22,7 @@ public class Storage{
         ariesWallet.storeRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags)
     }
 
-    public func updateRecord<Record: BaseRecord>(record: Record) throws -> TypeContainerRecord{
+    public func updateRecord<Record: BaseRecord>(record: Record){
         //Stringify record
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -38,7 +38,7 @@ public class Storage{
                 case(.success(let recordString)):
                     let decoder = JSONDecoder()
                     do {
-                        let record = try decoder.decode(recordObject.self, from: recordString.data(using: .utf8) ?? <#default value#>)
+                        let record = try decoder.decode(recordObject.self, from: recordString.data(using: .utf8)!)
                         completion(.success(record))
                     } catch {
                         completion(.failure(error))

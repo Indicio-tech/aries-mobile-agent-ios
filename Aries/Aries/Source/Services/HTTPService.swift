@@ -33,10 +33,8 @@ public class HTTPService{
         
         //HTTP request
         let session = URLSession.shared
-        let task = session.dataTask(with: request) {(data, response, error)
-            if let error = error{
-                throw HTTPServiceError.HTTPError
-            }else if let data = data {
+        let task = session.dataTask(with: request) { data, response, error in
+            if let data = data {
                 self.messageReceiver.receiveMessage(message: data)
             }
         }
