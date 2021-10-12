@@ -49,12 +49,14 @@ private class WSDelegate: WebSocketDelegate {
         self.messageSender = messageSender
         self.messageReceiver = messageReceiver
         self.endPoint = endPoint
+        self.connectionRecord = connectionRecord
+        
         var request = URLRequest(url: URL(string: endPoint)!)
         request.timeoutInterval = 5
         socket = WebSocket(request: request)
         socket.delegate = self
         socket.connect()
-        self.connectionRecord = connectionRecord
+        
     }
 
     func sendMessage(message: Data){
@@ -70,7 +72,7 @@ private class WSDelegate: WebSocketDelegate {
 //        socket.write(data:)
     }
     
-    func didReceive(event: WebSocketEvent, client: WebSocketClient) {
+    func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
         case .connected(let headers):
             if (isConnected){
