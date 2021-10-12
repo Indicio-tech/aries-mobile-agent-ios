@@ -16,12 +16,12 @@ public class MessageSender{
         transportService = TransportService(messageReceiver: messageReceiver, messageSender: self)
     }
     
-    public func sendMessage(message: BaseMessage, connectionRecord: ConnectionRecord){
+    public func sendMessage<SomeMessageType: BaseMessage>(message: SomeMessageType, connectionRecord: ConnectionRecord){
         let endpoint:String
         let recipientKeys:[String]
         
         if(connectionRecord.theirDidDoc != nil){
-            let service = selectService(services: connectionRecord.theirDidDoc.service)
+            let service = selectService(services: connectionRecord.theirDidDoc!.service)
             endpoint = service.serviceEndpoint
             recipientKeys = service.recipientKeys
         }else{
@@ -37,23 +37,31 @@ public class MessageSender{
         let data = try! encoder.encode(message)
         let messageJson = String(data: data, encoding: .utf8)
         
-        print("Sending message of type: "+message.type+" to endpoint: "+endpoint+"\n message: "+messageJson)
+       print("Sending message of type: "+message.type.rawValue+" to endpoint: "+endpoint+"\n message: " + messageJson!)
         
         //Pack message
-        let packedMessage = ariesWallet.packMessage(message: message, recipientKeys: recipientKeys, senderVerkey: senderVerkey)
-        
-        transportService.send(message: packedMessage, endpoint: endpoint, connection: connectionRecord)
+        try! _ = ariesWallet.packMessage(message: message, recipientKeys: recipientKeys, senderVerkey: senderVerkey!) { result in
+            switch result {
+            case .success(let data):
+                //Send message
+                self.transportService.send(message: data, endpoint: endpoint, connection: connectionRecord)
+                break
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
     }
     
     private func selectService(services: [IndyService], protocolPreference:[String] = ["wss", "ws", "https", "http"]) -> IndyService{
-        //Loop through protocols and try to get the prefered one
-        for prot in protocolPreference {
-            for service in services {
-                if(service.serviceEndpoint.hasPrefix(prefix: prot)){
-                    return service
-                }
-            }
-        }
+        //Loop through protocols and try to get the preferred one
+//        for prot in protocolPreference {
+//            for service in services {
+//                if(service.serviceEndpoint.hasPrefix(prefix: prot)){
+//                    return service
+//                }
+//            }
+//        }
         //If preferred protocol isn't available return the first one
         return services[0]
     }

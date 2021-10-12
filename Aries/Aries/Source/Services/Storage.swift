@@ -11,7 +11,7 @@ public class Storage{
         self.ariesWallet = ariesWallet
     }
 
-    public func storeRecord(record:BaseRecord){
+    public func storeRecord<Record: BaseRecord>(record:Record){
 
         //Stringify record
         let encoder = JSONEncoder()
@@ -22,7 +22,7 @@ public class Storage{
         ariesWallet.storeRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags)
     }
 
-    public func updateRecord(record: BaseRecord) throws -> TypeContainerRecord{
+    public func updateRecord<Record: BaseRecord>(record: Record) throws -> TypeContainerRecord{
         //Stringify record
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -32,13 +32,20 @@ public class Storage{
         ariesWallet.storeRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags)
     }
     
-    public func retrieveRecord(type: RecordType, id: String)throws-> BaseRecord{
-        let recordData = try ariesWallet.retrieveRecord(type: type.rawValue, id: id)
-        let decoder = JSONDecoder()
-        let typeContainer = try decoder.decode(TypeContainerRecord.self, from: recordData)
-        
-        return typeContainer
+    public func retrieveRecord<recordObject: BaseRecord>(type: RecordType, id: String, completion: @escaping (_ result: Result<recordObject, Error>)->Void)-> Void{
+        ariesWallet.retrieveRecord(type: type.rawValue, id: id){ result in
+            switch(result){
+                case(.success(let recordString)):
+                    let decoder = JSONDecoder()
+                    do {
+                        let record = try decoder.decode(recordObject.self, from: recordString.data(using: .utf8) ?? <#default value#>)
+                        completion(.success(record))
+                    } catch {
+                        completion(.failure(error))
+                    }
+                case(.failure(let err)):
+                    completion(.failure(err))
+            }
+        }
     }
-
-
 }

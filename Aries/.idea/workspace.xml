@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="67b5224a-aba7-4960-81aa-d8871cf70115" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Aries.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Aries.xcodeproj/project.pbxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aries/Source/Admin/basicMessaging/Messages/AdminBasicMessage.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Admin/basicMessaging/Messages/AdminBasicMessage.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Aries/Source/Classes/AriesWallet.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Classes/AriesWallet.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aries/Source/Connections/Messages/TrustPingMessage.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Connections/Types/TrustPingMessage.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aries/Source/Services/HTTPService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Services/HTTPService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aries/Source/Services/MessageReceiver.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Services/MessageReceiver.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aries/Source/Connections/ConnectionRecord.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Connections/ConnectionRecord.swift" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Aries/Source/Services/MessageSender.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Services/MessageSender.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aries/Source/Services/TransportService.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Services/TransportService.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aries/Source/Types/BaseMessage.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Types/BaseMessage.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Aries/Source/Types/BaseRecord.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Types/BaseRecord.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Aries/Source/Services/Storage.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Aries/Source/Services/Storage.swift" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +19,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Aries/Source/Types/Types.swift" root0="FORCE_HIGHLIGHTING" />
@@ -64,6 +67,7 @@
       <workItem from="1633570262888" duration="854000" />
       <workItem from="1633571270395" duration="70000" />
       <workItem from="1633571360480" duration="14817000" />
+      <workItem from="1634054107920" duration="3297000" />
     </task>
     <servers />
   </component>
