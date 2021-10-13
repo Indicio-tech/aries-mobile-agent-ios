@@ -11,9 +11,10 @@ public class MessageSender{
     private let ariesWallet: AriesWallet
     private let transportService: TransportService
     
-    init(ariesWallet: AriesWallet, messageReceiver: MessageReceiver){
+    init(ariesWallet: AriesWallet, messageReceiver: MessageReceiver, transportService: TransportService){
         self.ariesWallet = ariesWallet
-        transportService = TransportService(messageReceiver: messageReceiver, messageSender: self)
+        self.transportService = transportService
+//        self.transportService = TransportService(messageReceiver: messageReceiver, messageSender: self)
     }
     
     public func sendMessage<SomeMessageType: BaseMessage>(message: SomeMessageType, connectionRecord: ConnectionRecord){

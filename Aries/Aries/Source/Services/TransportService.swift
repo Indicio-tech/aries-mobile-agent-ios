@@ -13,7 +13,7 @@ public class TransportService{
     
     public init(messageReceiver: MessageReceiver, messageSender: MessageSender){
         httpTransport = HTTPService(messageReceiver: messageReceiver)
-        wsTransport = WSService(messageSender:messageSender)
+        wsTransport = WSService(messageReceiver: messageReceiver, messageSender:messageSender)
     }
     
     public func send(message: Data, endpoint: String, connection: ConnectionRecord){
@@ -22,7 +22,7 @@ public class TransportService{
             wsTransport.send(message: message, endpoint: endpoint, connection: connection)
         }else{
             print("Sending message through HTTP transport service")
-            httpTransport.send(message: message,endpoint: endpoint)
+            try! httpTransport.send(message: message,endpoint: endpoint)
         }
     }
 }
