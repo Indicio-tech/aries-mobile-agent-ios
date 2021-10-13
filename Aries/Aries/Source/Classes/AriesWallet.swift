@@ -121,6 +121,16 @@ public class AriesWallet {
         
     }
 
+    public func generateDID(completion: @escaping (_ result: Result<[String: String], Error>) -> Void){
+        IndyDid.createAndStoreMyDid("{}", walletHandle: indyHandle!){ error, s, s2 in
+            if let error = error{
+                completion(.failure(error))
+            }else{
+                completion(.success(["did": s!, "verkey": s2!]))
+            }
+        }
+    }
+
     public func storeRecord(type: String, id: String, value: String, tags: [String: String]){
         //Stringify tags
         let encoder = JSONEncoder()

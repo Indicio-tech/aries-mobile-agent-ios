@@ -9,12 +9,11 @@ import Foundation
 
 public class MessageSender{
     private let ariesWallet: AriesWallet
-    private let transportService: TransportService
+    private var transportService: TransportService? = nil
     
-    init(ariesWallet: AriesWallet, messageReceiver: MessageReceiver, transportService: TransportService){
+    init(ariesWallet: AriesWallet, messageReceiver: MessageReceiver){
         self.ariesWallet = ariesWallet
-        self.transportService = transportService
-//        self.transportService = TransportService(messageReceiver: messageReceiver, messageSender: self)
+        self.transportService = TransportService(messageReceiver: messageReceiver, messageSender: self)
     }
     
     public func sendMessage<SomeMessageType: BaseMessage>(message: SomeMessageType, connectionRecord: ConnectionRecord){
@@ -45,7 +44,7 @@ public class MessageSender{
             switch result {
             case .success(let data):
                 //Send message
-                self.transportService.send(message: data, endpoint: endpoint, connection: connectionRecord)
+                self.transportService!.send(message: data, endpoint: endpoint, connection: connectionRecord)
                 break
             case .failure(let error):
                 print(error)
