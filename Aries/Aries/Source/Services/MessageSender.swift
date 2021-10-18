@@ -26,7 +26,7 @@ public class MessageSender{
             recipientKeys = service.recipientKeys
         }else{
             endpoint = connectionRecord.invitation.serviceEndpoint
-            recipientKeys = connectionRecord.invitation.recipientKeys
+            recipientKeys = connectionRecord.invitation.recipientKeys!
         }
         
         let senderVerkey = connectionRecord.verkey
@@ -40,11 +40,12 @@ public class MessageSender{
        print("Sending message of type: "+message.type.rawValue+" to endpoint: "+endpoint+"\n message: " + messageJson!)
         
         //Pack message
-        try! _ = ariesWallet.packMessage(message: message, recipientKeys: recipientKeys, senderVerkey: senderVerkey!) { result in
+        try! ariesWallet.packMessage(message: message, recipientKeys: recipientKeys, senderVerkey: senderVerkey!) { result in
             switch result {
             case .success(let data):
                 //Send message
-                self.transportService!.send(message: data, endpoint: endpoint, connection: connectionRecord)
+                let packedMessage = String(data: data, encoding: .utf8)
+                self.transportService!.send(message: packedMessage!, endpoint: endpoint, connection: connectionRecord)
                 break
             case .failure(let error):
                 print(error)
@@ -55,13 +56,13 @@ public class MessageSender{
     
     private func selectService(services: [IndyService], protocolPreference:[String] = ["wss", "ws", "https", "http"]) -> IndyService{
         //Loop through protocols and try to get the preferred one
-//        for prot in protocolPreference {
-//            for service in services {
-//                if(service.serviceEndpoint.hasPrefix(prefix: prot)){
-//                    return service
-//                }
-//            }
-//        }
+        for prot in protocolPreference {
+            for service in services {
+                if(service.serviceEndpoint.hasPrefix(prot)){
+                    return service
+                }
+            }
+        }
         //If preferred protocol isn't available return the first one
         return services[0]
     }

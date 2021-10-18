@@ -20,7 +20,7 @@ public class WSService{
         
     }
     
-    public func send(message: Data, endpoint: String, connection: ConnectionRecord){
+    public func send(message: String, endpoint: String, connection: ConnectionRecord){
         let socket = getSocket(endpoint: endpoint, connection: connection)
         socket.sendMessage(message: message)
     }
@@ -63,8 +63,8 @@ private class WSDelegate: WebSocketDelegate {
         
     }
 
-    func sendMessage(message: Data){
-        socket.write(data: message)
+    func sendMessage(message: String){
+        socket.write(string: message)
     }
     
     func handleError(_ error: Error?) {

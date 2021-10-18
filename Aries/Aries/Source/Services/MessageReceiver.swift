@@ -14,11 +14,22 @@ public class MessageReceiver{
         self.wallet = wallet
     }
     
-    public func subscribeToEvents(){
-        
+    //Event emitter
+    
+    private var callbacks: [ (_ messageType: MessageType, _ payload: String)->Void] = []
+    
+    public func subscribeToEvents(callback: @escaping (_ messageType: MessageType, _ payload: String)->Void){
+        callbacks.append(callback)
     }
     
-    private var arrayOfMessages = [BaseMessage]()
+    private func triggerEvent(type: MessageType, payload: String){
+        for callback in self.callbacks{
+            //Call each function asynchronously
+            DispatchQueue.global().async {
+                callback(type, payload)
+            }
+        }
+    }
     
     public func receiveMessage(message: Data) {
         //Receive packed message: Data

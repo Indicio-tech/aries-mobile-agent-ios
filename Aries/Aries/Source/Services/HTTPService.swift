@@ -14,7 +14,7 @@ public class HTTPService{
         self.messageReceiver = messageReceiver
     }
     
-    public func send(message: Data, endpoint: String) throws {
+    public func send(message: String, endpoint: String) throws {
         
         //Based off of https://www.advancedswift.com/http-requests-in-swift/
         guard
@@ -26,7 +26,9 @@ public class HTTPService{
         var request = URLRequest(url:url)
         request.setValue("application/ssi-agent-wire", forHTTPHeaderField: "Content-Type")
         
-        let body = try? JSONSerialization.data(withJSONObject: message, options: [])
+//        let body = try? JSONSerialization.data(withJSONObject: message, options: [])
+        
+        let body = message.data(using: .utf8)
         
         request.httpMethod = "POST"
         request.httpBody = body
