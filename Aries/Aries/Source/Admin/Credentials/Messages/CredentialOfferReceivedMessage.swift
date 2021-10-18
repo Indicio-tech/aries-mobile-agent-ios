@@ -1,17 +1,18 @@
 //
-//  CredentialExchangeMessage.swift
+//  CredentialOfferReceivedMessage.swift
 //  Aries
 //
-//  Created by Dan Oaks on 10/11/21.
+//  Created by Dan Oaks on 10/13/21.
 //
 
 import Foundation
+import Indy
 
-public struct CredentialExchangeMessage: Codable {
+public struct CredentialOfferReceivedMessage: BaseMessage {
     public let type: MessageType
     public let id: String
     public let state: String
-    public let creadedAt: String
+    public let createdAt: String
     public let updatedAt: String
     public let trace: Bool
     public let credentialExchangeId: String
@@ -22,14 +23,14 @@ public struct CredentialExchangeMessage: Codable {
     public let role: String
     public let credentialDefinitionId: String
     public let schemaId: String
-    public let credentialProposalDict: [String : String]
+    public let credentialProposalDict: CredentialProposalDict
     public let credentialOfferDict: [String : String]
     public let credentialOffer: CredentialOffer
     public let credentialRequest: [String : String]
     public let credentialRequestMetadata: [String : String]
     public let credentialId: String
     public let rawCredential: [String : String]
-    public let credential: [String : String]
+    public let credential: AdminCredential
     public let autoOffer: Bool
     public let autoIssue: Bool
     public let autoRemove: Bool
@@ -45,14 +46,14 @@ public struct CredentialExchangeMessage: Codable {
         case updatedAt = "updated_at"
         case trace
         case credentialExchangeId = "credential_exchange_id"
-        case connectionId = "connection_Id"
+        case connectionId = "connection_id"
         case threadId = "thread_id"
         case parentThreadId = "parent_thread_id"
         case initiator
         case role
         case credentialDefinitionId = "credential_definition_id"
         case schemaId = "schema_id"
-        case credentialProposalDict = "credential_proposal_dict"
+        case CredentialProposalDict = "credential_proposal_dict"
         case credentialOfferDict = "credential_offer_dict"
         case credentialOffer = "credential_offer"
         case credentialRequest = "credential_request"
@@ -60,23 +61,21 @@ public struct CredentialExchangeMessage: Codable {
         case credentialId = "credential_id"
         case rawCredential = "raw_credential"
         case credential
-        case auoOffer = "auto_offer"
+        case autoOffer = "auto_offer"
         case autoIssue = "auto_issue"
         case autoRemove = "auto_remove"
         case errorMsg = "error_msg"
         case revocRegId = "revoc_reg_id"
         case revocationId = "revocation_id"
     }
+
 }
 
 
 
-//public class CredentialExchangeMessage {
+//public class CredentialOfferReceivedMessage extends BaseMessage {
 //    @SerializedName("@type")
-//    public final static String type = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1/credential-exchange";
-//
-//    @SerializedName("@id")
-//    public String id;
+//    public final static String type = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1/credential-offer-received";
 //
 //    public String state;
 //
@@ -111,7 +110,7 @@ public struct CredentialExchangeMessage: Codable {
 //    public String schemaId;
 //
 //    @SerializedName("credential_proposal_dict")
-//    public JsonObject credentialProposalDict;
+//    public CredentialProposalDict credentialProposalDict;
 //
 //    @SerializedName("credential_offer_dict")
 //    public JsonObject credentialOfferDict;
@@ -131,7 +130,7 @@ public struct CredentialExchangeMessage: Codable {
 //    @SerializedName("raw_credential")
 //    public JsonObject rawCredential;
 //
-//    public JsonObject credential;
+//    public AdminCredential credential;
 //
 //    @SerializedName("auto_offer")
 //    public boolean autoOffer;
@@ -150,4 +149,5 @@ public struct CredentialExchangeMessage: Codable {
 //
 //    @SerializedName("revocation_id")
 //    public String revocationId;
+//
 //}

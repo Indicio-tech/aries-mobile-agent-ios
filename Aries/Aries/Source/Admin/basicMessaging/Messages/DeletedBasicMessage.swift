@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct DeletedBasicMessage: BaseAdminConfirmationMessage {
     
     public let type: MessageType

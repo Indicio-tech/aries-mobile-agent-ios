@@ -17,7 +17,7 @@ public struct DeleteConnectionMessage: BaseOutboundAdminMessage {
         self.type = MessageType.deleteConnectionMessage
         self.id = UUID().uuidString
         self.connectionId = connectionId
-        self.transport = TransportDecorator.init(returnRoute: "all")
+        self.transport = TransportDecorator(returnRoute: "all")
     }
     
     enum CodingKeys : String, CodingKey {

@@ -13,7 +13,6 @@
 
 import Foundation
 
-
 public struct AdminBasicMessage: BaseMessage {
     
     public let type: MessageType
