@@ -11,7 +11,7 @@ public struct CredentialExchangeMessage: Codable {
     public let type: MessageType
     public let id: String
     public let state: String
-    public let creadedAt: String
+    public let createdAt: String
     public let updatedAt: String
     public let trace: Bool
     public let credentialExchangeId: String
@@ -36,7 +36,7 @@ public struct CredentialExchangeMessage: Codable {
     public let errorMsg: String
     public let revocRegId: String
     public let revocationId: String
-    
+    // quicktype
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"
@@ -60,7 +60,7 @@ public struct CredentialExchangeMessage: Codable {
         case credentialId = "credential_id"
         case rawCredential = "raw_credential"
         case credential
-        case auoOffer = "auto_offer"
+        case autoOffer = "auto_offer"
         case autoIssue = "auto_issue"
         case autoRemove = "auto_remove"
         case errorMsg = "error_msg"

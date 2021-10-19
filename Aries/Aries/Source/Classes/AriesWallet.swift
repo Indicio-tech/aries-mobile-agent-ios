@@ -10,8 +10,8 @@ import Indy
 
 public class AriesWallet {
 
-    public  var indyWallet: IndyWallet
-    private let indyHandle: IndyHandle
+//    public  var indyWallet: IndyWallet
+//    private let indyHandle: IndyHandle
 
     private func createWallet(id: String, key: String) throws {
     
@@ -38,11 +38,11 @@ public class AriesWallet {
             }
         }
 
-        if(walletErr != nil){
-            throw walletErr!
-        }else{
-            indyWallet = tempWallet
-        }
+//        if (walletErr != nil){
+//            throw walletErr!
+//        }else{
+//            indyWallet = tempWallet
+//        }
     }
     
     private func openWallet(id: String, key: String) throws {
@@ -63,34 +63,34 @@ public class AriesWallet {
         let tempWallet = IndyWallet()
         var walletErr:Error?
 
-        tempWallet.open(withConfig: configString, credentials: credentialsString) { err, <#arg#> in
+        tempWallet.open(withConfig: configString, credentials: credentialsString) { err, _ in
             if let err = err {
                 walletErr = err
             }
         }
 
-        if(walletErr != nil){
-            throw walletErr!
-        }else{
-            indyWallet = tempWallet
-        }
+//        if(walletErr != nil){
+//            throw walletErr!
+//        }else{
+//            indyWallet = tempWallet
+//        }
     }
     
     public init() throws {
 //      Check to see if wallet already exists
         do {
             try openWallet(id: "default", key: "password")
-        }catch {
+        } catch {
 //          If it doesn't exist, create it
             try createWallet(id: "default", key: "password")
         }
     }
     
-    public func packMessage(message: BaseMessage, recipientKeys: [String], senderVerkey: String) throws -> Data {
+    public func packMessage<Message: BaseMessage>(message: Message, recipientKeys: [String], senderVerkey: String) throws -> Data {
         //Encode message to JSON string
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
-        let data = try! encoder.encode(message)
+        let data = try encoder.encode(message)
         let recipientKeysData = try! encoder.encode(recipientKeys)
         let messageJson = String(data: data, encoding: .utf8)
         let recipientKeysJson = String(data: recipientKeysData, encoding: .utf8)
@@ -100,21 +100,22 @@ public class AriesWallet {
         var packedMessage:Data
         var packingError:Error?
 
-        IndyCrypto.packMessage(data, receivers: recipientKeysJson, sender: senderVerkey, walletHandle: indyHandle) { error, data in
-                if let error = error {
-                     packingError = error
-                }
-                
-                if let data = data {
-                    packedMessage = data
-                }
-        }
+//        IndyCrypto.packMessage(data, receivers: recipientKeysJson, sender: senderVerkey, walletHandle: indyHandle) { error, data in
+//                if let error = error {
+//                     packingError = error
+//                }
+//
+//                if let data = data {
+//                    packedMessage = data
+//                }
+//        }
         
-        if(packingError != nil){
-            throw packingError!
-        }else{
-            return packedMessage
-        }
+//        if(packingError != nil){
+//            throw packingError!
+//        }else{
+//            return packedMessage
+//        }
+        return Data()
     }
 
     public func storeRecord(type: String, id: String, value: String, tags: [String: String]){
@@ -126,9 +127,9 @@ public class AriesWallet {
 
         print("Storing record...")
 
-        IndyNonSecrets.addRecordTags(inWallet: indyHandle, type: type, id: id, tagsJson: tagsJson){ _ in
-            print("Record stored.")
-        }
+//        IndyNonSecrets.addRecordTags(inWallet: indyHandle, type: type, id: id, tagsJson: tagsJson){ _ in
+//            print("Record stored.")
+//        }
     }
 
     public func updateRecord(type: String, id: String, value: String, tags: [String: String]){
@@ -141,14 +142,14 @@ public class AriesWallet {
 
         print("Updating record...")
 
-        IndyNonSecrets.updateRecordValue(inWallet: indyHandle, type: type, id: id, value: value){ _ in
-            print("Record updated.")
-        }
-
-        print("Updating tags...")
-        IndyNonSecrets.addRecordTags(inWallet: indyHandle, type: type, id: id, tagsJson: tagsJson){ _ in
-            print("Tags updated.")
-        }
+//        IndyNonSecrets.updateRecordValue(inWallet: indyHandle, type: type, id: id, value: value){ _ in
+//            print("Record updated.")
+//        }
+//
+//        print("Updating tags...")
+//        IndyNonSecrets.addRecordTags(inWallet: indyHandle, type: type, id: id, tagsJson: tagsJson){ _ in
+//            print("Tags updated.")
+//        }
     }
 
     public func retrieveRecord(type: String, id: String) throws -> Data{
@@ -165,22 +166,23 @@ public class AriesWallet {
         var getRecordError:Error?
         var recordData:Data
 
-        IndyNonSecrets.getRecordFromWallet(indyHandle, type: type, id: id, optionsJson: configJson){ error, data in
-            if let error = error {
-                getRecordError = error
-            }
+//        IndyNonSecrets.getRecordFromWallet(indyHandle, type: type, id: id, optionsJson: configJson){ error, data in
+//            if let error = error {
+//                getRecordError = error
+//            }
+//
+//            if let data = data {
+//                recordData = data.data(using: .utf8)!
+//
+//            }
+//        }
 
-            if let data = data {
-                recordData = data.data(using: .utf8)!
-                
-            }
-        }
-
-        if(getRecordError != nil){
-            throw getRecordError!
-        }else{
-            return recordData
-        }
+//        if(getRecordError != nil){
+//            throw getRecordError!
+//        }else{
+//            return recordData
+//        }
+        return Data()
     }
 //
 //

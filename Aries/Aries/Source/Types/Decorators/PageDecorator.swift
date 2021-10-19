@@ -7,10 +7,10 @@
 
 import Foundation
 
-public protocol PageDecorator: Codable {
-    var count: Int { get }
-    var offset: Int { get }
-    var remaining: Int { get }
+public struct PageDecorator: Codable {
+    var count: Int
+    var offset: Int
+    var remaining: Int
 }
 
 //public class PageDecorator {

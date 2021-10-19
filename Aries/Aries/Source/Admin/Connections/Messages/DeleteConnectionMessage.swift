@@ -23,7 +23,7 @@ public struct DeleteConnectionMessage: BaseOutboundAdminMessage {
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"
-        case connectoinId = "connection_id"
+        case connectionId = "connection_id"
         case transport = "~transport"
     }
 }

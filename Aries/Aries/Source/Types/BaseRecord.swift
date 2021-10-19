@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol BaseRecord: Codable{
+public protocol BaseRecord: Codable {
     var type:RecordType { get }
     var id:String { get }
     var tags:[String:String] { get }

@@ -35,10 +35,10 @@ public struct ReceiveInvitationMessage: BaseOutboundAdminMessage {
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"
-        case transport = "~transport"
         case autoAccept = "auto_accept"
         case mediationId = "mediation_id"
-        case invitaion
+        case invitation
+        case transport = "~transport"
     }
 }
 

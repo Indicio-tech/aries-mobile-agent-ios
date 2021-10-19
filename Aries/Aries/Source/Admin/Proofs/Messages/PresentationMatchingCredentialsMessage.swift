@@ -8,7 +8,6 @@
 import Foundation
 
 public struct PresentationMatchingCredentialsMessage: BaseMessage {
-    
     public let type: MessageType
     public let id: String
     public let thread: String
@@ -24,15 +23,7 @@ public struct PresentationMatchingCredentialsMessage: BaseMessage {
         self.page = page
         self.id = UUID().uuidString
     }
-    
-    public init(from decoder: Decoder) throws {
-        print("Decoding here")
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        print("encoding here")
-    }
-    
+
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"

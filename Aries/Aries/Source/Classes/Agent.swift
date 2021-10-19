@@ -16,13 +16,13 @@ public class Agent {
 //  We'll set up the ability to set/change passwords in later versions.
     
     func setupWallet(){
-        let wallet = AriesWallet.wallet
-        wallet.setupWallet()
+//        let wallet = AriesWallet.wallet
+//        wallet.setupWallet()
     }
 
     func deleteWallet(){
-        let wallet = AriesWallet.wallet
-        wallet.deleteWallet(id: "default", key: "password")
+//        let wallet = AriesWallet.wallet
+//        wallet.deleteWallet(id: "default", key: "password")
     }
     
     

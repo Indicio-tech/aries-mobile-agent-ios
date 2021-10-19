@@ -52,7 +52,7 @@ public struct CredentialReceivedMessage: BaseMessage {
         case role
         case credentialDefinitionId = "credential_definition_id"
         case schemaId = "schema_id"
-        case CredentialProposalDict = "credential_proposal_dict"
+        case credentialProposalDict = "credential_proposal_dict"
         case credentialOfferDict = "credential_offer_dict"
         case credentialOffer = "credential_offer"
         case credentialRequest = "credential_request"

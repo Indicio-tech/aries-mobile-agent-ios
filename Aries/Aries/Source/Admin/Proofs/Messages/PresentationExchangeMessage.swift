@@ -10,22 +10,22 @@ import Foundation
 public struct PresentationExchangeMessage: BaseMessage {
     public let type: MessageType
     public let id: String
-    public let state: String
-    public let createdAt: String
-    public let updatedAt: String
-    public let trace: Bool
-    public let presentationExchangeId: String
-    public let connectionId: String
-    public let threadId: String
-    public let initiator: String
-    public let role: String
-    public let presentationProposalDict: [String : String]
-    public let presentationRequest: [String : String]
-    public let presentationRequestDict: [String : String]
-    public let presentation: [String : String]
-    public let verified: String
-    public let autoPresent: Bool
-    public let errorMsg: String
+    public var state: String?
+    public var createdAt: String?
+    public var updatedAt: String?
+    public var trace: Bool?
+    public var presentationExchangeId: String?
+    public var connectionId: String?
+    public var threadId: String?
+    public var initiator: String?
+    public var role: String?
+    public var presentationProposalDict: [String : String]?
+    public var presentationRequest: [String : String]?
+    public var presentationRequestDict: [String : String]?
+    public var presentation: [String : String]?
+    public var verified: String?
+    public var autoPresent: Bool?
+    public var errorMsg: String?
     
     public init() {
         self.type = MessageType.presentationExchangeMessage

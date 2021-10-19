@@ -7,37 +7,42 @@
 
 import Foundation
 
-public class HTTPService{
+public class HTTPService {
     private let messageReceiver: MessageReceiver
     
     public init(messageReceiver: MessageReceiver){
         self.messageReceiver = messageReceiver
     }
     
-    public func send(message: Data, endpoint: String) throws {
+    public func send(message: Data, endpoint: String, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
         
         //Based off of https://www.advancedswift.com/http-requests-in-swift/
         guard
             let url = URL(string: endpoint)
-        else{
-            throw HTTPServiceError.invalidURL
-            
+        else {
+            completion(.failure(HTTPServiceError.invalidURL))
+            return
         }
         var request = URLRequest(url:url)
         request.setValue("application/ssi-agent-wire", forHTTPHeaderField: "Content-Type")
         
-        let body = try? JSONSerialization.data(withJSONObject: message, options: [])
+        do {
+            let body = try JSONSerialization.data(withJSONObject: message, options: [])
+            request.httpMethod = "POST"
+            request.httpBody = body
+        } catch {
+            completion(.failure(HTTPServiceError.serializationError(error)))
+            return
+        }
         
-        request.httpMethod = "POST"
-        request.httpBody = body
-        
-        //HTTP request
+        // HTTP request
         let session = URLSession.shared
-        let task = session.dataTask(with: request) {(data, response, error)
-            if let error = error{
-                throw HTTPServiceError.HTTPError
-            }else if let data = data {
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                completion(.failure(HTTPServiceError.HTTPError(error)))
+            } else if let data = data {
                 self.messageReceiver.receiveMessage(message: data)
+                completion(.success(data))
             }
         }
         task.resume()
@@ -45,6 +50,7 @@ public class HTTPService{
     
     enum HTTPServiceError: Error {
         case invalidURL
-        case HTTPError
+        case serializationError(Error)
+        case HTTPError(Error)
     }
 }

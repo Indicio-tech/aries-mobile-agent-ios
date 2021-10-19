@@ -10,12 +10,12 @@ import Foundation
 public struct ConnectedMessage: BaseMessage {
     public let type: MessageType
     public let id: String
-    public let connectionId: String
-    public let label: String
-    public let myDid: String
-    public let state: String
-    public let theirDid: String
-    public let rawRepr: [String : String]
+    public var connectionId: String?
+    public var label: String?
+    public var myDid: String?
+    public var state: String?
+    public var theirDid: String?
+    public var rawRepr: [String : String]?
     
     public init() {
         self.id = UUID().uuidString

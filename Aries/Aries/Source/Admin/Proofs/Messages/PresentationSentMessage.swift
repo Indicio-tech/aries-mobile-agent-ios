@@ -9,13 +9,14 @@ import Foundation
 
 public struct PresentationSentMessage: BaseAdminConfirmationMessage {
     public let type: MessageType
-    public let id: String
-    public let thread: ThreadDecorator
-    public let connectionId: String
-    public let presentationExchangeId: String
+    public var id: String
+    public var thread: ThreadDecorator?
+    public var connectionId: String?
+    public var presentationExchangeId: String?
     
     public init() {
         self.type = MessageType.presentationSentMessage
+        self.id = UUID().uuidString
     }
     
     enum CodingKeys : String, CodingKey {

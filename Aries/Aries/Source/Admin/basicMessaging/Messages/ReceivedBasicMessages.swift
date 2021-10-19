@@ -11,12 +11,12 @@ public struct ReceivedBasicMessages: BaseMessage {
     
     public let type: MessageType
     public let id: String
-    public let connectionId: String
-    public let thread: ThreadDecorator
-    public let count: Int
-    public let offset: Int
-    public let remaining: Int
-    public let messages: AdminBasicMessage
+    public var connectionId: String?
+    public var thread: ThreadDecorator?
+    public var count: Int?
+    public var offset: Int?
+    public var remaining: Int?
+    public var messages: AdminBasicMessage?
     
     public init() {
         self.type = MessageType.receivedBasicMessage

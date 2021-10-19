@@ -11,7 +11,7 @@ public class Storage{
         self.ariesWallet = ariesWallet
     }
 
-    public func storeRecord(record:BaseRecord){
+    public func storeRecord<Record: BaseRecord>(record: Record) {
 
         //Stringify record
         let encoder = JSONEncoder()
@@ -22,7 +22,7 @@ public class Storage{
         ariesWallet.storeRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags)
     }
 
-    public func updateRecord(record: BaseRecord) throws -> TypeContainerRecord{
+    public func updateRecord<Record: BaseRecord>(record: Record) {
         //Stringify record
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -32,13 +32,19 @@ public class Storage{
         ariesWallet.storeRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags)
     }
     
-    public func retrieveRecord(type: RecordType, id: String)throws-> BaseRecord{
+    public func retrieveRecord<Record: BaseRecord>(type: RecordType, id: String) throws -> Record {
         let recordData = try ariesWallet.retrieveRecord(type: type.rawValue, id: id)
         let decoder = JSONDecoder()
-        let typeContainer = try decoder.decode(TypeContainerRecord.self, from: recordData)
+        let typeContainer = try decoder.decode(Record.self, from: recordData)
         
         return typeContainer
     }
 
 
 }
+
+//func asdf() {
+//
+//    let record: ConnectionRecord = try! Storage(ariesWallet: AriesWallet()).retrieveRecord(type: .connectionRecord, id: "abc")
+//
+//}

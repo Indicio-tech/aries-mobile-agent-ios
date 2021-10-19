@@ -19,8 +19,13 @@ public struct SendPresentationProposalMessage: BaseOutboundAdminMessage {
     
     public init() {
         self.type = MessageType.sendPresentationProposalMessage
-        self.transport = TransportDecorator(returnRoute: "all")
         self.id = UUID().uuidString
+        self.transport = TransportDecorator(returnRoute: "all")
+        self.trace = true
+        self.connectionId = ""
+        self.connection = ""
+        self.presentationProposal = AdminPresentationProposal(type: .adminPresentationProposal, attributes: [:], predicates: [:])
+        self.autoPresent = false
     }
     
     enum CodingKeys : String, CodingKey {
@@ -31,7 +36,7 @@ public struct SendPresentationProposalMessage: BaseOutboundAdminMessage {
         case connectionId = "connection_id"
         case connection
         case presentationProposal = "presentation_proposal"
-        case autopresent
+        case autoPresent
     }
     
 }

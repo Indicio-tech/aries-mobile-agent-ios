@@ -11,7 +11,7 @@ public struct DeletedConnectionMessage: BaseAdminConfirmationMessage {
     public let type: MessageType
     public let id: String
     public let connectionId: String
-    public let thread: ThreadDecorator
+    public let thread: ThreadDecorator?
     
     public init(connectionId: String) {
         self.type = MessageType.deletedConnectionMessage
@@ -26,7 +26,6 @@ public struct DeletedConnectionMessage: BaseAdminConfirmationMessage {
         case connectionId = "connection_id"
         case thread = "~thread"
     }
-    
 }
 
 

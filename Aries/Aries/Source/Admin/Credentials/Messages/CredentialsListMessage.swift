@@ -17,6 +17,7 @@ public struct CredentialsListMessage: BaseMessage {
         case type = "@type"
         case id = "@id"
         case thread = "~thread"
+        case results
     }
 }
 

@@ -27,7 +27,7 @@ public struct UpdateConnectionMessage: BaseOutboundAdminMessage {
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"
-        case connectoinId = "connection_id"
+        case connectionId = "connection_id"
         case transport = "~transport"
         case label
         case role
