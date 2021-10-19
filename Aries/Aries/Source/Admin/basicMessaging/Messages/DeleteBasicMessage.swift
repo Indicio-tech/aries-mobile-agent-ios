@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 public struct DeleteBasicMessage: BaseOutboundAdminMessage {
     
     

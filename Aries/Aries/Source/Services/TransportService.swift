@@ -20,9 +20,10 @@ public class TransportService{
         if(endpoint.hasPrefix("ws")){
             print("Sending message through WS transport service")
             wsTransport.send(message: message, endpoint: endpoint, connection: connection)
-        }else{
+        } else {
             print("Sending message through HTTP transport service")
             try! httpTransport.send(message: message,endpoint: endpoint)
         }
     }
+    
 }

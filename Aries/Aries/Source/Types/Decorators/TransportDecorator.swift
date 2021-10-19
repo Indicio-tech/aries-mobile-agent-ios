@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class TransportDecorator: Codable{
+public class TransportDecorator: Codable {
     public let returnRoute: String
 
     public init(returnRoute: String) {

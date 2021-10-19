@@ -11,7 +11,7 @@ protocol BaseAdminConfirmationMessage: BaseMessage {
     
     var type: MessageType { get }
     var id: String { get }
-    var thread: ThreadDecorator { get }
+    var thread: ThreadDecorator? { get }
 }
 
 

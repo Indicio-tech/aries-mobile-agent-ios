@@ -7,7 +7,7 @@
 
 import Foundation
 
-public class HTTPService{
+public class HTTPService {
     private let messageReceiver: MessageReceiver
     
     public init(messageReceiver: MessageReceiver){
@@ -19,9 +19,9 @@ public class HTTPService{
         //Based off of https://www.advancedswift.com/http-requests-in-swift/
         guard
             let url = URL(string: endpoint)
-        else{
-            throw HTTPServiceError.invalidURL
-            
+        else {
+            completion(.failure(HTTPServiceError.invalidURL))
+            return
         }
         var request = URLRequest(url:url)
         request.setValue("application/ssi-agent-wire", forHTTPHeaderField: "Content-Type")
@@ -33,11 +33,12 @@ public class HTTPService{
         request.httpMethod = "POST"
         request.httpBody = body
         
-        //HTTP request
+        // HTTP request
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
             if let data = data {
                 self.messageReceiver.receiveMessage(message: data)
+                completion(.success(data))
             }
         }
         task.resume()
@@ -45,6 +46,7 @@ public class HTTPService{
     
     enum HTTPServiceError: Error {
         case invalidURL
-        case HTTPError
+        case serializationError(Error)
+        case HTTPError(Error)
     }
 }

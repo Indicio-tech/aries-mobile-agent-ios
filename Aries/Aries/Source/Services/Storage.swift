@@ -49,3 +49,9 @@ public class Storage{
         }
     }
 }
+
+//func asdf() {
+//
+//    let record: ConnectionRecord = try! Storage(ariesWallet: AriesWallet()).retrieveRecord(type: .connectionRecord, id: "abc")
+//
+//}

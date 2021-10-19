@@ -7,14 +7,13 @@
 
 import Foundation
 
-
 public struct DeletedBasicMessage: BaseAdminConfirmationMessage {
     
     public let type: MessageType
     public let id: String
     public let connectionId: String
     public let deleted: AdminBasicMessage
-    public let thread: ThreadDecorator
+    public let thread: ThreadDecorator?
     
     public init(connectionId: String, deleted: AdminBasicMessage) {
         self.type = MessageType.deletedBasicMessage
@@ -28,8 +27,8 @@ public struct DeletedBasicMessage: BaseAdminConfirmationMessage {
         case type = "@type"
         case id = "@id"
         case connectionId = "connection_id"
+        case thread = "~thread"
         case deleted
-        case thread
     }
 }
 
