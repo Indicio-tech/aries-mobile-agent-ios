@@ -8,14 +8,18 @@
 import Foundation
 import Starscream
 
-public class WSService{
+public class WSService: WebSocket{
 //    private let messageReceiver: MessageReceiver
 //    private let messageSender: MessageSender
 //    private let socketDic: [String, WebSocket]()
     
-    public init(messageReceiver: MessageReceiver, messageSender: MessageSender){
-//        self.messageReceiver = messageReceiver
-//        self.messageSender = messageSender
+//    public init(messageReceiver: MessageReceiver, messageSender: MessageSender){
+////        self.messageReceiver = messageReceiver
+////        self.messageSender = messageSender
+//    }
+    
+    override func didReceive(event: WebSocketEvent) {
+    case WebSocket.connected
     }
     
     public func send(message: Data, endpoint: String, connection: ConnectionRecord){

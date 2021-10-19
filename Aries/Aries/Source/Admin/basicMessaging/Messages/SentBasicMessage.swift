@@ -14,14 +14,6 @@ public struct SentBasicMessage: BaseAdminConfirmationMessage {
     public let connectionId: String
     public let message: AdminBasicMessage
     
-    public init(connectionId: String, message: AdminBasicMessage) {
-        self.type = MessageType.deletedBasicMessage
-        self.id = UUID().uuidString
-        self.connectionId = connectionId
-        self.message = message
-        self.thread = ThreadDecorator.init(thid: id)
-    }
-    
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"

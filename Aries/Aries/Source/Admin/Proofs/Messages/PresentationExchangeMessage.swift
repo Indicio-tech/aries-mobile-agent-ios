@@ -27,11 +27,6 @@ public struct PresentationExchangeMessage: BaseMessage {
     public var autoPresent: Bool?
     public var errorMsg: String?
     
-    public init() {
-        self.type = MessageType.presentationExchangeMessage
-        self.id = UUID().uuidString
-    }
-    
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"

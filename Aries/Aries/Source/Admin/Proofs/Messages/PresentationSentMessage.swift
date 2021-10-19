@@ -14,11 +14,6 @@ public struct PresentationSentMessage: BaseAdminConfirmationMessage {
     public var connectionId: String?
     public var presentationExchangeId: String?
     
-    public init() {
-        self.type = MessageType.presentationSentMessage
-        self.id = UUID().uuidString
-    }
-    
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"
