@@ -11,7 +11,7 @@ public class Storage{
         self.ariesWallet = ariesWallet
     }
 
-    public func storeRecord<Record: BaseRecord>(record:Record){
+    public func storeRecord<Record: BaseRecord>(record:Record, completion: @escaping (_ result: Result<Void, Error>)->Void){
 
         //Stringify record
         let encoder = JSONEncoder()
@@ -19,17 +19,17 @@ public class Storage{
         let data = try! encoder.encode(record)
         let recordJson = String(data: data, encoding: .utf8)
 
-        ariesWallet.storeRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags)
+        ariesWallet.storeRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags, completion: completion)
     }
 
-    public func updateRecord<Record: BaseRecord>(record: Record){
+    public func updateRecord<Record: BaseRecord>(record: Record, completion: @escaping (_ result: Result<Void, Error>)->Void){
         //Stringify record
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         let data = try! encoder.encode(record)
         let recordJson = String(data: data, encoding: .utf8)
         
-        ariesWallet.storeRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags)
+        ariesWallet.updateRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags, completion: completion)
     }
     
     public func retrieveRecord<recordObject: BaseRecord>(type: RecordType, id: String, completion: @escaping (_ result: Result<recordObject, Error>)->Void)-> Void{

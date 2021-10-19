@@ -9,11 +9,11 @@ import Foundation
 import Indy
 
 public class AriesAgent {
-    private var ariesWallet: AriesWallet? = nil
-    private var messageSender: MessageSender? = nil
-    private var messageReceiver: MessageReceiver? = nil
-    private var storage: Storage? = nil
-    public var connections: AriesConnections? = nil
+    private var ariesWallet: AriesWallet
+    private var messageSender: MessageSender
+    private var messageReceiver: MessageReceiver
+    private var storage: Storage
+    public var connections: AriesConnections
     
 //  For this implementation, we're using a default wallet with the "default" identifier and "password" as the key.
 //  We'll set up the ability to set/change passwords in later versions.
@@ -22,17 +22,20 @@ public class AriesAgent {
         ariesWallet = AriesWallet(){ result in
             switch(result){
             case(.success()):
-                print("Wallet opened")
-                self.messageReceiver = MessageReceiver(wallet: self.ariesWallet!)
-                self.messageSender = MessageSender(ariesWallet: self.ariesWallet!, messageReceiver: self.messageReceiver!)
-                self.storage = Storage(ariesWallet: self.ariesWallet!)
-                self.connections = AriesConnections(ariesWallet: self.ariesWallet!, messageSender: self.messageSender!, storage: self.storage!)
                 completion(.success(()))
             case(.failure(let e)):
                 print(e.localizedDescription)
                 completion(.failure(e))
             }
         }
+        self.messageReceiver = MessageReceiver(wallet: self.ariesWallet)
+        self.messageSender = MessageSender(ariesWallet: self.ariesWallet, messageReceiver: self.messageReceiver)
+        self.storage = Storage(ariesWallet: self.ariesWallet)
+        self.connections = AriesConnections(ariesWallet: self.ariesWallet, messageSender: self.messageSender, storage: self.storage)
+        
+        //Register event listeners
+        self.messageReceiver.subscribeToEvents(callback: connections.eventListener)
+    
     }
 
     func deleteWallet(){

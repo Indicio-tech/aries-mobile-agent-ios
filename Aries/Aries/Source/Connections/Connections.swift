@@ -31,7 +31,7 @@ public class AriesConnections{
         let decoder = JSONDecoder()
         let invitationMessage = try decoder.decode(InvitationMessage.self, from: decodedData)
 
-        let recordTags = ["invitationKey": invitationMessage.recipientKeys != nil && invitationMessage.recipientKeys[0] != nil ? "true" : "false"]
+        let recordTags = ["invitationKey": invitationMessage.recipientKeys != nil && invitationMessage.recipientKeys![0] != nil ? "true" : "false"]
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd HH:mm:ss'Z'"
         let createdTime = df.string(from: Date())
@@ -47,9 +47,17 @@ public class AriesConnections{
             tags: recordTags
         )
 
-        storage.storeRecord(record: connectionRecord)
+        storage.storeRecord(record: connectionRecord){result in
+            switch result{
+            case .success():
+                self.sendRequest(connectionRecord: connectionRecord, completion: completion)
+            case .failure(let e):
+                completion(.failure(e))
+            }
+            
+        }
 
-        sendRequest(connectionRecord: connectionRecord, completion: completion)
+
     }
 
     private func sendRequest(connectionRecord: ConnectionRecord, completion: @escaping (_ result: Result<ConnectionRecord, Error>) -> Void){
@@ -84,11 +92,26 @@ public class AriesConnections{
                 updatedRecord.didDoc = didDoc
                 updatedRecord.verkey = verkey
 
-                self.storage.updateRecord(record: updatedRecord)
-                completion(.success(updatedRecord))
+                self.storage.updateRecord(record: updatedRecord){res in
+                    switch res{
+                    case .success():
+                        completion(.success(updatedRecord))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
             case(.failure(let error)):
                 completion(.failure(error))
             }
+        }
+    }
+    
+    public func eventListener(_ messageType: MessageType, _ payload: String){
+        switch messageType {
+        case .connectionResponseMessage:
+            print("Connection response received")
+        default:
+            break;
         }
     }
 }

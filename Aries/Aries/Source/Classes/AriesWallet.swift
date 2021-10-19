@@ -11,7 +11,7 @@ import Indy
 public class AriesWallet {
 
     public  var indyWallet: IndyWallet? = nil
-    private let indyHandle: IndyHandle? = nil
+    private var indyHandle: IndyHandle? = nil
 
     private func createWallet(id: String, key: String, completion: @escaping (_ result: Result<Void, Error>)->Void) {
     
@@ -32,12 +32,7 @@ public class AriesWallet {
         let tempWallet = IndyWallet()
 
         tempWallet.createWallet(withConfig: configString, credentials: credentialsString) { err in
-            if let err = err {
-                completion(.failure(err))
-            }else{
-                self.indyWallet = tempWallet
-                completion(.success(()))
-            }
+            _ = self.complete(indyError: err!, result: (), completion: completion)
         }
     }
     
@@ -58,13 +53,10 @@ public class AriesWallet {
         
         let tempWallet = IndyWallet()
 
-        tempWallet.open(withConfig: configString, credentials: credentialsString) { err, _Arg in
-            if let err = err {
-                completion(.failure(err))
-            }else{
-                self.indyWallet = tempWallet
-                completion(.success(()))
-            }
+        tempWallet.open(withConfig: configString, credentials: credentialsString) { err, handle in
+            self.indyHandle = handle
+            self.indyWallet = tempWallet
+            _ = self.complete(indyError: err!, result: (), completion: completion)
         }
     }
     
@@ -110,28 +102,18 @@ public class AriesWallet {
         print("Packing message of type: "+message.type.rawValue+"\n\t"+messageJson!)
 
         IndyCrypto.packMessage(data, receivers: recipientKeysJson, sender: senderVerkey, walletHandle: indyHandle!) { error, data in
-                if let error = error {
-                    completion(.failure(error))
-                }
-                
-                if let data = data {
-                    completion(.success(data))
-                }
+            _ = self.complete(indyError: error! as Error, result: data! as Data, completion: completion)
         }
         
     }
 
     public func generateDID(completion: @escaping (_ result: Result<[String: String], Error>) -> Void){
         IndyDid.createAndStoreMyDid("{}", walletHandle: indyHandle!){ error, s, s2 in
-            if let error = error{
-                completion(.failure(error))
-            }else{
-                completion(.success(["did": s!, "verkey": s2!]))
-            }
+            _ = self.complete(indyError: error! as Error, result: ["did": s!, "verkey": s2!] as [String: String], completion: completion)
         }
     }
 
-    public func storeRecord(type: String, id: String, value: String, tags: [String: String]){
+    public func storeRecord(type: String, id: String, value: String, tags: [String: String], completion:  @escaping (_ result: Result<Void, Error>) -> Void){
         //Stringify tags
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
@@ -140,12 +122,13 @@ public class AriesWallet {
 
         print("Storing record...")
 
-        IndyNonSecrets.addRecordTags(inWallet: indyHandle!, type: type, id: id, tagsJson: tagsJson){ _ in
+        IndyNonSecrets.addRecord(inWallet: indyHandle!, type: type, id: id, value: value, tagsJson: tagsJson){ error in
             print("Record stored.")
+            _ = self.complete(indyError: error!, result: (), completion: completion)
         }
     }
 
-    public func updateRecord(type: String, id: String, value: String, tags: [String: String]){
+    public func updateRecord(type: String, id: String, value: String, tags: [String: String], completion:  @escaping (_ result: Result<Void, Error>) -> Void){
 
         //Stringify tags
         let encoder = JSONEncoder()
@@ -155,13 +138,14 @@ public class AriesWallet {
 
         print("Updating record...")
 
-        IndyNonSecrets.updateRecordValue(inWallet: indyHandle!, type: type, id: id, value: value){ _ in
+        IndyNonSecrets.updateRecordValue(inWallet: indyHandle!, type: type, id: id, value: value){ error in
             print("Record updated.")
         }
 
         print("Updating tags...")
-        IndyNonSecrets.addRecordTags(inWallet: indyHandle!, type: type, id: id, tagsJson: tagsJson){ _ in
+        IndyNonSecrets.addRecordTags(inWallet: indyHandle!, type: type, id: id, tagsJson: tagsJson){ error in
             print("Tags updated.")
+            _ = self.complete(indyError: error! as Error, result: (), completion: completion)
         }
     }
 
@@ -178,16 +162,21 @@ public class AriesWallet {
             let configJson = String(data: data, encoding: .utf8)
 
             IndyNonSecrets.getRecordFromWallet(indyHandle!, type: type, id: id, optionsJson: configJson){ error, data in
-                if let error = error {
-                    completion(.failure(error))
-                }
-
-                if let data = data {
-                    completion(.success(data))
-                }
+                _ = self.complete(indyError: error! as Error, result: data! as String, completion: completion)
             }
         }catch{
             completion(.failure(error))
+        }
+    }
+    
+    private func complete<returnType: Any>(indyError: Error, result: returnType?, completion: @escaping (_ result: Result<returnType, Error>) -> Void)->Bool{
+        let code = (indyError as NSError).code
+        if code != 0 {
+            completion(.failure(indyError))
+            return false
+        } else {
+            completion(.success(result!))
+            return true
         }
     }
 //

@@ -16,7 +16,7 @@ public class TransportService{
         wsTransport = WSService(messageReceiver: messageReceiver, messageSender:messageSender)
     }
     
-    public func send(message: Data, endpoint: String, connection: ConnectionRecord){
+    public func send(message: String, endpoint: String, connection: ConnectionRecord){
         if(endpoint.hasPrefix("ws")){
             print("Sending message through WS transport service")
             wsTransport.send(message: message, endpoint: endpoint, connection: connection)
