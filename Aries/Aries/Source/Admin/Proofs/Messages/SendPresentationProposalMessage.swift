@@ -26,6 +26,7 @@ public struct SendPresentationProposalMessage: BaseOutboundAdminMessage {
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"
+        case transport
         case trace
         case connectionId = "connection_id"
         case connection
