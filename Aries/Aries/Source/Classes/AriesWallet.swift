@@ -10,10 +10,10 @@ import Indy
 
 public class AriesWallet {
 
-    public static let wallet: IndyWallet
-    private let indyHandle: IndyHandle
+    public  var indyWallet: IndyWallet? = nil
+    private var indyHandle: IndyHandle? = nil
 
-    private func createWallet(id: String, key: String){
+    private func createWallet(id: String, key: String, completion: @escaping (_ result: Result<Void, Error>)->Void) {
     
         let configDict = ["id":id]
         let credentialsDict = ["key":key]
@@ -28,13 +28,15 @@ public class AriesWallet {
             credentialsString = String(data: JSONData, encoding: .ascii)!
             print(credentialsString)
         }
-        
-        wallet = IndyWallet.createWallet(withConfig: configString, credentials: credentialsString) { err in
-            throw err
+
+        let tempWallet = IndyWallet()
+
+        tempWallet.createWallet(withConfig: configString, credentials: credentialsString) { err in
+            _ = self.complete(indyError: err!, result: (), completion: completion)
         }
     }
     
-    private func openWallet(id: String, key: String){
+    private func openWallet(id: String, key: String, completion: @escaping (_ result: Result<Void, Error>)->Void) {
         let configDict = ["id":id]
         let credentialsDict = ["key":key]
         var configString = ""
@@ -49,37 +51,134 @@ public class AriesWallet {
             print(credentialsString)
         }
         
-        self.wallet = IndyWallet()
-        wallet.open(withConfig: configString, credentials: credentialsString) { err in
-            throw err
+        let tempWallet = IndyWallet()
+
+        tempWallet.open(withConfig: configString, credentials: credentialsString) { err, handle in
+            self.indyHandle = handle
+            self.indyWallet = tempWallet
+            _ = self.complete(indyError: err!, result: (), completion: completion)
         }
     }
     
-    public init(){
+    public init(id:String = "default", key:String = "password", completion: @escaping (_ result: Result<Void, Error>)->Void) {
 //      Check to see if wallet already exists
-        do {
-            openWallet(id: "default", key: "password")
-        }catch {
-//          If it doesn't exist, create it
-            createWallet(id: "default", key: "password")
+        openWallet(id: id, key: key){ result in
+            switch(result){
+                case .success():
+                    print("Wallet opened.")
+                    completion(.success(()))
+                case .failure(_):
+                    print("Failed to open wallet, trying to create a new one.")
+                    self.createWallet(id: id, key: key){result1 in
+                        switch(result1){
+                            case .success():
+                                print("Wallet created, retrying to open it")
+                                self.openWallet(id: id, key: key){result2 in
+                                    switch(result2) {
+                                    case .success():
+                                        print("Wallet opened.")
+                                        completion(.success(()))
+                                    case .failure(let error):
+                                        completion(.failure(error))
+                                    }
+                                }
+                            case .failure(let error):
+                                completion(.failure(error))
+                            }
+                    }
+            }
         }
     }
     
-//    public func packMessage(message: BaseMessage, recipientKeys: [String], senderVerkey: String){
-//        //Encode message to JSON string
-//        let encoder = JSONEncoder()
-//        encoder.outputFormatting = .prettyPrinted
-//        let data = try! encoder.encode(message)
-//        let messageJson = String(data: data, encoding: .utf8)
-//
-//        print("Packing message of type: "+message.type+"\n\t"+messageJson)
-//
-//
-//        let packedMessage = IndyCrypto.packMessage(message: Data(messageJson), receivers: recipientKeys.joined(), sender:sender, walletHandle: this.indyHandle)
-//        print("Packed message: \n\t"+packedMessage)
-//
-//        return packedMessage;
-//    }
+    public func packMessage<SomeMessageType: BaseMessage>(message: SomeMessageType, recipientKeys: [String], senderVerkey: String, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
+        //Encode message to JSON string
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try! encoder.encode(message)
+        let recipientKeysData = try! encoder.encode(recipientKeys)
+        let messageJson = String(data: data, encoding: .utf8)
+        let recipientKeysJson = String(data: recipientKeysData, encoding: .utf8)
+
+        print("Packing message of type: "+message.type.rawValue+"\n\t"+messageJson!)
+
+        IndyCrypto.packMessage(data, receivers: recipientKeysJson, sender: senderVerkey, walletHandle: indyHandle!) { error, data in
+            _ = self.complete(indyError: error! as Error, result: data! as Data, completion: completion)
+        }
+        
+    }
+
+    public func generateDID(completion: @escaping (_ result: Result<[String: String], Error>) -> Void){
+        IndyDid.createAndStoreMyDid("{}", walletHandle: indyHandle!){ error, s, s2 in
+            _ = self.complete(indyError: error! as Error, result: ["did": s!, "verkey": s2!] as [String: String], completion: completion)
+        }
+    }
+
+    public func storeRecord(type: String, id: String, value: String, tags: [String: String], completion:  @escaping (_ result: Result<Void, Error>) -> Void){
+        //Stringify tags
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try! encoder.encode(tags)
+        let tagsJson = String(data:data, encoding: .utf8)
+
+        print("Storing record...")
+
+        IndyNonSecrets.addRecord(inWallet: indyHandle!, type: type, id: id, value: value, tagsJson: tagsJson){ error in
+            print("Record stored.")
+            _ = self.complete(indyError: error!, result: (), completion: completion)
+        }
+    }
+
+    public func updateRecord(type: String, id: String, value: String, tags: [String: String], completion:  @escaping (_ result: Result<Void, Error>) -> Void){
+
+        //Stringify tags
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try! encoder.encode(tags)
+        let tagsJson = String(data:data, encoding: .utf8)
+
+        print("Updating record...")
+
+        IndyNonSecrets.updateRecordValue(inWallet: indyHandle!, type: type, id: id, value: value){ error in
+            print("Record updated.")
+        }
+
+        print("Updating tags...")
+        IndyNonSecrets.addRecordTags(inWallet: indyHandle!, type: type, id: id, tagsJson: tagsJson){ error in
+            print("Tags updated.")
+            _ = self.complete(indyError: error! as Error, result: (), completion: completion)
+        }
+    }
+
+    public func retrieveRecord(type: String, id: String, completion: @escaping (_ result: Result<String, Error>) -> Void) -> Void{
+        let config = [
+            "retrieveType": true,
+            "retrieveValue": true,
+            "retrieveTags": true
+        ]
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        do{
+            let data = try encoder.encode(config)
+            let configJson = String(data: data, encoding: .utf8)
+
+            IndyNonSecrets.getRecordFromWallet(indyHandle!, type: type, id: id, optionsJson: configJson){ error, data in
+                _ = self.complete(indyError: error! as Error, result: data! as String, completion: completion)
+            }
+        }catch{
+            completion(.failure(error))
+        }
+    }
+    
+    private func complete<returnType: Any>(indyError: Error, result: returnType?, completion: @escaping (_ result: Result<returnType, Error>) -> Void)->Bool{
+        let code = (indyError as NSError).code
+        if code != 0 {
+            completion(.failure(indyError))
+            return false
+        } else {
+            completion(.success(result!))
+            return true
+        }
+    }
 //
 //
 //

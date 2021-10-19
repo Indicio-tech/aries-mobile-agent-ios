@@ -90,6 +90,7 @@
 		8FA2133D270E0B0600AE80F0 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA2133C270E0B0600AE80F0 /* Types.swift */; };
 		8FA21340270E1C3600AE80F0 /* TransportDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA2133F270E1C3600AE80F0 /* TransportDecorator.swift */; };
 		8FA21342270E1D6200AE80F0 /* AriesConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA21341270E1D6200AE80F0 /* AriesConnection.swift */; };
+		8FAD93F52716018B000A97F3 /* Connections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD93F42716018B000A97F3 /* Connections.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,6 +202,7 @@
 		8FA2133C270E0B0600AE80F0 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8FA2133F270E1C3600AE80F0 /* TransportDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportDecorator.swift; sourceTree = "<group>"; };
 		8FA21341270E1D6200AE80F0 /* AriesConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesConnection.swift; sourceTree = "<group>"; };
+		8FAD93F42716018B000A97F3 /* Connections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connections.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -466,6 +468,7 @@
 				63E70781270CD4AB00C76D02 /* Messages */,
 				63E70783270CD4AB00C76D02 /* Types */,
 				63E70788270CD4AB00C76D02 /* ConnectionRecord.swift */,
+				8FAD93F42716018B000A97F3 /* Connections.swift */,
 			);
 			path = Connections;
 			sourceTree = "<group>";
@@ -640,6 +643,7 @@
 				8FA2133D270E0B0600AE80F0 /* Types.swift in Sources */,
 				632686FC26FBADC3008EC5E9 /* HTTPService.swift in Sources */,
 				3755DC80270E1FC100371A69 /* ConnectionResponseMessage.swift in Sources */,
+				8FAD93F52716018B000A97F3 /* Connections.swift in Sources */,
 				63E7077E270CD10200C76D02 /* TransportService.swift in Sources */,
 				6357106126F52DD000EC9A8E /* AriesWallet.swift in Sources */,
 				375179642712407C00DEF248 /* ConnectionMessage.swift in Sources */,

@@ -22,15 +22,7 @@ struct ConnectionRequest: BaseMessage {
         case connection = "connection"
     }
     
-    public init(label: String, connection: AriesConnection) {
-        self.label = label
-        self.connection = connection
-        self.transport =  TransportDecorator(returnRoute: "all")
-        self.id = UUID().uuidString
-        self.type = .connectionRequestMessage
-    }
-
-    public init(label: String, connection: AriesConnection, id: String) {
+    public init(label: String, connection: AriesConnection, id: String = UUID().uuidString) {
         self.label = label
         self.connection = connection
         self.transport =  TransportDecorator(returnRoute: "all")
