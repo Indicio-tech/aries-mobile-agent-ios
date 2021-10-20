@@ -7,14 +7,26 @@
 
 import Foundation
 
-//protocol <#name#> {
-//    <#requirements#>
-//}
-//
-//public class AriesEventsHandler {
-//    
-//    
-//    
-//    
-//    
-//}
+
+public class AriesEmitter {
+    
+    private var callbacks: [ String: (_ messageType: BaseRecord)->Void] = [:]
+    
+    public func handleEvent(record: BaseRecord) {
+        for (_, callback) in callbacks {
+            callback(record)
+        }
+    }
+    
+    public func subscribe (id: String, callback: @escaping (_ messageType: BaseRecord)->Void){
+        self.callbacks[id] = callback
+    }
+    
+    public func unsubscribe(id: String){
+        if self.callbacks.removeValue(forKey: id) != nil{
+            print("Unsubscribed callback id: \(id)")
+        } else {
+            print("No callback of that id found")
+        }
+    }
+}
