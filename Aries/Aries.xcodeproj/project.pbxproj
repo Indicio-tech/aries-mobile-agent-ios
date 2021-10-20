@@ -77,6 +77,8 @@
 		63494B5926F6C48500C5F2F2 /* AriesErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63494B5826F6C48500C5F2F2 /* AriesErrors.swift */; };
 		6357106126F52DD000EC9A8E /* AriesWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6357106026F52DD000EC9A8E /* AriesWallet.swift */; };
 		6357106426F52F1500EC9A8E /* AriesConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6357106326F52F1500EC9A8E /* AriesConnections.swift */; };
+		635B579D27207337008DCC78 /* AriesEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 635B579C27207337008DCC78 /* AriesEmitter.swift */; };
+		63DECA912720A55300666208 /* IndyUnpackedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DECA902720A55300666208 /* IndyUnpackedMessage.swift */; };
 		63E7077D270CD10200C76D02 /* MessageReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7077A270CD10200C76D02 /* MessageReceiver.swift */; };
 		63E7077E270CD10200C76D02 /* TransportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7077B270CD10200C76D02 /* TransportService.swift */; };
 		63E7077F270CD10200C76D02 /* MessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E7077C270CD10200C76D02 /* MessageSender.swift */; };
@@ -189,6 +191,8 @@
 		63494B5826F6C48500C5F2F2 /* AriesErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesErrors.swift; sourceTree = "<group>"; };
 		6357106026F52DD000EC9A8E /* AriesWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesWallet.swift; sourceTree = "<group>"; };
 		6357106326F52F1500EC9A8E /* AriesConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesConnections.swift; sourceTree = "<group>"; };
+		635B579C27207337008DCC78 /* AriesEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesEmitter.swift; sourceTree = "<group>"; };
+		63DECA902720A55300666208 /* IndyUnpackedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndyUnpackedMessage.swift; sourceTree = "<group>"; };
 		63E7077A270CD10200C76D02 /* MessageReceiver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageReceiver.swift; sourceTree = "<group>"; };
 		63E7077B270CD10200C76D02 /* TransportService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransportService.swift; sourceTree = "<group>"; };
 		63E7077C270CD10200C76D02 /* MessageSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSender.swift; sourceTree = "<group>"; };
@@ -384,6 +388,7 @@
 				37F484BD27021C8F003A878E /* BaseMessage.swift */,
 				8FA2133C270E0B0600AE80F0 /* Types.swift */,
 				3755DC8E270E34D600371A69 /* BasicMessage.swift */,
+				63DECA902720A55300666208 /* IndyUnpackedMessage.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 				63E7077B270CD10200C76D02 /* TransportService.swift */,
 				632686FD26FBADCF008EC5E9 /* WSService.swift */,
 				58B221BF856A22D8B7E09A79 /* Storage.swift */,
+				635B579C27207337008DCC78 /* AriesEmitter.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -665,6 +671,7 @@
 				63E7078C270CD4AB00C76D02 /* DIDDoc.swift in Sources */,
 				633F73B326F3E1CB00474D73 /* Agent.swift in Sources */,
 				375179762717399F00DEF248 /* CredentialOfferReceivedMessage.swift in Sources */,
+				63DECA912720A55300666208 /* IndyUnpackedMessage.swift in Sources */,
 				37517980271743F800DEF248 /* SendCredentialProposalMessage.swift in Sources */,
 				37EFD17E27176FBB00061D7C /* CredentialExchangeItem.swift in Sources */,
 				37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */,
@@ -694,6 +701,7 @@
 				8FA21342270E1D6200AE80F0 /* AriesConnection.swift in Sources */,
 				37EFD1802717704200061D7C /* CredentialOffer.swift in Sources */,
 				8FA21340270E1C3600AE80F0 /* TransportDecorator.swift in Sources */,
+				635B579D27207337008DCC78 /* AriesEmitter.swift in Sources */,
 				37320E54270E993700C34367 /* NewBasicMessage.swift in Sources */,
 				58B227DBBF522DD71CE20B0C /* Storage.swift in Sources */,
 				37EFD1A22718EB2C00061D7C /* PresentationsGetListMessage.swift in Sources */,

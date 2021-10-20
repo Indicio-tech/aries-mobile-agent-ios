@@ -20,9 +20,9 @@ public class HTTPService {
         guard
             let url = URL(string: endpoint)
         else {
-            completion(.failure(HTTPServiceError.invalidURL))
-            return
+            throw HTTPServiceError.invalidURL
         }
+        
         var request = URLRequest(url:url)
         request.setValue("application/ssi-agent-wire", forHTTPHeaderField: "Content-Type")
         
@@ -38,7 +38,6 @@ public class HTTPService {
         let task = session.dataTask(with: request) { data, response, error in
             if let data = data {
                 self.messageReceiver.receiveMessage(message: data)
-                completion(.success(data))
             }
         }
         task.resume()

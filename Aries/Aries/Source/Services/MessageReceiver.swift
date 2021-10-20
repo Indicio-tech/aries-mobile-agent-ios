@@ -16,13 +16,13 @@ public class MessageReceiver{
     
     //Event emitter
     
-    private var callbacks: [ (_ messageType: MessageType, _ payload: String)->Void] = []
+    private var callbacks: [ (_ messageType: MessageType, _ payload: Data)->Void] = []
     
-    public func subscribeToEvents(callback: @escaping (_ messageType: MessageType, _ payload: String)->Void){
+    public func subscribeToEvents(callback: @escaping (_ messageType: MessageType, _ payload: Data)->Void){
         callbacks.append(callback)
     }
     
-    private func triggerEvent(type: MessageType, payload: String){
+    private func triggerEvent(type: MessageType, payload: Data){
         for callback in self.callbacks{
             //Call each function asynchronously
             DispatchQueue.global().async {
@@ -32,14 +32,33 @@ public class MessageReceiver{
     }
     
     public func receiveMessage(message: Data) {
+        
+        print("**** Message Received: ***")
+        print(message)
+        
         //Receive packed message: Data
         
         //Unpack message with IndyWallet
-//        let messageData = IndyWallet.unpack(message)
-//        //Get type of message
-//        let decoder = JSONDecoder()
-//        let typeContainer = try decoder.decode(BaseMessage.self, from: message)
-//        let type = typeContainer.type
+        print("**** Unpacking message: ***")
+        let messageData = wallet.unpackMessage(message: message) { result in
+            switch result {
+            case .failure(let error):
+                print("Failed to unpack... \(error)")
+            case .success(let data):
+                do {
+                    print(String(data: data, encoding: .utf8))
+                    let decoder = JSONDecoder()
+                    let unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: data)
+                    let payload = unpackedMessage.message.data(using: .utf8)!
+                    let typeContainer = try decoder.decode(TypeContainerMessage.self, from: payload)
+                    let type = typeContainer.type
+                    self.triggerEvent(type: type, payload: payload)
+                } catch {
+                    print("Failed to decode...\(error)")
+                }
+                
+            }
+        }
         
         //Emmit an event
         //Event object? (type: MessageType, message: Data)
