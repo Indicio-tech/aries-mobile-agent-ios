@@ -106,7 +106,7 @@ public class AriesConnections{
         }
     }
     
-    public func eventListener(_ messageType: MessageType, _ payload: String){
+    public func eventListener(_ messageType: MessageType, _ payload: Data){
         switch messageType {
         case .connectionResponseMessage:
             print("Connection response received")

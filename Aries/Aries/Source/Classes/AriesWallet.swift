@@ -148,6 +148,16 @@ public class AriesWallet {
             _ = self.complete(indyError: error! as Error, result: (), completion: completion)
         }
     }
+    
+    public func unpackMessage(message: Data, completion: @escaping (_ result: Result<Data, Error>)-> Void){
+        if let indyHandle = self.indyHandle {
+            let unpackedMessage = try IndyCrypto.unpackMessage(message, walletHandle: indyHandle) { error, data in
+                _ = self.complete(indyError: error! as Error, result: data, completion: completion)
+            }
+        } else {
+            print("No Indy handle initialized")
+        }
+    }
 
     public func retrieveRecord(type: String, id: String, completion: @escaping (_ result: Result<String, Error>) -> Void) -> Void{
         let config = [
