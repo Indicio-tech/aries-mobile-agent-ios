@@ -31,7 +31,7 @@ public class AriesConnections{
         let decoder = JSONDecoder()
         let invitationMessage = try decoder.decode(InvitationMessage.self, from: decodedData)
 
-        let recordTags = ["invitationKey": invitationMessage.recipientKeys != nil && invitationMessage.recipientKeys![0] != nil ? "true" : "false"]
+        let recordTags = ["invitationKey": invitationMessage.recipientKeys != nil && invitationMessage.recipientKeys?.count ?? -1 > 0 ? "true" : "false"]
         let df = DateFormatter()
         df.dateFormat = "yyyy-MM-dd HH:mm:ss'Z'"
         let createdTime = df.string(from: Date())
@@ -106,12 +106,76 @@ public class AriesConnections{
         }
     }
     
-    public func eventListener(_ messageType: MessageType, _ payload: Data){
-        switch messageType {
-        case .connectionResponseMessage:
-            print("Connection response received")
-        default:
-            break;
+    public func retrieveConnectionRecord(_ id: String, completion: @escaping (_ result: Result<ConnectionRecord, Error>)->Void){
+        self.storage.retrieveRecord(type: .connectionRecord, id: id, completion: completion)
+    }
+    
+    public func processResponse(connectionResponse: ConnectionResponse) {
+        do{
+            retrieveConnectionRecord(connectionResponse.thread.thid){ result in
+                do{
+                    switch(result){
+                    case .success(let r):
+                        var record = r
+                        let signerVerkey = connectionResponse.signedConnection.signer
+                        let invitationVerkey = record.invitation.recipientKeys![0]
+                        
+                        if(signerVerkey != invitationVerkey){
+                            throw ConnectionsError.connectionMismatch("Connection in connection response is not signed with same key as recipient key in invitation")
+                        }
+                        
+                        record.theirDidDoc = connectionResponse.connection.didDoc
+                        record.theirDid = connectionResponse.connection.did
+                        record.threadId = connectionResponse.thread.thid
+                        record.state = .RESPONDED
+                        record.tags["verkey"] = connectionResponse.connection.didDoc.service[0].recipientKeys[0]
+                        
+                        self.storage.updateRecord(record: record){result1 in
+                            switch(result1){
+                            case .success():
+                                print("Sending connection ack")
+                                let trustPing = TrustPingMessage(responseRequested: true, comment: "Connection ack", returnRoute: "all")
+                                self.messageSender.sendMessage(message: trustPing, connectionRecord: record)
+                                record.state = .COMPLETE
+                                self.storage.updateRecord(record: record){result2 in
+                                    switch(result2){
+                                    case .success():
+                                        print("Connection complete")
+                                    case.failure(let err):
+                                        print(err)
+                                    }
+                                }
+                            case .failure(let err):
+                                print(err)
+                            }
+                        }
+                    case .failure(let err):
+                        print(err)
+                    }
+                }catch{
+                    print(error)
+                }
+            }
         }
+    }
+    
+    public func eventListener(_ messageType: MessageType, _ payload: Data, _ senderVerkey: String){
+        do{
+            switch messageType {
+            case .connectionResponseMessage:
+                print("Connection response received")
+                let decoder = JSONDecoder()
+                let message = try decoder.decode(ConnectionResponse.self, from: payload)
+                processResponse(connectionResponse: message)
+            default:
+                break;
+            }
+        }catch{
+            print(error)
+        }
+    }
+    
+    enum ConnectionsError: Error {
+        case connectionMismatch(String)
     }
 }

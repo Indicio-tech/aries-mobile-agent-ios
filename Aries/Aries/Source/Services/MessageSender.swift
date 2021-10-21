@@ -40,7 +40,7 @@ public class MessageSender{
        print("Sending message of type: "+message.type.rawValue+" to endpoint: "+endpoint+"\n message: " + messageJson!)
         
         //Pack message
-        try! ariesWallet.packMessage(message: message, recipientKeys: recipientKeys, senderVerkey: senderVerkey!) { result in
+        ariesWallet.packMessage(message: message, recipientKeys: recipientKeys, senderVerkey: senderVerkey!) { result in
             switch result {
             case .success(let data):
                 //Send message

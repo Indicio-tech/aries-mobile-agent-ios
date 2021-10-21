@@ -16,17 +16,17 @@ public class MessageReceiver{
     
     //Event emitter
     
-    private var callbacks: [ (_ messageType: MessageType, _ payload: Data)->Void] = []
+    private var callbacks: [ (_ messageType: MessageType, _ payload: Data, _ senderVerkey: String)->Void] = []
     
-    public func subscribeToEvents(callback: @escaping (_ messageType: MessageType, _ payload: Data)->Void){
+    public func subscribeToEvents(callback: @escaping (_ messageType: MessageType, _ payload: Data, _ senderVerkey: String)->Void){
         callbacks.append(callback)
     }
     
-    private func triggerEvent(type: MessageType, payload: Data){
+    private func triggerEvent(type: MessageType, payload: Data, senderVerkey: String){
         for callback in self.callbacks{
             //Call each function asynchronously
             DispatchQueue.global().async {
-                callback(type, payload)
+                callback(type, payload, senderVerkey)
             }
         }
     }
@@ -40,19 +40,19 @@ public class MessageReceiver{
         
         //Unpack message with IndyWallet
         print("**** Unpacking message: ***")
-        let messageData = wallet.unpackMessage(message: message) { result in
+        wallet.unpackMessage(message: message) { result in
             switch result {
             case .failure(let error):
                 print("Failed to unpack... \(error)")
             case .success(let data):
                 do {
-                    print(String(data: data, encoding: .utf8))
+                    print(String(data: data, encoding: .utf8)!)
                     let decoder = JSONDecoder()
                     let unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: data)
                     let payload = unpackedMessage.message.data(using: .utf8)!
                     let typeContainer = try decoder.decode(TypeContainerMessage.self, from: payload)
                     let type = typeContainer.type
-                    self.triggerEvent(type: type, payload: payload)
+                    self.triggerEvent(type: type, payload: payload, senderVerkey: unpackedMessage.senderVerkey)
                 } catch {
                     print("Failed to decode...\(error)")
                 }

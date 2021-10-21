@@ -12,7 +12,7 @@ public struct ConnectionResponse: BaseMessage {
     public let type: MessageType
     public let id: String
     public let thread: ThreadDecorator
-    public let label: String
+    public let label: String?
     public let connection: AriesConnection
     public let signedConnection: SignatureDecorator
     
