@@ -189,8 +189,16 @@ public class AriesWallet {
             return true
         }
     }
-//
-//
+    
+    
+    public func verify(signature: String, message: String, key: String, completion: @escaping (_ result: Result<Bool, Error>) -> Void) -> Void{
+        if let signatureData = signature.data(using: .utf8), let messageData = message.data(using: .utf8){
+            IndyCrypto.verifySignature(signatureData, forMessage: messageData, key: key) { error, result in
+                _ = self.complete(indyError: error! as Error, result: result as Bool, completion: completion)
+            }
+        }
+    }
+    
 //
 //    public func deleteWallet(id: String, key: String){
 //

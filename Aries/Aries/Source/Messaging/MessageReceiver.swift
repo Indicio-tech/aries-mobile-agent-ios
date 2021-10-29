@@ -34,7 +34,6 @@ public class MessageReceiver{
     public func receiveMessage(message: Data) {
         
         print("**** Message Received: ***")
-        print(message)
         
         //Receive packed message: Data
         
@@ -46,8 +45,12 @@ public class MessageReceiver{
                 print("Failed to unpack... \(error)")
             case .success(let data):
                 do {
-                    print(String(data: data, encoding: .utf8)!)
+                    print("Unpacked Message: \(String(data: data, encoding: .utf8)!)")
                     let decoder = JSONDecoder()
+                    let parsedString = self.parseDecorators(message: String(data: data, encoding: .utf8)!)
+                    
+                    
+                    
                     let unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: data)
                     let payload = unpackedMessage.message.data(using: .utf8)!
                     let typeContainer = try decoder.decode(TypeContainerMessage.self, from: payload)
@@ -59,26 +62,48 @@ public class MessageReceiver{
                 
             }
         }
+    }
+    
+    private func parseDecorators(message: String) -> String {
+        let decoder = JSONDecoder()
+        let jsonData = message.data(using: .utf8)!
+        let unpackedMessage = try! decoder.decode(IndyUnpackedMessage.self, from: jsonData)
         
-        //Emmit an event
-        //Event object? (type: MessageType, message: Data)
-        
-        
-        
-//        do {
-//
-//            let typeContainer = try decoder.decode(BaseMessage.self, from: message)
-//
-//            switch typeContainer.type {
-//                case .baseMessage:
-//                    fatalError("We don't get base messages here!")
-//                case .invitationMessage:
-//                    let invitationMessage = try decoder.decode(InvitationMessage.self, from: message)
-//
-//            }
-//
-//        } catch {
-//            print(error)
-//        }
+        if unpackedMessage.message.contains("~sig"){
+            do {
+                let signatureDecoratorData = unpackedMessage.message.data(using: .utf8)!
+                if let objects = try JSONSerialization.jsonObject(with: signatureDecoratorData, options: []) as? [String:Any] {
+                    for object in objects {
+                        if object.key.hasSuffix("~sig"){
+                            let signatureElements = try JSONSerialization.data(withJSONObject: object.value, options: .prettyPrinted)
+                            let signatureDecorator = try decoder.decode(SignatureDecorator.self, from: signatureElements)
+//                            Attempt Decode
+                            self.wallet.verify(signature: signatureDecorator.signature, message: signatureDecorator.sigData, key: signatureDecorator.signer) { result in
+                                switch result {
+                                case .success(let validated):
+                                    if validated{
+                                        print("Validated")
+                                    } else {
+                                        print("Invalid")
+                                    }
+                                case .failure(let error):
+                                    print("IndyError: \(error)")
+                                }
+                            }
+//                        Stop looping if the ~sig element has been decoded.
+                          break
+                        }
+                    }
+                } else {
+                    print("failed")
+                }
+                
+                return message
+            } catch {
+                return message
+            }
+        } else {
+            return message
+        }
     }
 }
