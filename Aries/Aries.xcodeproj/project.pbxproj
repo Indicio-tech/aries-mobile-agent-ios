@@ -89,6 +89,7 @@
 		63E7078D270CD4AB00C76D02 /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E70787270CD4AB00C76D02 /* Authentication.swift */; };
 		63E7078E270CD4AB00C76D02 /* ConnectionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E70788270CD4AB00C76D02 /* ConnectionRecord.swift */; };
 		8F49416E270D064F0080ED04 /* ConnectionRequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F49416D270D064F0080ED04 /* ConnectionRequestMessage.swift */; };
+		8F659DAC2727170300CEE24C /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F659DAB2727170300CEE24C /* Admin.swift */; };
 		8FA2133D270E0B0600AE80F0 /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA2133C270E0B0600AE80F0 /* Types.swift */; };
 		8FA21340270E1C3600AE80F0 /* TransportDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA2133F270E1C3600AE80F0 /* TransportDecorator.swift */; };
 		8FA21342270E1D6200AE80F0 /* AriesConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA21341270E1D6200AE80F0 /* AriesConnection.swift */; };
@@ -203,6 +204,7 @@
 		63E70787270CD4AB00C76D02 /* Authentication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		63E70788270CD4AB00C76D02 /* ConnectionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionRecord.swift; sourceTree = "<group>"; };
 		8F49416D270D064F0080ED04 /* ConnectionRequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRequestMessage.swift; sourceTree = "<group>"; };
+		8F659DAB2727170300CEE24C /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
 		8FA2133C270E0B0600AE80F0 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8FA2133F270E1C3600AE80F0 /* TransportDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportDecorator.swift; sourceTree = "<group>"; };
 		8FA21341270E1D6200AE80F0 /* AriesConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesConnection.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				3751795B2711065D00DEF248 /* Connections */,
 				376B066E270FBA5C00C0C42D /* Messages */,
 				3755DC8A270E341100371A69 /* basicMessaging */,
+				8F659DAB2727170300CEE24C /* Admin.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				37F484BE27021C8F003A878E /* BaseMessage.swift in Sources */,
 				632686FE26FBADCF008EC5E9 /* WSService.swift in Sources */,
 				37EFD19B2718BDA500061D7C /* PresentationRequestApproveMessage.swift in Sources */,
+				8F659DAC2727170300CEE24C /* Admin.swift in Sources */,
 				63E7077D270CD10200C76D02 /* MessageReceiver.swift in Sources */,
 				37EFD1992718BC0100061D7C /* PageDecorator.swift in Sources */,
 				37517978271741A100DEF248 /* CredentialReceivedMessage.swift in Sources */,
