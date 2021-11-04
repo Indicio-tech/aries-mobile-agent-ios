@@ -428,9 +428,7 @@
 			children = (
 				6345E6E827227A2200AFE2BA /* Events */,
 				3755DC89270E340000371A69 /* Admin */,
-				6345E6C72722595D00AFE2BA /* BasicMessaging */,
 				63E70780270CD4AB00C76D02 /* Connections */,
-				6345E6C62722594800AFE2BA /* Credentials */,
 				6345E6A22722573700AFE2BA /* Messaging */,
 				6345E697272255A000AFE2BA /* Storage */,
 				6345E69F2722572300AFE2BA /* Agent.swift */,
@@ -486,20 +484,6 @@
 			path = Transports;
 			sourceTree = "<group>";
 		};
-		6345E6C62722594800AFE2BA /* Credentials */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Credentials;
-			sourceTree = "<group>";
-		};
-		6345E6C72722595D00AFE2BA /* BasicMessaging */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = BasicMessaging;
-			sourceTree = "<group>";
-		};
 		6345E6C8272259B500AFE2BA /* EventRecords */ = {
 			isa = PBXGroup;
 			children = (
@@ -512,13 +496,6 @@
 			children = (
 			);
 			path = EventRecords;
-			sourceTree = "<group>";
-		};
-		6345E6CA27225ADF00AFE2BA /* Handlers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Handlers;
 			sourceTree = "<group>";
 		};
 		6345E6CC27225B0D00AFE2BA /* DIDDoc */ = {
@@ -544,7 +521,6 @@
 			isa = PBXGroup;
 			children = (
 				6345E6CC27225B0D00AFE2BA /* DIDDoc */,
-				6345E6CA27225ADF00AFE2BA /* Handlers */,
 				63E70781270CD4AB00C76D02 /* Messages */,
 				63E70788270CD4AB00C76D02 /* ConnectionRecord.swift */,
 				6345E6EB27227E7300AFE2BA /* AriesConnection.swift */,

@@ -204,29 +204,4 @@ public class AriesWallet {
         return isVerified
     }
     
-//
-//    public func deleteWallet(id: String, key: String){
-//
-//
-//        let configDict = ["id":id]
-//        let credentialsDict = ["key":key]
-//        var configString = ""
-//        var credentialsString = ""
-//
-//        if let JSONData = try? JSONSerialization.data(withJSONObject: configDict, options: []){
-//            configString = String(data: JSONData, encoding: .ascii)!
-//            print(configString)
-//        }
-//        if let JSONData = try? JSONSerialization.data(withJSONObject: credentialsDict, options: []){
-//            credentialsString = String(data: JSONData, encoding: .ascii)!
-//            print(credentialsString)
-//        }
-//
-//
-//        if let sharedInstance = AriesWallet.sharedInstance {
-//            self.wallet.delete(withConfig: configString, credentials: credentialsString) { err in
-//                print(err.debugDescription)
-//            }
-//        }
-//    }
 }
