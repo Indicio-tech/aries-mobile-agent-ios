@@ -48,13 +48,11 @@ public class MessageReceiver{
                     do {
                         print("Unpacked Message: \(String(data: data, encoding: .utf8)!)")
                         let decoder = JSONDecoder()
-                        let unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: data)
-                        let parsedString = self.parseDecorators(message: unpackedMessage.message)
-                        let payload = parsedString.data(using: .utf8)!
-                        let typeContainer = try decoder.decode(TypeContainerMessage.self, from: payload)
-                        let type = typeContainer.type
-                        print("Unpacked Message: \(unpackedMessage)")
-                        self.triggerEvent(type: type, payload: payload, senderVerkey: unpackedMessage.senderVerkey)
+                        let parsedString = self.parseDecorators(message: String(data: data, encoding: .utf8)!)
+                        print("Parsed String:   >>>> \(parsedString)")
+//                        let typeContainer = try decoder.decode(TypeContainerMessage.self, from: payload)
+//                        let type = typeContainer.type
+//                        self.triggerEvent(type: type, payload: payload, senderVerkey: unpackedMessage.senderVerkey)
                     } catch {
                         print("Failed to decode...\(error)")
                     }
