@@ -50,9 +50,10 @@ public class MessageReceiver{
                         let decoder = JSONDecoder()
                         let parsedString = self.parseDecorators(message: String(data: data, encoding: .utf8)!)
                         print("Parsed String:   >>>> \(parsedString)")
-//                        let typeContainer = try decoder.decode(TypeContainerMessage.self, from: payload)
-//                        let type = typeContainer.type
-//                        self.triggerEvent(type: type, payload: payload, senderVerkey: unpackedMessage.senderVerkey)
+                        let unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: data)
+                        let typeContainer = try decoder.decode(TypeContainerMessage.self, from: unpackedMessage.message.data(using: .utf8)!)
+                        let type = typeContainer.type
+                        self.triggerEvent(type: type, payload: data, senderVerkey: unpackedMessage.senderVerkey)
                     } catch {
                         print("Failed to decode...\(error)")
                     }
