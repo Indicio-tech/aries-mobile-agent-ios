@@ -50,10 +50,11 @@ public class MessageReceiver{
                         let decoder = JSONDecoder()
                         let parsedString = self.parseDecorators(message: String(data: data, encoding: .utf8)!)
                         print("Parsed String:   >>>> \(parsedString)")
-                        let unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: data)
+                        let unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: parsedString.data(using: .utf8)!)
                         let typeContainer = try decoder.decode(TypeContainerMessage.self, from: unpackedMessage.message.data(using: .utf8)!)
                         let type = typeContainer.type
-                        self.triggerEvent(type: type, payload: data, senderVerkey: unpackedMessage.senderVerkey)
+                        print(unpackedMessage.message)
+                        self.triggerEvent(type: type, payload: unpackedMessage.message.data(using: .utf8)!, senderVerkey: unpackedMessage.senderVerkey)
                     } catch {
                         print("Failed to decode...\(error)")
                     }
@@ -78,28 +79,32 @@ public class MessageReceiver{
             print("Unable to decode...")
             return message //Need to extend this to actually handle the error.
         }
-        
+                
         if unpackedMessage.message.contains("~sig"){
             print("Signed message detected...")
             do {
                 let signatureDecoratorData = unpackedMessage.message.data(using: .utf8)!
                 if let objects = try JSONSerialization.jsonObject(with: signatureDecoratorData, options: []) as? [String:Any] {
+                    var mutatedObject = objects
                     for object in objects { //Loop through, check if elements have the ~sig suffix
                         if object.key.hasSuffix("~sig"){
                             let signatureElements = try JSONSerialization.data(withJSONObject: object.value, options: .prettyPrinted)
                             let signatureDecorator = try decoder.decode(SignatureDecorator.self, from: signatureElements)
                             
-                            let isValid = self.wallet.verify(signature: signatureDecorator.signature, message: signatureDecorator.sigData, key: signatureDecorator.signer)
+                            let newSigData = String(data: Data(base64Encoded: signatureDecorator.sigData)!.dropFirst(8), encoding: .utf8)
+                            print("Set new sigData \(newSigData)")
+                            let isValid = self.wallet.verify(signature: signatureDecorator.signature, message: newSigData!, key: signatureDecorator.signer)
                             if isValid {
                                 print("Validated, preparing return string")
-                                var returnString = message.replacingOccurrences(of: "~sig", with: "") // Search message, strip out ~sig
-                                returnString = returnString.replacingOccurrences(of: signatureDecorator.sigData, with: signatureDecorator.sigData.dropFirst(8)) // Search message, strip first 8 bytes
-                                return returnString
+                                let newKey = object.key.replacingOccurrences(of: "~sig", with: "")
+                                
+                                mutatedObject[newKey] = newSigData
                             } else {
                                 print("Signature was not validated")
                             }
                         }
                     }
+                    return String(data: try! JSONSerialization.data(withJSONObject: mutatedObject, options: .prettyPrinted), encoding: .utf8)!
                 } else {
                     print("Unable to decode decorator data...")
                 }
