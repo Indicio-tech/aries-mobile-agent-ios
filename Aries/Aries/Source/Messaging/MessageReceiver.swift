@@ -44,7 +44,6 @@ public class MessageReceiver{
             case .failure(let error):
                 print("Failed to unpack... \(error)")
             case .success(let data):
-                DispatchQueue.global(qos: .default).async {
                     do {
                         print("Unpacked Message: \(String(data: data, encoding: .utf8)!)")
                         let decoder = JSONDecoder()
@@ -58,7 +57,6 @@ public class MessageReceiver{
                     } catch {
                         print("Failed to decode...\(error)")
                     }
-                }
             }
         }
     }
