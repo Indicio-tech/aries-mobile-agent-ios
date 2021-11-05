@@ -190,27 +190,23 @@ public class AriesWallet {
         }
     }
     
-    public func verify(signature: String, message: String, key: String) -> Bool {
-        print("Signature: \(signature)")
-        print("message: \(message)")
-        print("Key: \(key)")
+    public func verify(signature: Data, message: Data, key: String) -> Bool {
+
         var isVerified = false
-        if let signatureData = signature.data(using: .utf8), let messageData = message.data(using: .utf8) {
-            
-            let semaphore = DispatchSemaphore(value: 0)
-            IndyCrypto.verifySignature(signatureData, forMessage: messageData, key: key) { error, result in
-                print(">>>>>>>>>> Verficiation Complete, \(result)")
-                if result {
-                    isVerified = true
-                } else {
-                    isVerified = false
-                    print("Error: \(error)")
-                }
-                print(">>>>>>>>>> Verficiation Complete")
-                semaphore.signal()
+
+        let semaphore = DispatchSemaphore(value: 0)
+        IndyCrypto.verifySignature(signature, forMessage: message, key: key) { error, result in
+            print(">>>>>>>>>> Verficiation Complete, \(result)")
+            if result {
+                isVerified = true
+            } else {
+                isVerified = false
+                print("Error: \(error)")
             }
-            let _ = semaphore.wait(timeout: .now() + 5.0)
+            print(">>>>>>>>>> Verficiation Complete")
+            semaphore.signal()
         }
+        let _ = semaphore.wait()
         print(">>>>>>>>>> Exiting verify")
         return isVerified
     }

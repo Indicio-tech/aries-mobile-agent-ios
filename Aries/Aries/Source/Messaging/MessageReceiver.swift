@@ -91,14 +91,25 @@ public class MessageReceiver{
                             let signatureElements = try JSONSerialization.data(withJSONObject: object.value, options: .prettyPrinted)
                             let signatureDecorator = try decoder.decode(SignatureDecorator.self, from: signatureElements)
                             
-                            let newSigData = String(data: Data(base64Encoded: signatureDecorator.sigData)!.dropFirst(8), encoding: .utf8)
-                            print("Set new sigData \(newSigData)")
-                            let isValid = self.wallet.verify(signature: signatureDecorator.signature, message: newSigData!, key: signatureDecorator.signer)
+//                            let newSigData = String(data: Data(base64Encoded: signatureDecorator.sigData)!, encoding: .utf8)
+//                            print("Set new sigData \(newSigData)")
+                            print("Signature ---> \(signatureDecorator.signature)")
+                            
+                            var newSignature = signatureDecorator.signature.replacingOccurrences(of: "-", with: "+")
+                            newSignature = newSignature.replacingOccurrences(of: "_", with: "/")
+                            while newSignature.count % 4 != 0 {
+                                       newSignature = newSignature.appending("=")
+                            }
+                            let signature = Data(base64Encoded: newSignature)!
+                            let signer = signatureDecorator.signer
+                            let sigData = Data(base64Encoded: signatureDecorator.sigData)!
+                            
+                            let isValid = self.wallet.verify(signature: signature, message: sigData , key: signer)
                             if isValid {
                                 print("Validated, preparing return string")
                                 let newKey = object.key.replacingOccurrences(of: "~sig", with: "")
                                 
-                                mutatedObject[newKey] = newSigData
+                                mutatedObject[newKey] = String(data: Data(base64Encoded: signatureDecorator.sigData)!.dropFirst(8), encoding: .utf8)
                             } else {
                                 print("Signature was not validated")
                             }
