@@ -190,36 +190,47 @@ public class AriesWallet {
         }
     }
     
-    public func verify(signature: Data, message: Data, key: String) -> Bool {
+    public func verify (signature: Data, message: Data, key: String, completion: @escaping (_ result: Result<Bool, Error>) -> Void)->Void{
         
-        var isVerified = false
-//        let semaphore = DispatchSemaphore(value: 0)
-        let group = DispatchGroup()
-        group.enter()
-        let asyncQueue = DispatchQueue(label: "indy", attributes: .concurrent)
-        asyncQueue.async {
-            print(">>>>>>>>>> Entering async")
-            indyCrypto()
-        }
-        
-        func indyCrypto(){
-            IndyCrypto.verifySignature(signature, forMessage: message, key: key) { error, result in
-                print(">>>>>>>>>> Verficiation Complete, \(result)")
-                if result {
-                    isVerified = true
-                } else {
-                    isVerified = false
-                    print("Error: \(String(describing: error))")
-                }
-                print(">>>>>>>>>> Verficiation Complete")
-                group.leave()
+        IndyCrypto.verifySignature(signature, forMessage: message, key: key) { error, result in
+            print(">>>>>>>>>> Verficiation Complete, \(result)")
+            if result {
+                _ = self.complete(indyError: error! as Error, result: result, completion: completion)
+            } else {
+                completion(.failure(error!))
             }
         }
-        
-        print("Waiting for semaphore")
-        group.wait()
-        print(">>>>>>>>>> Exiting verify")
-        return isVerified
     }
+    
+//    public func verify(signature: Data, message: Data, key: String) -> Bool {
+//
+//        var isVerified = false
+//        let group = DispatchGroup()
+//        group.enter()
+//        let asyncQueue = DispatchQueue(label: "indy", attributes: .concurrent)
+//        asyncQueue.async {
+//            print(">>>>>>>>>> Entering async")
+//            indyCrypto()
+//        }
+//
+//        func indyCrypto(){
+//            IndyCrypto.verifySignature(signature, forMessage: message, key: key) { error, result in
+//                print(">>>>>>>>>> Verficiation Complete, \(result)")
+//                if result {
+//                    isVerified = true
+//                } else {
+//                    isVerified = false
+//                    print("Error: \(String(describing: error))")
+//                }
+//                print(">>>>>>>>>> Verficiation Complete")
+//                group.leave()
+//            }
+//        }
+//
+//        print("Waiting for semaphore")
+//        group.wait()
+//        print(">>>>>>>>>> Exiting verify")
+//        return isVerified
+//    }
     
 }

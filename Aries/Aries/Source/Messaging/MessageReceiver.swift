@@ -44,40 +44,40 @@ public class MessageReceiver{
             case .failure(let error):
                 print("Failed to unpack... \(error)")
             case .success(let data):
-                    do {
-                        print("Unpacked Message: \(String(data: data, encoding: .utf8)!)")
-                        let decoder = JSONDecoder()
-                        let parsedString = self.parseDecorators(message: String(data: data, encoding: .utf8)!)
-                        print("Parsed String:   >>>> \(parsedString)")
-                        let unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: parsedString.data(using: .utf8)!)
-                        let typeContainer = try decoder.decode(TypeContainerMessage.self, from: unpackedMessage.message.data(using: .utf8)!)
-                        let type = typeContainer.type
-                        print(unpackedMessage.message)
-                        self.triggerEvent(type: type, payload: unpackedMessage.message.data(using: .utf8)!, senderVerkey: unpackedMessage.senderVerkey)
-                    } catch {
-                        print("Failed to decode...\(error)")
-                    }
+                
+                print("Unpacked Message: \(String(data: data, encoding: .utf8)!)")
+                let decoder = JSONDecoder()
+                
+                let parsedString = self.parseDecorators(message: String(data: data, encoding: .utf8)!) { string in
+                    print("Parsed String:   >>>> \(string)")
+                    let unpackedMessage = try! decoder.decode(IndyUnpackedMessage.self, from: parsedString.data(using: .utf8)!)
+                    let typeContainer = try! decoder.decode(TypeContainerMessage.self, from: unpackedMessage.message.data(using: .utf8)!)
+                    let type = typeContainer.type
+                    print(unpackedMessage.message)
+                    self.triggerEvent(type: type, payload: unpackedMessage.message.data(using: .utf8)!, senderVerkey: unpackedMessage.senderVerkey)
+                }
+                
             }
         }
     }
     
-    private func parseDecorators(message: String) -> String {
+    private func parseDecorators(message: String, completion: @escaping (_ string: Result<String, Error>)->String) {
         
         let decoder = JSONDecoder()
         var unpackedMessage: IndyUnpackedMessage
         
         guard let jsonData = message.data(using: .utf8) else {
             print("Unable to decode...")
-            return message //Need to extend this to actually handle the error.
+            completion(.failure(MessageReceiverError.failedToDecode))
         }
         
         do {
             unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: jsonData)
         } catch {
             print("Unable to decode...")
-            return message //Need to extend this to actually handle the error.
+            completion(.failure(MessageReceiverError.failedToDecode))
         }
-                
+        
         if unpackedMessage.message.contains("~sig"){
             print("Signed message detected...")
             do {
@@ -89,27 +89,29 @@ public class MessageReceiver{
                             let signatureElements = try JSONSerialization.data(withJSONObject: object.value, options: .prettyPrinted)
                             let signatureDecorator = try decoder.decode(SignatureDecorator.self, from: signatureElements)
                             
-//                            let newSigData = String(data: Data(base64Encoded: signatureDecorator.sigData)!, encoding: .utf8)
-//                            print("Set new sigData \(newSigData)")
                             print("Signature ---> \(signatureDecorator.signature)")
                             
+                            //                          This should probably be extracted as an extension. Converting base64url to base64.
                             var newSignature = signatureDecorator.signature.replacingOccurrences(of: "-", with: "+")
                             newSignature = newSignature.replacingOccurrences(of: "_", with: "/")
                             while newSignature.count % 4 != 0 {
-                                       newSignature = newSignature.appending("=")
+                                newSignature = newSignature.appending("=")
                             }
                             let signature = Data(base64Encoded: newSignature)!
                             let signer = signatureDecorator.signer
                             let sigData = Data(base64Encoded: signatureDecorator.sigData)!
                             
-                            let isValid = self.wallet.verify(signature: signature, message: sigData , key: signer)
-                            if isValid {
-                                print("Validated, preparing return string")
-                                let newKey = object.key.replacingOccurrences(of: "~sig", with: "")
-                                
-                                mutatedObject[newKey] = String(data: Data(base64Encoded: signatureDecorator.sigData)!.dropFirst(8), encoding: .utf8)
-                            } else {
-                                print("Signature was not validated")
+                            self.wallet.verify(signature: signature, message: sigData, key: signer) { result in
+                                switch result{
+                                case .failure(let error):
+                                    print("Signature was not validated \(error.localizedDescription)")
+                                case .success(let result):
+                                    if result {
+                                        print("Validated, preparing return string")
+                                        let newKey = object.key.replacingOccurrences(of: "~sig", with: "")
+                                        mutatedObject[newKey] = String(data: Data(base64Encoded: signatureDecorator.sigData)!.dropFirst(8), encoding: .utf8)
+                                    }
+                                }
                             }
                         }
                     }
@@ -127,4 +129,10 @@ public class MessageReceiver{
             return message
         }
     }
+    
+    enum MessageReceiverError: Error {
+        case failedToDecode
+    }
+    
+    
 }
