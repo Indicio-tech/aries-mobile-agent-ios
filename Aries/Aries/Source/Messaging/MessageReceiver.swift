@@ -48,15 +48,19 @@ public class MessageReceiver{
                 print("Unpacked Message: \(String(data: data, encoding: .utf8)!)")
                 let decoder = JSONDecoder()
                 
-                let parsedString = self.parseDecorators(message: String(data: data, encoding: .utf8)!) { string in
-                    print("Parsed String:   >>>> \(string)")
-                    let unpackedMessage = try! decoder.decode(IndyUnpackedMessage.self, from: parsedString.data(using: .utf8)!)
-                    let typeContainer = try! decoder.decode(TypeContainerMessage.self, from: unpackedMessage.message.data(using: .utf8)!)
-                    let type = typeContainer.type
-                    print(unpackedMessage.message)
-                    self.triggerEvent(type: type, payload: unpackedMessage.message.data(using: .utf8)!, senderVerkey: unpackedMessage.senderVerkey)
+                let parsedString = self.parseDecorators(message: String(data: data, encoding: .utf8)!) { result in
+                    switch result {
+                    case .failure(let error):
+                        print("\(error.localizedDescription)")
+                    case .success(let string):
+                        print("Parsed String:   >>>> \(string)")
+                        let unpackedMessage = try! decoder.decode(IndyUnpackedMessage.self, from: string.data(using: .utf8)!)
+                        let typeContainer = try! decoder.decode(TypeContainerMessage.self, from: unpackedMessage.message.data(using: .utf8)!)
+                        let type = typeContainer.type
+                        print(unpackedMessage.message)
+                        self.triggerEvent(type: type, payload: unpackedMessage.message.data(using: .utf8)!, senderVerkey: unpackedMessage.senderVerkey)
+                    }
                 }
-                
             }
         }
     }
@@ -81,7 +85,9 @@ public class MessageReceiver{
         if unpackedMessage.message.contains("~sig"){
             print("Signed message detected...")
             do {
-                let signatureDecoratorData = unpackedMessage.message.data(using: .utf8)!
+                guard let signatureDecoratorData = unpackedMessage.message.data(using: .utf8) else {
+                    completion(.failure(MessageReceiverError.failedToDecode))
+                }
                 if let objects = try JSONSerialization.jsonObject(with: signatureDecoratorData, options: []) as? [String:Any] {
                     var mutatedObject = objects
                     for object in objects { //Loop through, check if elements have the ~sig suffix
@@ -97,7 +103,9 @@ public class MessageReceiver{
                             while newSignature.count % 4 != 0 {
                                 newSignature = newSignature.appending("=")
                             }
-                            let signature = Data(base64Encoded: newSignature)!
+                            guard let signature = Data(base64Encoded: newSignature) else {
+                                return
+                            }
                             let signer = signatureDecorator.signer
                             let sigData = Data(base64Encoded: signatureDecorator.sigData)!
                             
@@ -115,18 +123,24 @@ public class MessageReceiver{
                             }
                         }
                     }
-                    return String(data: try! JSONSerialization.data(withJSONObject: mutatedObject, options: .prettyPrinted), encoding: .utf8)!
+                    let serializedData = try JSONSerialization.data(withJSONObject: mutatedObject, options: .prettyPrinted)
+                    guard let encodedString = String(data: serializedData, encoding: .utf8) else {
+                        completion(.failure(MessageReceiverError.failedToDecode))
+                    }
+                    completion(.success(encodedString))
                 } else {
+//                    JSONSerialization failed
+                    completion(.failure(MessageReceiverError.failedToDecode))
                     print("Unable to decode decorator data...")
                 }
-                print("No signature detected, returning with unmodified message.")
-                return message
             } catch {
                 print("No signature detected, returning with unmodified message.")
-                return message
+                completion(.failure(MessageReceiverError.failedToDecode))
             }
         } else {
-            return message
+            //            no signed messages found
+            //            _ = self.complete(message: message, completion: { Result<String, Error> in })
+            completion(.success(message))
         }
     }
     
