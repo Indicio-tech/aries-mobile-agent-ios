@@ -70,13 +70,12 @@ public class MessageReceiver{
         let decoder = JSONDecoder()
         var unpackedMessage: IndyUnpackedMessage
         
-        guard let jsonData = message.data(using: .utf8) else {
-            print("Unable to decode...")
-            completion(.failure(MessageReceiverError.failedToDecode))
-        }
-        
         do {
-            unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: jsonData)
+            if let jsonData = message.data(using: .utf8) {
+                unpackedMessage = try decoder.decode(IndyUnpackedMessage.self, from: jsonData)
+            } else {
+                completion(.failure(MessageReceiverError.failedToDecode))
+            }
         } catch {
             print("Unable to decode...")
             completion(.failure(MessageReceiverError.failedToDecode))
@@ -86,7 +85,7 @@ public class MessageReceiver{
             print("Signed message detected...")
             do {
                 guard let signatureDecoratorData = unpackedMessage.message.data(using: .utf8) else {
-                    completion(.failure(MessageReceiverError.failedToDecode))
+                    throw MessageReceiverError.failedToDecode
                 }
                 if let objects = try JSONSerialization.jsonObject(with: signatureDecoratorData, options: []) as? [String:Any] {
                     var mutatedObject = objects
@@ -97,7 +96,7 @@ public class MessageReceiver{
                             
                             print("Signature ---> \(signatureDecorator.signature)")
                             
-                            //                          This should probably be extracted as an extension. Converting base64url to base64.
+                            // This should probably be extracted as an extension. Converting base64url to base64.
                             var newSignature = signatureDecorator.signature.replacingOccurrences(of: "-", with: "+")
                             newSignature = newSignature.replacingOccurrences(of: "_", with: "/")
                             while newSignature.count % 4 != 0 {
@@ -124,12 +123,14 @@ public class MessageReceiver{
                         }
                     }
                     let serializedData = try JSONSerialization.data(withJSONObject: mutatedObject, options: .prettyPrinted)
-                    guard let encodedString = String(data: serializedData, encoding: .utf8) else {
-                        completion(.failure(MessageReceiverError.failedToDecode))
+                    
+                    let encodedString = try String(data: serializedData, encoding: .utf8)
+                    if let returnString = encodedString {
+                        completion(.success(returnString))
                     }
-                    completion(.success(encodedString))
+                    
                 } else {
-//                    JSONSerialization failed
+                    // JSONSerialization failed
                     completion(.failure(MessageReceiverError.failedToDecode))
                     print("Unable to decode decorator data...")
                 }
@@ -138,8 +139,7 @@ public class MessageReceiver{
                 completion(.failure(MessageReceiverError.failedToDecode))
             }
         } else {
-            //            no signed messages found
-            //            _ = self.complete(message: message, completion: { Result<String, Error> in })
+            //no signed messages found
             completion(.success(message))
         }
     }
@@ -147,6 +147,5 @@ public class MessageReceiver{
     enum MessageReceiverError: Error {
         case failedToDecode
     }
-    
     
 }
