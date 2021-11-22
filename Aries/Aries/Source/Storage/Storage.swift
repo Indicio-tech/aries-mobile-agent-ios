@@ -48,6 +48,28 @@ public class Storage{
             }
         }
     }
+    
+    public func retrieveRecordsByTags<recordObject: BaseRecord>(type: RecordType, tags: [String: String], limit: int = 1, completion: @escaping (_ result: Result<[recordObject], Error)->Void){
+        ariesWallet.searchByQuery(type: String, query: tags, limit: limit){ results in
+            do{
+                switch(results){
+                case(.success(let recordsArray)):
+                    let decoder = JSONDecoder()
+                    var recordArray = [] as [recordObject]
+                    for recordString in recordsArray {
+                        let record = try decoder.decode(recordObject.self, from: recordString.data(using: .utf8)!)
+                        recordArray.append(record)
+                    }
+                    completion(.success(recordArray))
+                case(.failure(let err)):
+                    completion(.failure(err))
+                }
+            }catch{
+                completion(.failure(error))
+            }
+            
+        }
+    }
 }
 
 //func asdf() {
