@@ -72,7 +72,6 @@ private class WSDelegate: WebSocketDelegate {
     
     func reconnect(){
         socket.connect()
-//        socket.write(data:)
     }
     
     func inArray(_ newRecord: ConnectionRecord, connectionRecordArray: [ConnectionRecord])->Bool {
