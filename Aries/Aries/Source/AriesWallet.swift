@@ -90,7 +90,7 @@ public class AriesWallet {
         }
     }
     
-    public func packMessage<SomeMessageType: BaseMessage->(message: SomeMessageType, recipientKeys: [String], senderVerkey: String, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
+    public func packMessage<SomeMessageType: BaseMessage>(message: SomeMessageType, recipientKeys: [String], senderVerkey: String, completion: @escaping (_ result: Result<Data, Error>) -> Void) {
         //Encode message to JSON string
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
