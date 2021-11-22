@@ -12,6 +12,8 @@ public class AriesWallet {
 
     public  var indyWallet: IndyWallet? = nil
     private var indyHandle: IndyHandle? = nil
+    
+    private var lock = NSLock()
 
     private func createWallet(id: String, key: String, completion: @escaping (_ result: Result<Void, Error>)->Void) {
     
@@ -190,16 +192,32 @@ public class AriesWallet {
         }
     }
     
-    public func verify (signature: Data, message: Data, key: String, completion: @escaping (_ result: Result<Bool, Error>) -> Void)->Void{
-        
+    public func verify (signature: Data, message: Data, key: String) throws ->Bool {
+        print("Entering verify")
+        lock.lock()
+        var returnResult = false
+        var returnError: Error?
+        print("Past the lock!")
         IndyCrypto.verifySignature(signature, forMessage: message, key: key) { error, result in
             print(">>>>>>>>>> Verficiation Complete, \(result)")
             if result {
-                _ = self.complete(indyError: error! as Error, result: result, completion: completion)
+                returnResult = result
+//                _ = self.complete(indyError: error! as Error, result: result, completion: completion)
             } else {
-                completion(.failure(error!))
+                returnError = error
+//                completion(.failure(error!))
             }
+            self.lock.unlock()
         }
+        print("Is this thing on?")
+        self.lock.lock()
+        print("Is this thing on 213?")
+        self.lock.unlock()
+        print("Is this thing on 215?")
+        if let error = returnError {
+            throw error
+        }
+        return returnResult
     }
     
 //    public func verify(signature: Data, message: Data, key: String) -> Bool {

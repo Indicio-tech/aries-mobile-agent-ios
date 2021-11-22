@@ -165,6 +165,9 @@ public class AriesConnections{
             case .connectionResponseMessage:
                 print("Connection response received")
                 let decoder = JSONDecoder()
+                print("Payload: \(payload)")
+                let debugString = String(data: payload, encoding: .utf8)!
+                print("DebugString: \(debugString)")
                 let message = try decoder.decode(ConnectionResponse.self, from: payload)
                 processResponse(connectionResponse: message)
             default:

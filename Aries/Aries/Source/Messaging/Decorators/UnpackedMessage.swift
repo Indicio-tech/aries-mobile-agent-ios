@@ -8,7 +8,7 @@
 import Foundation
 import Indy
 
-struct IndyUnpackedMessage: Codable {
+struct UnpackedMessage: Codable {
     let message, recipientVerkey, senderVerkey: String
 
     enum CodingKeys: String, CodingKey {
