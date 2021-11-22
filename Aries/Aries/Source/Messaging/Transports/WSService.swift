@@ -21,15 +21,15 @@ public class WSService{
     }
     
     public func send(message: String, endpoint: String, connection: ConnectionRecord){
-        let socket = getSocket(endpoint: endpoint, connection: connection)
-        socket.sendMessage(message: message)
+        let socket = getSocket(endpoint: endpoint)
+        socket.sendMessage(message: message, connection: connection)
     }
     
     private func getSocket(endpoint: String, connection: ConnectionRecord) -> WSDelegate {
         if(socketDic[endpoint] != nil){
             return socketDic[endpoint]!
         }else{
-            let delegate = WSDelegate(endPoint: endpoint, connectionRecord: connection, messageSender: messageSender, messageReceiver: messageReceiver)
+            let delegate = WSDelegate(endPoint: endpoint, messageSender: messageSender, messageReceiver: messageReceiver)
             self.socketDic[endpoint]=delegate
             return delegate
         }
@@ -40,16 +40,15 @@ private class WSDelegate: WebSocketDelegate {
     
     private let socket: WebSocket
     private var isConnected: Bool = false
-    private var connectionRecords: ConnectionRecord[]
+    private var connectionRecords: [ConnectionRecord] = []
     private var messageSender: MessageSender
     private var messageReceiver: MessageReceiver
     private var endPoint: String
     
-    public init (endPoint: String, connectionRecord: ConnectionRecord, messageSender: MessageSender, messageReceiver: MessageReceiver ){
+    public init (endPoint: String, messageSender: MessageSender, messageReceiver: MessageReceiver ){
         self.messageSender = messageSender
         self.messageReceiver = messageReceiver
         self.endPoint = endPoint
-        self.connectionRecord = connectionRecord
         
         var request = URLRequest(url: URL(string: endPoint)!)
         request.timeoutInterval = 5
@@ -59,7 +58,11 @@ private class WSDelegate: WebSocketDelegate {
         
     }
 
-    func sendMessage(message: String){
+    func sendMessage(message: String, connection: ConnectionRecord){
+        //Add connectionRecord to array if not already in it
+        if(!inArray(connection, connectionRecordArray: connectionRecords)){
+            connectionRecords.append(connection)
+        }
         socket.write(string: message)
     }
     
@@ -72,12 +75,25 @@ private class WSDelegate: WebSocketDelegate {
 //        socket.write(data:)
     }
     
+    func inArray(_ newRecord: ConnectionRecord, connectionRecordArray: [ConnectionRecord])->Bool {
+        let result = false;
+        for record in connectionRecordArray {
+            if(record.id == newRecord.id){
+                result = true
+            }
+        }
+        return result
+    }
+    
     func didReceive(event: WebSocketEvent, client: WebSocket) {
         switch event {
         case .connected(let headers):
             if (isConnected){
-                let trustPingMessasge = TrustPingMessage(returnRoute: "all")
-                self.messageSender.sendMessage(message: trustPingMessasge, connectionRecord: connectionRecord)
+                //Send trust ping messages to all previous connections in this WS
+                for connectionRecord in connectionRecords {
+                    let trustPingMessasge = TrustPingMessage(returnRoute: "all")
+                    self.messageSender.sendMessage(message: trustPingMessasge, connectionRecord: connectionRecord)
+                }
             } else {
                 isConnected = true
                 print("Websocket is connected: \(headers)")
