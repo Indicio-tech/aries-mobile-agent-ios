@@ -37,14 +37,10 @@ public class WSService{
 }
 
 private class WSDelegate: WebSocketDelegate {
-    func didReceive(event: WebSocketEvent, client: WebSocketClient) {
-        print("AAAA")
-    }
-    
     
     private let socket: WebSocket
     private var isConnected: Bool = false
-    private var connectionRecord: ConnectionRecord
+    private var connectionRecords: ConnectionRecord[]
     private var messageSender: MessageSender
     private var messageReceiver: MessageReceiver
     private var endPoint: String
