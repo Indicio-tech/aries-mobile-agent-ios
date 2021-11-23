@@ -12,7 +12,7 @@ public class IndyService: Codable{
     public let type:String
     public let priority:Int
     public let recipientKeys:[String]
-    public let routingKeys:[String]
+    public let routingKeys:[String]?
     public let serviceEndpoint:String
     
     public init(id: String, type: String, priority: Int, recipientKeys: [String], routingKeys: [String], serviceEndpoint: String){

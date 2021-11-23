@@ -89,10 +89,7 @@ public class MessageReceiver{
                                     print("Signature ---> \(signatureDecorator.signature)")
                                     
                                     let newSignature = base64UrlTobase64(string: signatureDecorator.signature)
-                                    guard let signature = Data(base64Encoded: newSignature) else {
-                                        return
-                                    }
-                                    
+                                    let signature = Data(base64Encoded: newSignature)!
                                     let sigData = Data(base64Encoded: signatureDecorator.sigData)!
                                     
                                     self.wallet.verify(signature: signature, message: sigData, key: signatureDecorator.signer) { result in
@@ -104,13 +101,17 @@ public class MessageReceiver{
                                             if result {
                                                 print("Validated, preparing return string")
                                                 let newKey = object.key.replacingOccurrences(of: "~sig", with: "")
-                                                mutatedObject[newKey] = String(data: Data(base64Encoded: signatureDecorator.sigData)!.dropFirst(8), encoding: .utf8)
+                                                let encodedMessage = try! JSONSerialization.jsonObject(with: Data(base64Encoded: signatureDecorator.sigData)!.dropFirst(8), options: []) as? [String: Any]
+                                                mutatedObject[newKey] = encodedMessage
+                                                
                                                 let serializedData = try! JSONSerialization.data(withJSONObject: mutatedObject, options: .prettyPrinted)
                                                 let encodedString = String(data: serializedData, encoding: .utf8)
                                                 if let returnString = encodedString {
                                                     var returnMessage = IndyUnpackedMessage(message: returnString, recipientVerkey: unpackedMessage.recipientVerkey, senderVerkey: unpackedMessage.senderVerkey)
                                                     completion(.success(returnMessage))
                                                 }
+                                            } else {
+                                                completion(.failure(MessageReceiverError.failedToDecode))
                                             }
                                         }
                                     }

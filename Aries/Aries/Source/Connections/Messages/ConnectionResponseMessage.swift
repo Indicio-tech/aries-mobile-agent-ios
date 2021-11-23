@@ -24,7 +24,7 @@ public struct ConnectionResponse: BaseMessage {
         self.signedConnection = signedConnection
         self.id = UUID().uuidString
     }
-    
+     
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"
