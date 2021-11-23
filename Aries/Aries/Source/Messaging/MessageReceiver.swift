@@ -59,7 +59,7 @@ public class MessageReceiver{
                         print(parsedMessage.message)
                         self.triggerEvent(type: type, payload: parsedMessage.message.data(using: .utf8)!, senderVerkey: parsedMessage.senderVerkey)
                     }
-                    return String()
+                   
                 }
             }
         }
