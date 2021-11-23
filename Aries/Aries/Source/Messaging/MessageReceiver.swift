@@ -99,23 +99,24 @@ public class MessageReceiver{
                                         switch result{
                                         case .failure(let error):
                                             print("Signature was not validated \(error.localizedDescription)")
+                                            completion(.failure(error))
                                         case .success(let result):
                                             if result {
                                                 print("Validated, preparing return string")
                                                 let newKey = object.key.replacingOccurrences(of: "~sig", with: "")
                                                 mutatedObject[newKey] = String(data: Data(base64Encoded: signatureDecorator.sigData)!.dropFirst(8), encoding: .utf8)
+                                                let serializedData = try! JSONSerialization.data(withJSONObject: mutatedObject, options: .prettyPrinted)
+                                                let encodedString = String(data: serializedData, encoding: .utf8)
+                                                if let returnString = encodedString {
+                                                    var returnMessage = IndyUnpackedMessage(message: returnString, recipientVerkey: unpackedMessage.recipientVerkey, senderVerkey: unpackedMessage.senderVerkey)
+                                                    completion(.success(returnMessage))
+                                                }
                                             }
                                         }
                                     }
                                 }
                             }
-                            let serializedData = try JSONSerialization.data(withJSONObject: mutatedObject, options: .prettyPrinted)
-                            
-                            let encodedString = String(data: serializedData, encoding: .utf8)
-                            if let returnString = encodedString {
-                                var returnMessage = IndyUnpackedMessage(message: returnString, recipientVerkey: unpackedMessage.recipientVerkey, senderVerkey: unpackedMessage.senderVerkey)
-                                completion(.success(returnMessage))
-                            }
+
                             
                         } else {
                             // JSONSerialization failed
