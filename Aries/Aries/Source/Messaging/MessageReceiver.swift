@@ -65,7 +65,7 @@ public class MessageReceiver{
         }
     }
     
-    private func parseDecorators(message: String, completion: @escaping (_ string: Result<IndyUnpackedMessage, Error>)->String) {
+    private func parseDecorators(message: String, completion: @escaping (_ string: Result<IndyUnpackedMessage, Error>)->Void) {
         
         let decoder = JSONDecoder()
         var unpackedMessage: IndyUnpackedMessage
