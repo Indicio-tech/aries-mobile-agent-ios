@@ -192,6 +192,56 @@ public class AriesWallet {
     }
     
     
+    public func searchByQuery(type: String, query: [String:String], limit: Int, completion: @escaping (_ result: Result<[String], Error>) -> Void){
+        do{
+            let queryJson = try JSONEncoder().encode(query)
+            let options = try JSONEncoder().encode(["limit": limit])
+            IndyNonSecrets.openSearch(inWallet: self.indyHandle!, type: type, queryJson: String(data: queryJson, encoding: .utf8), optionsJson: String(data: options, encoding: .utf8)){error, searchHandle in
+                let code = (error! as NSError).code
+                if(code != 0){
+                    completion(.failure(error!))
+                }else{
+                    self.recursiveFetching(searchHandle: searchHandle, limit: limit){result in
+                        switch(result){
+                        case(.failure(let fetchError)):
+                            completion(.failure(fetchError))
+                            break
+                        case(.success(let returnArray)):
+                            completion(.success(returnArray))
+                        }
+                    }
+                }
+            }
+        }catch{
+            completion(.failure(error))
+        }
+    }
+    
+    private func recursiveFetching(searchHandle: IndyHandle, limit: Int, returnArray: [String] = [], completion: @escaping (_ result: Result<[String], Error>) -> Void){
+        if(returnArray.count == limit){
+            completion(.success(returnArray))
+        }else{
+            IndyNonSecrets.fetchNextRecords(fromSearch: searchHandle, walletHandle: self.indyHandle!, count: limit as NSNumber){ error, results in
+                do{
+                    let code = (error! as NSError).code
+                    if(code != 0){
+                        completion(.failure(error!))
+                    }else{
+                        let json = (try JSONSerialization.jsonObject(with: results!.data(using: .utf8)!) as! [String: Any])["records"] as! [String]
+                        var newArray = returnArray
+                        for record in json{
+                            let recordString = (try JSONSerialization.jsonObject( with: record.data(using: .utf8)!) as! [String: Any])["value"] as! String
+                            newArray.append(recordString)
+                            self.recursiveFetching(searchHandle: searchHandle, limit: limit, returnArray: newArray, completion: completion)
+                        }
+                    }
+                }catch{
+                    completion(.failure(error))
+                }
+            }
+        }
+    }
+    
     private func complete<returnType: Any>(indyError: Error, result: returnType?, completion: @escaping (_ result: Result<returnType, Error>) -> Void)->Bool{
         let code = (indyError as NSError).code
         if code != 0 {
@@ -202,5 +252,4 @@ public class AriesWallet {
             return true
         }
     }
-    
 }

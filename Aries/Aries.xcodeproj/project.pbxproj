@@ -97,6 +97,10 @@
 		63E7078E270CD4AB00C76D02 /* ConnectionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E70788270CD4AB00C76D02 /* ConnectionRecord.swift */; };
 		8F49416E270D064F0080ED04 /* ConnectionRequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F49416D270D064F0080ED04 /* ConnectionRequestMessage.swift */; };
 		8FAD93F52716018B000A97F3 /* Connections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FAD93F42716018B000A97F3 /* Connections.swift */; };
+
+
+		8F55AD8F273DE4A1005C267F /* Source in Resources */ = {isa = PBXBuildFile; fileRef = 8F55AD8E273DE4A1005C267F /* Source */; };
+
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +176,7 @@
 		37EFD1A12718EB2C00061D7C /* PresentationsGetListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationsGetListMessage.swift; sourceTree = "<group>"; };
 		37EFD1A32718EC4B00061D7C /* PresentationsListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationsListMessage.swift; sourceTree = "<group>"; };
 		37EFD1A52718EE3B00061D7C /* SendPresentationProposalMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPresentationProposalMessage.swift; sourceTree = "<group>"; };
+
 		633F739726F3E1A600474D73 /* Aries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		633F739A26F3E1A600474D73 /* Aries.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aries.h; sourceTree = "<group>"; };
 		633F739B26F3E1A600474D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -179,6 +184,7 @@
 		633F73A526F3E1A600474D73 /* AriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesTests.swift; sourceTree = "<group>"; };
 		633F73A726F3E1A600474D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633F73B426F3E20F00474D73 /* Indy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Indy.framework; sourceTree = "<group>"; };
+
 		6345E698272255DC00AFE2BA /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Storage.swift; path = Aries/Source/Storage/Storage.swift; sourceTree = SOURCE_ROOT; };
 		6345E699272255DC00AFE2BA /* BaseRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BaseRecord.swift; path = Aries/Source/Storage/BaseRecord.swift; sourceTree = SOURCE_ROOT; };
 		6345E69E2722572300AFE2BA /* AriesWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AriesWallet.swift; sourceTree = "<group>"; };
@@ -210,6 +216,9 @@
 		63E70788270CD4AB00C76D02 /* ConnectionRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionRecord.swift; sourceTree = "<group>"; };
 		8F49416D270D064F0080ED04 /* ConnectionRequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRequestMessage.swift; sourceTree = "<group>"; };
 		8FAD93F42716018B000A97F3 /* Connections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connections.swift; sourceTree = "<group>"; };
+
+		8F55AD8E273DE4A1005C267F /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = "<group>"; };
+
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +394,7 @@
 			path = EventRecords;
 			sourceTree = "<group>";
 		};
+
 		633F738D26F3E1A600474D73 = {
 			isa = PBXGroup;
 			children = (
@@ -406,8 +416,8 @@
 		633F739926F3E1A600474D73 /* Aries */ = {
 			isa = PBXGroup;
 			children = (
+				8F55AD8E273DE4A1005C267F /* Source */,
 				633F73B426F3E20F00474D73 /* Indy.framework */,
-				633F73B126F3E1B400474D73 /* Source */,
 				633F739A26F3E1A600474D73 /* Aries.h */,
 				633F739B26F3E1A600474D73 /* Info.plist */,
 			);
@@ -423,6 +433,7 @@
 			path = AriesTests;
 			sourceTree = "<group>";
 		};
+
 		633F73B126F3E1B400474D73 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -541,6 +552,7 @@
 			path = Messages;
 			sourceTree = "<group>";
 		};
+
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -606,7 +618,7 @@
 				TargetAttributes = {
 					633F739626F3E1A600474D73 = {
 						CreatedOnToolsVersion = 12.5.1;
-						LastSwiftMigration = 1250;
+						LastSwiftMigration = 1310;
 					};
 					633F739F26F3E1A600474D73 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -640,6 +652,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F55AD8F273DE4A1005C267F /* Source in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,6 +670,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+
 				375179582711033C00DEF248 /* SendBasicMessage.swift in Sources */,
 				3751797C2717429500DEF248 /* CredentialsListMessage.swift in Sources */,
 				63E70789270CD4AB00C76D02 /* InvitationMessage.swift in Sources */,
@@ -736,6 +750,8 @@
 				6345E6A12722572300AFE2BA /* Agent.swift in Sources */,
 				3751796227111A8D00DEF248 /* AdminConnection.swift in Sources */,
 				37EFD182271770BA00061D7C /* CredentialProposal.swift in Sources */,
+
+
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -951,7 +967,6 @@
 		633F73AF26F3E1A600474D73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YQUAGSUXSU;
@@ -971,7 +986,6 @@
 		633F73B026F3E1A600474D73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YQUAGSUXSU;
