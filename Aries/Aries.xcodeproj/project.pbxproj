@@ -13,7 +13,87 @@
 		633F73A826F3E1A600474D73 /* Aries.h in Headers */ = {isa = PBXBuildFile; fileRef = 633F739A26F3E1A600474D73 /* Aries.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		633F73B626F3E21700474D73 /* Indy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633F73B426F3E20F00474D73 /* Indy.framework */; platformFilter = ios; };
 		633F73B726F3E21700474D73 /* Indy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 633F73B426F3E20F00474D73 /* Indy.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8F55AD8F273DE4A1005C267F /* Source in Resources */ = {isa = PBXBuildFile; fileRef = 8F55AD8E273DE4A1005C267F /* Source */; };
+		8F4094FA2755779F00DAC801 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F92755779F00DAC801 /* Agent.swift */; };
+		8F4094FC275577A300DAC801 /* AriesWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094FB275577A300DAC801 /* AriesWallet.swift */; };
+		8F40950C275577DB00DAC801 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40950B275577DB00DAC801 /* Events.swift */; };
+		8FB730AC275578E8001C98EC /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40951F275577DE00DAC801 /* Types.swift */; };
+		8FB730AD27557993001C98EC /* MessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40950E275577DE00DAC801 /* MessageSender.swift */; };
+		8FB730AE275579A1001C98EC /* BasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409517275577DE00DAC801 /* BasicMessage.swift */; };
+		8FB730AF275579A7001C98EC /* TransportDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409516275577DE00DAC801 /* TransportDecorator.swift */; };
+		8FB730B0275579A7001C98EC /* SignatureDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409514275577DE00DAC801 /* SignatureDecorator.swift */; };
+		8FB730B1275579A7001C98EC /* ThreadDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409512275577DE00DAC801 /* ThreadDecorator.swift */; };
+		8FB730B2275579A7001C98EC /* LocalizationDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409515275577DE00DAC801 /* LocalizationDecorator.swift */; };
+		8FB730B3275579A7001C98EC /* PageDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409513275577DE00DAC801 /* PageDecorator.swift */; };
+		8FB730B4275579A7001C98EC /* IndyUnpackedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409510275577DE00DAC801 /* IndyUnpackedMessage.swift */; };
+		8FB730B5275579A7001C98EC /* TimingDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409511275577DE00DAC801 /* TimingDecorator.swift */; };
+		8FB730B6275579AD001C98EC /* MessageReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40951D275577DE00DAC801 /* MessageReceiver.swift */; };
+		8FB730B7275579AD001C98EC /* BaseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40951E275577DE00DAC801 /* BaseMessage.swift */; };
+		8FB730B8275579B1001C98EC /* AriesEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40951A275577DE00DAC801 /* AriesEmitter.swift */; };
+		8FB730B9275579B1001C98EC /* TransportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409519275577DE00DAC801 /* TransportService.swift */; };
+		8FB730BA275579B1001C98EC /* WSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40951B275577DE00DAC801 /* WSService.swift */; };
+		8FB730BB275579B1001C98EC /* HTTPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40951C275577DE00DAC801 /* HTTPService.swift */; };
+		8FB730BC275579BC001C98EC /* ConnectionResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409500275577D700DAC801 /* ConnectionResponseMessage.swift */; };
+		8FB730BD275579BC001C98EC /* Connections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409503275577D700DAC801 /* Connections.swift */; };
+		8FB730BE275579BC001C98EC /* ConnectionRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409504275577D700DAC801 /* ConnectionRecord.swift */; };
+		8FB730BF275579BC001C98EC /* InvitationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409502275577D700DAC801 /* InvitationMessage.swift */; };
+		8FB730C0275579BC001C98EC /* TrustPingMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409501275577D700DAC801 /* TrustPingMessage.swift */; };
+		8FB730C1275579BC001C98EC /* ConnectionRequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094FF275577D700DAC801 /* ConnectionRequestMessage.swift */; };
+		8FB730C2275579BC001C98EC /* AriesConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409505275577D700DAC801 /* AriesConnection.swift */; };
+		8FB730C3275579C1001C98EC /* DIDDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409509275577D700DAC801 /* DIDDoc.swift */; };
+		8FB730C4275579C1001C98EC /* IndyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409507275577D700DAC801 /* IndyService.swift */; };
+		8FB730C5275579C1001C98EC /* PublicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409508275577D700DAC801 /* PublicKey.swift */; };
+		8FB730C6275579C1001C98EC /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40950A275577D700DAC801 /* Authentication.swift */; };
+		8FB730C7275579E1001C98EC /* BaseOutboundAdminMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094BE2755779900DAC801 /* BaseOutboundAdminMessage.swift */; };
+		8FB730C8275579E1001C98EC /* BaseAdminConfirmationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094BF2755779900DAC801 /* BaseAdminConfirmationMessage.swift */; };
+		8FB730C9275579E4001C98EC /* PresentationRequestApproveMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094C32755779900DAC801 /* PresentationRequestApproveMessage.swift */; };
+		8FB730CA275579E4001C98EC /* PresentationExchangeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094C52755779900DAC801 /* PresentationExchangeMessage.swift */; };
+		8FB730CB275579E4001C98EC /* PresentationMatchingCredentialsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094C92755779900DAC801 /* PresentationMatchingCredentialsMessage.swift */; };
+		8FB730CC275579E4001C98EC /* PresentationsListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094C82755779900DAC801 /* PresentationsListMessage.swift */; };
+		8FB730CD275579E4001C98EC /* PresentationsGetListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094C42755779900DAC801 /* PresentationsGetListMessage.swift */; };
+		8FB730CE275579E4001C98EC /* PresentationGetMatchingCredentialsMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094C22755779900DAC801 /* PresentationGetMatchingCredentialsMessage.swift */; };
+		8FB730CF275579E4001C98EC /* SendPresentationProposalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094C62755779900DAC801 /* SendPresentationProposalMessage.swift */; };
+		8FB730D0275579E4001C98EC /* PresentationSentMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094C72755779900DAC801 /* PresentationSentMessage.swift */; };
+		8FB730D1275579E7001C98EC /* AdminPresentationProposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094CB2755779900DAC801 /* AdminPresentationProposal.swift */; };
+		8FB730D2275579E7001C98EC /* PresentationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094CC2755779900DAC801 /* PresentationRequest.swift */; };
+		8FB730D3275579E7001C98EC /* PresentationExchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094CE2755779900DAC801 /* PresentationExchange.swift */; };
+		8FB730D4275579E7001C98EC /* MatchingCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094CF2755779900DAC801 /* MatchingCredentials.swift */; };
+		8FB730D5275579E7001C98EC /* AdminCredentialInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094CD2755779900DAC801 /* AdminCredentialInfo.swift */; };
+		8FB730D6275579E9001C98EC /* AdminMatchingCredentialsRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094D12755779900DAC801 /* AdminMatchingCredentialsRecord.swift */; };
+		8FB730D7275579EC001C98EC /* Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094D22755779900DAC801 /* Admin.swift */; };
+		8FB730D8275579F0001C98EC /* NewBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094D62755779900DAC801 /* NewBasicMessage.swift */; };
+		8FB730D9275579F0001C98EC /* DeleteBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094D82755779900DAC801 /* DeleteBasicMessage.swift */; };
+		8FB730DA275579F0001C98EC /* SendBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094D72755779900DAC801 /* SendBasicMessage.swift */; };
+		8FB730DB275579F0001C98EC /* GetBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094D52755779900DAC801 /* GetBasicMessage.swift */; };
+		8FB730DC275579F0001C98EC /* AdminBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094D92755779900DAC801 /* AdminBasicMessage.swift */; };
+		8FB730DD275579F0001C98EC /* SentBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094DA2755779900DAC801 /* SentBasicMessage.swift */; };
+		8FB730DE275579F0001C98EC /* ReceivedBasicMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094DB2755779900DAC801 /* ReceivedBasicMessages.swift */; };
+		8FB730DF275579F0001C98EC /* DeletedBasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094DC2755779900DAC801 /* DeletedBasicMessage.swift */; };
+		8FB730E0275579F4001C98EC /* ConnectedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094DF2755779900DAC801 /* ConnectedMessage.swift */; };
+		8FB730E1275579F4001C98EC /* GetConnectionListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094E12755779900DAC801 /* GetConnectionListMessage.swift */; };
+		8FB730E2275579F4001C98EC /* DeletedConnectionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094E42755779900DAC801 /* DeletedConnectionMessage.swift */; };
+		8FB730E3275579F4001C98EC /* UpdateConnectionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094E22755779900DAC801 /* UpdateConnectionMessage.swift */; };
+		8FB730E4275579F4001C98EC /* ConnectionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094E02755779900DAC801 /* ConnectionMessage.swift */; };
+		8FB730E5275579F4001C98EC /* DeleteConnectionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094E32755779900DAC801 /* DeleteConnectionMessage.swift */; };
+		8FB730E6275579F4001C98EC /* ReceiveInvitationMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094E52755779900DAC801 /* ReceiveInvitationMessage.swift */; };
+		8FB730E7275579F4001C98EC /* ConnectionListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094E62755779900DAC801 /* ConnectionListMessage.swift */; };
+		8FB730E8275579F4001C98EC /* AdminConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094E72755779900DAC801 /* AdminConnection.swift */; };
+		8FB730E9275579F7001C98EC /* CredentialExchangeMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094EB2755779900DAC801 /* CredentialExchangeMessage.swift */; };
+		8FB730EA275579F7001C98EC /* CredentialOfferAcceptMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094EF2755779900DAC801 /* CredentialOfferAcceptMessage.swift */; };
+		8FB730EB275579F7001C98EC /* CredentialsListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094EE2755779900DAC801 /* CredentialsListMessage.swift */; };
+		8FB730EC275579F7001C98EC /* GetCredentialsListMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F02755779900DAC801 /* GetCredentialsListMessage.swift */; };
+		8FB730ED275579F7001C98EC /* SendCredentialProposalMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F12755779900DAC801 /* SendCredentialProposalMessage.swift */; };
+		8FB730EE275579F7001C98EC /* CredentialReceivedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094EC2755779900DAC801 /* CredentialReceivedMessage.swift */; };
+		8FB730EF275579F7001C98EC /* CredentialOfferReceivedMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094EA2755779900DAC801 /* CredentialOfferReceivedMessage.swift */; };
+		8FB730F0275579F7001C98EC /* CredentialRequestSentMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094ED2755779900DAC801 /* CredentialRequestSentMessage.swift */; };
+		8FB730F1275579FB001C98EC /* AdminCredential.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F32755779900DAC801 /* AdminCredential.swift */; };
+		8FB730F2275579FB001C98EC /* CredentialAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F72755779900DAC801 /* CredentialAttribute.swift */; };
+		8FB730F3275579FB001C98EC /* CredentialProposal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F52755779900DAC801 /* CredentialProposal.swift */; };
+		8FB730F4275579FB001C98EC /* CredentialExchangeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F42755779900DAC801 /* CredentialExchangeItem.swift */; };
+		8FB730F5275579FB001C98EC /* CredentialProposalDict.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F62755779900DAC801 /* CredentialProposalDict.swift */; };
+		8FB730F6275579FB001C98EC /* CredentialOffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F82755779900DAC801 /* CredentialOffer.swift */; };
+		8FB730F727557AD4001C98EC /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409521275577E200DAC801 /* Storage.swift */; };
+		8FB730F827557AD4001C98EC /* BaseRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409522275577E200DAC801 /* BaseRecord.swift */; };
+		8FB730F927557ADA001C98EC /* RecordUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409524275577E700DAC801 /* RecordUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +128,87 @@
 		633F73A526F3E1A600474D73 /* AriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesTests.swift; sourceTree = "<group>"; };
 		633F73A726F3E1A600474D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633F73B426F3E20F00474D73 /* Indy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Indy.framework; sourceTree = "<group>"; };
-		8F55AD8E273DE4A1005C267F /* Source */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Source; sourceTree = "<group>"; };
+		8F4094BE2755779900DAC801 /* BaseOutboundAdminMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOutboundAdminMessage.swift; sourceTree = "<group>"; };
+		8F4094BF2755779900DAC801 /* BaseAdminConfirmationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdminConfirmationMessage.swift; sourceTree = "<group>"; };
+		8F4094C22755779900DAC801 /* PresentationGetMatchingCredentialsMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationGetMatchingCredentialsMessage.swift; sourceTree = "<group>"; };
+		8F4094C32755779900DAC801 /* PresentationRequestApproveMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationRequestApproveMessage.swift; sourceTree = "<group>"; };
+		8F4094C42755779900DAC801 /* PresentationsGetListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationsGetListMessage.swift; sourceTree = "<group>"; };
+		8F4094C52755779900DAC801 /* PresentationExchangeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationExchangeMessage.swift; sourceTree = "<group>"; };
+		8F4094C62755779900DAC801 /* SendPresentationProposalMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPresentationProposalMessage.swift; sourceTree = "<group>"; };
+		8F4094C72755779900DAC801 /* PresentationSentMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationSentMessage.swift; sourceTree = "<group>"; };
+		8F4094C82755779900DAC801 /* PresentationsListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationsListMessage.swift; sourceTree = "<group>"; };
+		8F4094C92755779900DAC801 /* PresentationMatchingCredentialsMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationMatchingCredentialsMessage.swift; sourceTree = "<group>"; };
+		8F4094CB2755779900DAC801 /* AdminPresentationProposal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPresentationProposal.swift; sourceTree = "<group>"; };
+		8F4094CC2755779900DAC801 /* PresentationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationRequest.swift; sourceTree = "<group>"; };
+		8F4094CD2755779900DAC801 /* AdminCredentialInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCredentialInfo.swift; sourceTree = "<group>"; };
+		8F4094CE2755779900DAC801 /* PresentationExchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationExchange.swift; sourceTree = "<group>"; };
+		8F4094CF2755779900DAC801 /* MatchingCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingCredentials.swift; sourceTree = "<group>"; };
+		8F4094D12755779900DAC801 /* AdminMatchingCredentialsRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMatchingCredentialsRecord.swift; sourceTree = "<group>"; };
+		8F4094D22755779900DAC801 /* Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Admin.swift; sourceTree = "<group>"; };
+		8F4094D52755779900DAC801 /* GetBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBasicMessage.swift; sourceTree = "<group>"; };
+		8F4094D62755779900DAC801 /* NewBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBasicMessage.swift; sourceTree = "<group>"; };
+		8F4094D72755779900DAC801 /* SendBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendBasicMessage.swift; sourceTree = "<group>"; };
+		8F4094D82755779900DAC801 /* DeleteBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteBasicMessage.swift; sourceTree = "<group>"; };
+		8F4094D92755779900DAC801 /* AdminBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminBasicMessage.swift; sourceTree = "<group>"; };
+		8F4094DA2755779900DAC801 /* SentBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentBasicMessage.swift; sourceTree = "<group>"; };
+		8F4094DB2755779900DAC801 /* ReceivedBasicMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivedBasicMessages.swift; sourceTree = "<group>"; };
+		8F4094DC2755779900DAC801 /* DeletedBasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedBasicMessage.swift; sourceTree = "<group>"; };
+		8F4094DF2755779900DAC801 /* ConnectedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectedMessage.swift; sourceTree = "<group>"; };
+		8F4094E02755779900DAC801 /* ConnectionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionMessage.swift; sourceTree = "<group>"; };
+		8F4094E12755779900DAC801 /* GetConnectionListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetConnectionListMessage.swift; sourceTree = "<group>"; };
+		8F4094E22755779900DAC801 /* UpdateConnectionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateConnectionMessage.swift; sourceTree = "<group>"; };
+		8F4094E32755779900DAC801 /* DeleteConnectionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteConnectionMessage.swift; sourceTree = "<group>"; };
+		8F4094E42755779900DAC801 /* DeletedConnectionMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeletedConnectionMessage.swift; sourceTree = "<group>"; };
+		8F4094E52755779900DAC801 /* ReceiveInvitationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveInvitationMessage.swift; sourceTree = "<group>"; };
+		8F4094E62755779900DAC801 /* ConnectionListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionListMessage.swift; sourceTree = "<group>"; };
+		8F4094E72755779900DAC801 /* AdminConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConnection.swift; sourceTree = "<group>"; };
+		8F4094EA2755779900DAC801 /* CredentialOfferReceivedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialOfferReceivedMessage.swift; sourceTree = "<group>"; };
+		8F4094EB2755779900DAC801 /* CredentialExchangeMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialExchangeMessage.swift; sourceTree = "<group>"; };
+		8F4094EC2755779900DAC801 /* CredentialReceivedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialReceivedMessage.swift; sourceTree = "<group>"; };
+		8F4094ED2755779900DAC801 /* CredentialRequestSentMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialRequestSentMessage.swift; sourceTree = "<group>"; };
+		8F4094EE2755779900DAC801 /* CredentialsListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsListMessage.swift; sourceTree = "<group>"; };
+		8F4094EF2755779900DAC801 /* CredentialOfferAcceptMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialOfferAcceptMessage.swift; sourceTree = "<group>"; };
+		8F4094F02755779900DAC801 /* GetCredentialsListMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCredentialsListMessage.swift; sourceTree = "<group>"; };
+		8F4094F12755779900DAC801 /* SendCredentialProposalMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCredentialProposalMessage.swift; sourceTree = "<group>"; };
+		8F4094F32755779900DAC801 /* AdminCredential.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCredential.swift; sourceTree = "<group>"; };
+		8F4094F42755779900DAC801 /* CredentialExchangeItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialExchangeItem.swift; sourceTree = "<group>"; };
+		8F4094F52755779900DAC801 /* CredentialProposal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialProposal.swift; sourceTree = "<group>"; };
+		8F4094F62755779900DAC801 /* CredentialProposalDict.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialProposalDict.swift; sourceTree = "<group>"; };
+		8F4094F72755779900DAC801 /* CredentialAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialAttribute.swift; sourceTree = "<group>"; };
+		8F4094F82755779900DAC801 /* CredentialOffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialOffer.swift; sourceTree = "<group>"; };
+		8F4094F92755779F00DAC801 /* Agent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Agent.swift; sourceTree = "<group>"; };
+		8F4094FB275577A300DAC801 /* AriesWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesWallet.swift; sourceTree = "<group>"; };
+		8F4094FF275577D700DAC801 /* ConnectionRequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRequestMessage.swift; sourceTree = "<group>"; };
+		8F409500275577D700DAC801 /* ConnectionResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionResponseMessage.swift; sourceTree = "<group>"; };
+		8F409501275577D700DAC801 /* TrustPingMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrustPingMessage.swift; sourceTree = "<group>"; };
+		8F409502275577D700DAC801 /* InvitationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvitationMessage.swift; sourceTree = "<group>"; };
+		8F409503275577D700DAC801 /* Connections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connections.swift; sourceTree = "<group>"; };
+		8F409504275577D700DAC801 /* ConnectionRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionRecord.swift; sourceTree = "<group>"; };
+		8F409505275577D700DAC801 /* AriesConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesConnection.swift; sourceTree = "<group>"; };
+		8F409507275577D700DAC801 /* IndyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndyService.swift; sourceTree = "<group>"; };
+		8F409508275577D700DAC801 /* PublicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKey.swift; sourceTree = "<group>"; };
+		8F409509275577D700DAC801 /* DIDDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIDDoc.swift; sourceTree = "<group>"; };
+		8F40950A275577D700DAC801 /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		8F40950B275577DB00DAC801 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		8F40950E275577DE00DAC801 /* MessageSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MessageSender.swift; path = Aries/Messaging/MessageSender.swift; sourceTree = SOURCE_ROOT; };
+		8F409510275577DE00DAC801 /* IndyUnpackedMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndyUnpackedMessage.swift; sourceTree = "<group>"; };
+		8F409511275577DE00DAC801 /* TimingDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingDecorator.swift; sourceTree = "<group>"; };
+		8F409512275577DE00DAC801 /* ThreadDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadDecorator.swift; sourceTree = "<group>"; };
+		8F409513275577DE00DAC801 /* PageDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageDecorator.swift; sourceTree = "<group>"; };
+		8F409514275577DE00DAC801 /* SignatureDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureDecorator.swift; sourceTree = "<group>"; };
+		8F409515275577DE00DAC801 /* LocalizationDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationDecorator.swift; sourceTree = "<group>"; };
+		8F409516275577DE00DAC801 /* TransportDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportDecorator.swift; sourceTree = "<group>"; };
+		8F409517275577DE00DAC801 /* BasicMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicMessage.swift; sourceTree = "<group>"; };
+		8F409519275577DE00DAC801 /* TransportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportService.swift; sourceTree = "<group>"; };
+		8F40951A275577DE00DAC801 /* AriesEmitter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesEmitter.swift; sourceTree = "<group>"; };
+		8F40951B275577DE00DAC801 /* WSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WSService.swift; sourceTree = "<group>"; };
+		8F40951C275577DE00DAC801 /* HTTPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPService.swift; sourceTree = "<group>"; };
+		8F40951D275577DE00DAC801 /* MessageReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageReceiver.swift; sourceTree = "<group>"; };
+		8F40951E275577DE00DAC801 /* BaseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMessage.swift; sourceTree = "<group>"; };
+		8F40951F275577DE00DAC801 /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
+		8F409521275577E200DAC801 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		8F409522275577E200DAC801 /* BaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecord.swift; sourceTree = "<group>"; };
+		8F409524275577E700DAC801 /* RecordUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +253,15 @@
 		633F739926F3E1A600474D73 /* Aries */ = {
 			isa = PBXGroup;
 			children = (
-				8F55AD8E273DE4A1005C267F /* Source */,
+				8F40951F275577DE00DAC801 /* Types.swift */,
+				8F409523275577E700DAC801 /* Utilities */,
+				8F409520275577E200DAC801 /* Storage */,
+				8F40950D275577DE00DAC801 /* Messaging */,
+				8F40950B275577DB00DAC801 /* Events.swift */,
+				8F4094F92755779F00DAC801 /* Agent.swift */,
+				8F4094FB275577A300DAC801 /* AriesWallet.swift */,
+				8F4094FD275577D600DAC801 /* Connections */,
+				8F4094BC2755779900DAC801 /* Admin */,
 				633F73B426F3E20F00474D73 /* Indy.framework */,
 				633F739A26F3E1A600474D73 /* Aries.h */,
 				633F739B26F3E1A600474D73 /* Info.plist */,
@@ -108,6 +276,246 @@
 				633F73A726F3E1A600474D73 /* Info.plist */,
 			);
 			path = AriesTests;
+			sourceTree = "<group>";
+		};
+		8F4094BC2755779900DAC801 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094BD2755779900DAC801 /* Messages */,
+				8F4094C02755779900DAC801 /* Proofs */,
+				8F4094D22755779900DAC801 /* Admin.swift */,
+				8F4094D32755779900DAC801 /* basicMessaging */,
+				8F4094DD2755779900DAC801 /* Connections */,
+				8F4094E82755779900DAC801 /* Credentials */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		8F4094BD2755779900DAC801 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094BE2755779900DAC801 /* BaseOutboundAdminMessage.swift */,
+				8F4094BF2755779900DAC801 /* BaseAdminConfirmationMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		8F4094C02755779900DAC801 /* Proofs */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094C12755779900DAC801 /* Messages */,
+				8F4094CA2755779900DAC801 /* ProofObjects */,
+				8F4094D02755779900DAC801 /* EventRecords */,
+			);
+			path = Proofs;
+			sourceTree = "<group>";
+		};
+		8F4094C12755779900DAC801 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094C22755779900DAC801 /* PresentationGetMatchingCredentialsMessage.swift */,
+				8F4094C32755779900DAC801 /* PresentationRequestApproveMessage.swift */,
+				8F4094C42755779900DAC801 /* PresentationsGetListMessage.swift */,
+				8F4094C52755779900DAC801 /* PresentationExchangeMessage.swift */,
+				8F4094C62755779900DAC801 /* SendPresentationProposalMessage.swift */,
+				8F4094C72755779900DAC801 /* PresentationSentMessage.swift */,
+				8F4094C82755779900DAC801 /* PresentationsListMessage.swift */,
+				8F4094C92755779900DAC801 /* PresentationMatchingCredentialsMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		8F4094CA2755779900DAC801 /* ProofObjects */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094CB2755779900DAC801 /* AdminPresentationProposal.swift */,
+				8F4094CC2755779900DAC801 /* PresentationRequest.swift */,
+				8F4094CD2755779900DAC801 /* AdminCredentialInfo.swift */,
+				8F4094CE2755779900DAC801 /* PresentationExchange.swift */,
+				8F4094CF2755779900DAC801 /* MatchingCredentials.swift */,
+			);
+			path = ProofObjects;
+			sourceTree = "<group>";
+		};
+		8F4094D02755779900DAC801 /* EventRecords */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094D12755779900DAC801 /* AdminMatchingCredentialsRecord.swift */,
+			);
+			path = EventRecords;
+			sourceTree = "<group>";
+		};
+		8F4094D32755779900DAC801 /* basicMessaging */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094D42755779900DAC801 /* Messages */,
+			);
+			path = basicMessaging;
+			sourceTree = "<group>";
+		};
+		8F4094D42755779900DAC801 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094D52755779900DAC801 /* GetBasicMessage.swift */,
+				8F4094D62755779900DAC801 /* NewBasicMessage.swift */,
+				8F4094D72755779900DAC801 /* SendBasicMessage.swift */,
+				8F4094D82755779900DAC801 /* DeleteBasicMessage.swift */,
+				8F4094D92755779900DAC801 /* AdminBasicMessage.swift */,
+				8F4094DA2755779900DAC801 /* SentBasicMessage.swift */,
+				8F4094DB2755779900DAC801 /* ReceivedBasicMessages.swift */,
+				8F4094DC2755779900DAC801 /* DeletedBasicMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		8F4094DD2755779900DAC801 /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094DE2755779900DAC801 /* Messages */,
+				8F4094E72755779900DAC801 /* AdminConnection.swift */,
+			);
+			path = Connections;
+			sourceTree = "<group>";
+		};
+		8F4094DE2755779900DAC801 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094DF2755779900DAC801 /* ConnectedMessage.swift */,
+				8F4094E02755779900DAC801 /* ConnectionMessage.swift */,
+				8F4094E12755779900DAC801 /* GetConnectionListMessage.swift */,
+				8F4094E22755779900DAC801 /* UpdateConnectionMessage.swift */,
+				8F4094E32755779900DAC801 /* DeleteConnectionMessage.swift */,
+				8F4094E42755779900DAC801 /* DeletedConnectionMessage.swift */,
+				8F4094E52755779900DAC801 /* ReceiveInvitationMessage.swift */,
+				8F4094E62755779900DAC801 /* ConnectionListMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		8F4094E82755779900DAC801 /* Credentials */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094E92755779900DAC801 /* Messages */,
+				8F4094F22755779900DAC801 /* OfferObjects */,
+			);
+			path = Credentials;
+			sourceTree = "<group>";
+		};
+		8F4094E92755779900DAC801 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094EA2755779900DAC801 /* CredentialOfferReceivedMessage.swift */,
+				8F4094EB2755779900DAC801 /* CredentialExchangeMessage.swift */,
+				8F4094EC2755779900DAC801 /* CredentialReceivedMessage.swift */,
+				8F4094ED2755779900DAC801 /* CredentialRequestSentMessage.swift */,
+				8F4094EE2755779900DAC801 /* CredentialsListMessage.swift */,
+				8F4094EF2755779900DAC801 /* CredentialOfferAcceptMessage.swift */,
+				8F4094F02755779900DAC801 /* GetCredentialsListMessage.swift */,
+				8F4094F12755779900DAC801 /* SendCredentialProposalMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		8F4094F22755779900DAC801 /* OfferObjects */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094F32755779900DAC801 /* AdminCredential.swift */,
+				8F4094F42755779900DAC801 /* CredentialExchangeItem.swift */,
+				8F4094F52755779900DAC801 /* CredentialProposal.swift */,
+				8F4094F62755779900DAC801 /* CredentialProposalDict.swift */,
+				8F4094F72755779900DAC801 /* CredentialAttribute.swift */,
+				8F4094F82755779900DAC801 /* CredentialOffer.swift */,
+			);
+			path = OfferObjects;
+			sourceTree = "<group>";
+		};
+		8F4094FD275577D600DAC801 /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094FE275577D700DAC801 /* Messages */,
+				8F409503275577D700DAC801 /* Connections.swift */,
+				8F409504275577D700DAC801 /* ConnectionRecord.swift */,
+				8F409505275577D700DAC801 /* AriesConnection.swift */,
+				8F409506275577D700DAC801 /* DIDDoc */,
+			);
+			path = Connections;
+			sourceTree = "<group>";
+		};
+		8F4094FE275577D700DAC801 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				8F4094FF275577D700DAC801 /* ConnectionRequestMessage.swift */,
+				8F409500275577D700DAC801 /* ConnectionResponseMessage.swift */,
+				8F409501275577D700DAC801 /* TrustPingMessage.swift */,
+				8F409502275577D700DAC801 /* InvitationMessage.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		8F409506275577D700DAC801 /* DIDDoc */ = {
+			isa = PBXGroup;
+			children = (
+				8F409507275577D700DAC801 /* IndyService.swift */,
+				8F409508275577D700DAC801 /* PublicKey.swift */,
+				8F409509275577D700DAC801 /* DIDDoc.swift */,
+				8F40950A275577D700DAC801 /* Authentication.swift */,
+			);
+			path = DIDDoc;
+			sourceTree = "<group>";
+		};
+		8F40950D275577DE00DAC801 /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				8F40950E275577DE00DAC801 /* MessageSender.swift */,
+				8F40950F275577DE00DAC801 /* Decorators */,
+				8F409517275577DE00DAC801 /* BasicMessage.swift */,
+				8F409518275577DE00DAC801 /* Transports */,
+				8F40951D275577DE00DAC801 /* MessageReceiver.swift */,
+				8F40951E275577DE00DAC801 /* BaseMessage.swift */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
+		8F40950F275577DE00DAC801 /* Decorators */ = {
+			isa = PBXGroup;
+			children = (
+				8F409510275577DE00DAC801 /* IndyUnpackedMessage.swift */,
+				8F409511275577DE00DAC801 /* TimingDecorator.swift */,
+				8F409512275577DE00DAC801 /* ThreadDecorator.swift */,
+				8F409513275577DE00DAC801 /* PageDecorator.swift */,
+				8F409514275577DE00DAC801 /* SignatureDecorator.swift */,
+				8F409515275577DE00DAC801 /* LocalizationDecorator.swift */,
+				8F409516275577DE00DAC801 /* TransportDecorator.swift */,
+			);
+			path = Decorators;
+			sourceTree = "<group>";
+		};
+		8F409518275577DE00DAC801 /* Transports */ = {
+			isa = PBXGroup;
+			children = (
+				8F409519275577DE00DAC801 /* TransportService.swift */,
+				8F40951A275577DE00DAC801 /* AriesEmitter.swift */,
+				8F40951B275577DE00DAC801 /* WSService.swift */,
+				8F40951C275577DE00DAC801 /* HTTPService.swift */,
+			);
+			path = Transports;
+			sourceTree = "<group>";
+		};
+		8F409520275577E200DAC801 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				8F409521275577E200DAC801 /* Storage.swift */,
+				8F409522275577E200DAC801 /* BaseRecord.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		8F409523275577E700DAC801 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				8F409524275577E700DAC801 /* RecordUtils.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,7 +617,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F55AD8F273DE4A1005C267F /* Source in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,6 +634,87 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FB730F0275579F7001C98EC /* CredentialRequestSentMessage.swift in Sources */,
+				8FB730B5275579A7001C98EC /* TimingDecorator.swift in Sources */,
+				8FB730B0275579A7001C98EC /* SignatureDecorator.swift in Sources */,
+				8FB730D6275579E9001C98EC /* AdminMatchingCredentialsRecord.swift in Sources */,
+				8FB730BC275579BC001C98EC /* ConnectionResponseMessage.swift in Sources */,
+				8FB730EF275579F7001C98EC /* CredentialOfferReceivedMessage.swift in Sources */,
+				8F40950C275577DB00DAC801 /* Events.swift in Sources */,
+				8FB730CE275579E4001C98EC /* PresentationGetMatchingCredentialsMessage.swift in Sources */,
+				8FB730B7275579AD001C98EC /* BaseMessage.swift in Sources */,
+				8FB730D7275579EC001C98EC /* Admin.swift in Sources */,
+				8F4094FA2755779F00DAC801 /* Agent.swift in Sources */,
+				8FB730EC275579F7001C98EC /* GetCredentialsListMessage.swift in Sources */,
+				8FB730F4275579FB001C98EC /* CredentialExchangeItem.swift in Sources */,
+				8FB730C0275579BC001C98EC /* TrustPingMessage.swift in Sources */,
+				8FB730CF275579E4001C98EC /* SendPresentationProposalMessage.swift in Sources */,
+				8FB730F1275579FB001C98EC /* AdminCredential.swift in Sources */,
+				8FB730AF275579A7001C98EC /* TransportDecorator.swift in Sources */,
+				8FB730D1275579E7001C98EC /* AdminPresentationProposal.swift in Sources */,
+				8FB730D9275579F0001C98EC /* DeleteBasicMessage.swift in Sources */,
+				8FB730F3275579FB001C98EC /* CredentialProposal.swift in Sources */,
+				8FB730E6275579F4001C98EC /* ReceiveInvitationMessage.swift in Sources */,
+				8FB730DA275579F0001C98EC /* SendBasicMessage.swift in Sources */,
+				8FB730BB275579B1001C98EC /* HTTPService.swift in Sources */,
+				8FB730EB275579F7001C98EC /* CredentialsListMessage.swift in Sources */,
+				8FB730EA275579F7001C98EC /* CredentialOfferAcceptMessage.swift in Sources */,
+				8FB730F727557AD4001C98EC /* Storage.swift in Sources */,
+				8FB730D0275579E4001C98EC /* PresentationSentMessage.swift in Sources */,
+				8FB730E7275579F4001C98EC /* ConnectionListMessage.swift in Sources */,
+				8FB730B9275579B1001C98EC /* TransportService.swift in Sources */,
+				8FB730B4275579A7001C98EC /* IndyUnpackedMessage.swift in Sources */,
+				8FB730D8275579F0001C98EC /* NewBasicMessage.swift in Sources */,
+				8FB730CD275579E4001C98EC /* PresentationsGetListMessage.swift in Sources */,
+				8FB730C8275579E1001C98EC /* BaseAdminConfirmationMessage.swift in Sources */,
+				8FB730E1275579F4001C98EC /* GetConnectionListMessage.swift in Sources */,
+				8FB730DF275579F0001C98EC /* DeletedBasicMessage.swift in Sources */,
+				8FB730CA275579E4001C98EC /* PresentationExchangeMessage.swift in Sources */,
+				8FB730CC275579E4001C98EC /* PresentationsListMessage.swift in Sources */,
+				8FB730F827557AD4001C98EC /* BaseRecord.swift in Sources */,
+				8FB730DD275579F0001C98EC /* SentBasicMessage.swift in Sources */,
+				8FB730AD27557993001C98EC /* MessageSender.swift in Sources */,
+				8FB730EE275579F7001C98EC /* CredentialReceivedMessage.swift in Sources */,
+				8FB730C1275579BC001C98EC /* ConnectionRequestMessage.swift in Sources */,
+				8FB730F5275579FB001C98EC /* CredentialProposalDict.swift in Sources */,
+				8FB730F6275579FB001C98EC /* CredentialOffer.swift in Sources */,
+				8FB730C4275579C1001C98EC /* IndyService.swift in Sources */,
+				8FB730E9275579F7001C98EC /* CredentialExchangeMessage.swift in Sources */,
+				8F4094FC275577A300DAC801 /* AriesWallet.swift in Sources */,
+				8FB730E5275579F4001C98EC /* DeleteConnectionMessage.swift in Sources */,
+				8FB730C2275579BC001C98EC /* AriesConnection.swift in Sources */,
+				8FB730B2275579A7001C98EC /* LocalizationDecorator.swift in Sources */,
+				8FB730D4275579E7001C98EC /* MatchingCredentials.swift in Sources */,
+				8FB730E0275579F4001C98EC /* ConnectedMessage.swift in Sources */,
+				8FB730CB275579E4001C98EC /* PresentationMatchingCredentialsMessage.swift in Sources */,
+				8FB730C3275579C1001C98EC /* DIDDoc.swift in Sources */,
+				8FB730C7275579E1001C98EC /* BaseOutboundAdminMessage.swift in Sources */,
+				8FB730E8275579F4001C98EC /* AdminConnection.swift in Sources */,
+				8FB730D5275579E7001C98EC /* AdminCredentialInfo.swift in Sources */,
+				8FB730BA275579B1001C98EC /* WSService.swift in Sources */,
+				8FB730AE275579A1001C98EC /* BasicMessage.swift in Sources */,
+				8FB730B8275579B1001C98EC /* AriesEmitter.swift in Sources */,
+				8FB730DC275579F0001C98EC /* AdminBasicMessage.swift in Sources */,
+				8FB730C5275579C1001C98EC /* PublicKey.swift in Sources */,
+				8FB730BD275579BC001C98EC /* Connections.swift in Sources */,
+				8FB730D2275579E7001C98EC /* PresentationRequest.swift in Sources */,
+				8FB730C6275579C1001C98EC /* Authentication.swift in Sources */,
+				8FB730B6275579AD001C98EC /* MessageReceiver.swift in Sources */,
+				8FB730D3275579E7001C98EC /* PresentationExchange.swift in Sources */,
+				8FB730F2275579FB001C98EC /* CredentialAttribute.swift in Sources */,
+				8FB730BF275579BC001C98EC /* InvitationMessage.swift in Sources */,
+				8FB730DB275579F0001C98EC /* GetBasicMessage.swift in Sources */,
+				8FB730F927557ADA001C98EC /* RecordUtils.swift in Sources */,
+				8FB730E4275579F4001C98EC /* ConnectionMessage.swift in Sources */,
+				8FB730BE275579BC001C98EC /* ConnectionRecord.swift in Sources */,
+				8FB730DE275579F0001C98EC /* ReceivedBasicMessages.swift in Sources */,
+				8FB730B3275579A7001C98EC /* PageDecorator.swift in Sources */,
+				8FB730AC275578E8001C98EC /* Types.swift in Sources */,
+				8FB730E3275579F4001C98EC /* UpdateConnectionMessage.swift in Sources */,
+				8FB730ED275579F7001C98EC /* SendCredentialProposalMessage.swift in Sources */,
+				8FB730B1275579A7001C98EC /* ThreadDecorator.swift in Sources */,
+				8FB730C9275579E4001C98EC /* PresentationRequestApproveMessage.swift in Sources */,
+				8FB730E2275579F4001C98EC /* DeletedConnectionMessage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +925,7 @@
 		633F73AF26F3E1A600474D73 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YQUAGSUXSU;
@@ -456,6 +945,7 @@
 		633F73B026F3E1A600474D73 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YQUAGSUXSU;

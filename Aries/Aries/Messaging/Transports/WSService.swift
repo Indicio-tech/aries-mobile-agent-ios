@@ -21,7 +21,7 @@ public class WSService{
     }
     
     public func send(message: String, endpoint: String, connection: ConnectionRecord){
-        let socket = getSocket(endpoint: endpoint)
+        let socket = getSocket(endpoint: endpoint, connection: connection)
         socket.sendMessage(message: message, connection: connection)
     }
     
@@ -37,6 +37,10 @@ public class WSService{
 }
 
 private class WSDelegate: WebSocketDelegate {
+    func didReceive(event: WebSocketEvent, client: WebSocketClient) {
+        print("Websocket client received...")
+    }
+    
     
     private let socket: WebSocket
     private var isConnected: Bool = false
@@ -75,7 +79,7 @@ private class WSDelegate: WebSocketDelegate {
     }
     
     func inArray(_ newRecord: ConnectionRecord, connectionRecordArray: [ConnectionRecord])->Bool {
-        let result = false;
+        var result = false;
         for record in connectionRecordArray {
             if(record.id == newRecord.id){
                 result = true
@@ -115,7 +119,7 @@ private class WSDelegate: WebSocketDelegate {
             break
         case .cancelled:
             if (isConnected){
-                print("Socket \(self.endPoint) has been closed")
+                print("Socket \(self.endPoint) has been closed, retrying to connect")
                 reconnect()
             }
         case .error(let error):
