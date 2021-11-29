@@ -16,7 +16,7 @@ public class AriesEvents {
         callbacks.removeValue(forKey: listenerName)
     }
     
-    public func triggerEvent(_ recordType: RecordType, _ latestRecord: Data, _ prevRecord: Data?){
+    public func triggerEvent(_ recordType: RecordType, _ latestRecord: Data, _ prevRecord: Data? = nil){
         for (_, cb) in callbacks{
             DispatchQueue.global().async{
                 cb(recordType, latestRecord, prevRecord)

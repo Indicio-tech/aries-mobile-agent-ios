@@ -13,6 +13,7 @@ public class Admin {
     public var connectedToAdmin: Bool = false
     private var messageSender: MessageSender
     private var storage: Storage
+    private var events: AriesEvents
     private var agentConnections: AriesConnections
     private var adminInvitationUrl: String? = nil
     
@@ -20,13 +21,17 @@ public class Admin {
     private var adminConnectionId: String? = nil
     private var adminCompletion: (_ result: Result<Void, Error>)->Void
     
-    public init(messageSender: MessageSender, storage: Storage, connections: AriesConnections){
+    public init(messageSender: MessageSender, storage: Storage, connections: AriesConnections, events: AriesEvents){
         self.messageSender = messageSender
         self.storage = storage
         self.agentConnections = connections
+        self.events = events
         
         func tempFunc(_ result: Result<Void, Error>){}
         self.adminCompletion = tempFunc
+        
+        //Set event listener
+        self.events.registerListener("AriesAdminListener", self.eventListener)
     }
     
     public func connectToAdmin(adminInvitationUrl: String, completion: @escaping (_ result: Result<Void, Error>)->Void){

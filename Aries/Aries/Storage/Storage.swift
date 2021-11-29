@@ -18,6 +18,7 @@ public class Storage{
             //Stringify record
             let data = try RecordUtils.toData(record)
             let recordJson = String(data: data, encoding: .utf8)
+            self.events.triggerEvent(record.type, try RecordUtils.toData(record))
             ariesWallet.storeRecord(type: record.type.rawValue, id: record.id, value: recordJson!, tags: record.tags, completion: completion)
         }catch{
             completion(.failure(error))
