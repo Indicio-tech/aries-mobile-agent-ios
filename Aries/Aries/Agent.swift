@@ -13,6 +13,7 @@ public class AriesAgent {
     private var messageSender: MessageSender
     private var messageReceiver: MessageReceiver
     private var storage: Storage
+    public var events: AriesEvents
     public var connections: AriesConnections
     
 //  For this implementation, we're using a default wallet with the "default" identifier and "password" as the key.
@@ -28,9 +29,10 @@ public class AriesAgent {
                 completion(.failure(e))
             }
         }
+        self.events = AriesEvents()
         self.messageReceiver = MessageReceiver(wallet: self.ariesWallet)
         self.messageSender = MessageSender(ariesWallet: self.ariesWallet, messageReceiver: self.messageReceiver)
-        self.storage = Storage(ariesWallet: self.ariesWallet)
+        self.storage = Storage(ariesWallet: self.ariesWallet, events: self.events)
         self.connections = AriesConnections(ariesWallet: self.ariesWallet, messageSender: self.messageSender, storage: self.storage)
         
         //Register event listeners
