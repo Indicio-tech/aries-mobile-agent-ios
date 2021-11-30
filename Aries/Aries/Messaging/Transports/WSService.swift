@@ -37,10 +37,6 @@ public class WSService{
 }
 
 private class WSDelegate: WebSocketDelegate {
-    func didReceive(event: WebSocketEvent, client: WebSocketClient) {
-        print("Websocket client received...")
-    }
-    
     
     private let socket: WebSocket
     private var isConnected: Bool = false
@@ -48,6 +44,7 @@ private class WSDelegate: WebSocketDelegate {
     private var messageSender: MessageSender
     private var messageReceiver: MessageReceiver
     private var endPoint: String
+    private var semaphore = DispatchSemaphore(value: 0)
     
     public init (endPoint: String, messageSender: MessageSender, messageReceiver: MessageReceiver ){
         self.messageSender = messageSender
@@ -59,7 +56,6 @@ private class WSDelegate: WebSocketDelegate {
         socket = WebSocket(request: request)
         socket.delegate = self
         socket.connect()
-        
     }
 
     func sendMessage(message: String, connection: ConnectionRecord){
@@ -67,7 +63,13 @@ private class WSDelegate: WebSocketDelegate {
         if(!inArray(connection, connectionRecordArray: connectionRecords)){
             connectionRecords.append(connection)
         }
-        socket.write(string: message)
+        
+        DispatchQueue.global(qos: .background).async {
+            self.socket.write(ping: Data())
+//          Wait for socket connection before sending message
+            self.semaphore.wait()
+            self.socket.write(data: message.data(using: .utf8)!)
+        }
     }
     
     func handleError(_ error: Error?) {
@@ -89,9 +91,24 @@ private class WSDelegate: WebSocketDelegate {
     }
     
     func didReceive(event: WebSocketEvent, client: WebSocket) {
+        handleSocketEvent(event)
+    }
+    
+    func didReceive(event: WebSocketEvent, client: WebSocketClient) {
+        handleSocketEvent(event)
+    }
+    
+    private func handleSocketEvent(_ event: WebSocketEvent){
+        debugPrint(event)
         switch event {
+        case .viabilityChanged(let status):
+            if !status {
+                reconnect()
+            }
         case .connected(let headers):
+            semaphore.signal()
             if (isConnected){
+                print("Reconnected, sending trust pings")
                 //Send trust ping messages to all previous connections in this WS
                 for connectionRecord in connectionRecords {
                     let trustPingMessasge = TrustPingMessage(returnRoute: "all")
@@ -102,29 +119,23 @@ private class WSDelegate: WebSocketDelegate {
                 print("Websocket is connected: \(headers)")
             }
         case .disconnected(let reason, let code):
-            isConnected = false
             print("websocket is disconnected: \(reason) with code: \(code)")
         case .text(let string):
             print("Received text: \(string)")
         case .binary(let data):
             print("Received data: \(data.count)")
             self.messageReceiver.receiveMessage(message: data)
-        case .ping(_):
-            break
-        case .pong(_):
-            break
-        case .viabilityChanged(_):
-            break
-        case .reconnectSuggested(_):
-            break
         case .cancelled:
+            semaphore.signal()
             if (isConnected){
                 print("Socket \(self.endPoint) has been closed, retrying to connect")
                 reconnect()
             }
         case .error(let error):
-            isConnected = false
+            semaphore.signal()
             handleError(error)
+        default:
+            break
         }
     }
     

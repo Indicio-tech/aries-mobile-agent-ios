@@ -50,6 +50,7 @@ public class AriesConnections{
         storage.storeRecord(record: connectionRecord){result in
             switch result{
             case .success():
+                print("Record stored.")
                 self.sendRequest(connectionRecord: connectionRecord, completion: completion)
             case .failure(let e):
                 completion(.failure(e))
