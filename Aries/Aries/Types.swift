@@ -47,6 +47,7 @@ public enum MessageType: String, Codable {
     case presentationGetListMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1/presentations-get-list"
     case presentationsListMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1/presentations-list"
     case sendPresentationProposalMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1/send-presentation-proposal"
+    case signedMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/signature/1.0/ed25519Sha512_single"
 }
 
 public enum RecordType: String, Codable {

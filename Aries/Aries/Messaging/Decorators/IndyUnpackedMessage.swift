@@ -17,3 +17,5 @@ struct IndyUnpackedMessage: Codable {
         case senderVerkey = "sender_verkey"
     }
 }
+// Connections protocol - Some background here on the messages back and forth. 
+// https://github.com/hyperledger/aries-rfcs/blob/main/features/0160-connection-protocol/README.md

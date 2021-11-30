@@ -178,6 +178,19 @@ public class AriesWallet {
             completion(.failure(error))
         }
     }
+        
+    public func verify (signature: Data, message: Data, key: String, completion: @escaping (_ result: Result<Bool, Error>) -> Void)->Void{
+        
+        IndyCrypto.verifySignature(signature, forMessage: message, key: key) { error, result in
+            print(">>>>>>>>>> Verficiation Complete, \(result)")
+            if result {
+                _ = self.complete(indyError: error! as Error, result: result, completion: completion)
+            } else {
+                completion(.failure(error!))
+            }
+        }
+    }
+    
     
     public func searchByQuery(type: String, query: [String:String], limit: Int, completion: @escaping (_ result: Result<[String], Error>) -> Void){
         do{
@@ -239,33 +252,4 @@ public class AriesWallet {
             return true
         }
     }
-    
-
-//
-//
-//
-//    public func deleteWallet(id: String, key: String){
-//
-//
-//        let configDict = ["id":id]
-//        let credentialsDict = ["key":key]
-//        var configString = ""
-//        var credentialsString = ""
-//
-//        if let JSONData = try? JSONSerialization.data(withJSONObject: configDict, options: []){
-//            configString = String(data: JSONData, encoding: .ascii)!
-//            print(configString)
-//        }
-//        if let JSONData = try? JSONSerialization.data(withJSONObject: credentialsDict, options: []){
-//            credentialsString = String(data: JSONData, encoding: .ascii)!
-//            print(credentialsString)
-//        }
-//
-//
-//        if let sharedInstance = AriesWallet.sharedInstance {
-//            self.wallet.delete(withConfig: configString, credentials: credentialsString) { err in
-//                print(err.debugDescription)
-//            }
-//        }
-//    }
 }

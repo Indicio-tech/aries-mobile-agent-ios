@@ -12,8 +12,9 @@ public class AriesEvents {
         callbacks[listenerName] = cb
     }
     
-    public func removeListener(_ listenerName: String){
-        callbacks.removeValue(forKey: listenerName)
+//  Returns true if value has been removed, false if value has not been found.
+    public func removeListener(_ listenerName: String)-> Bool{
+        return callbacks.removeValue(forKey: listenerName) != nil
     }
     
     public func triggerEvent(_ recordType: RecordType, _ latestRecord: Data, _ prevRecord: Data? = nil){

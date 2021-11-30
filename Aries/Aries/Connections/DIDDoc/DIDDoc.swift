@@ -8,7 +8,7 @@
 import Foundation
 
 public class DIDDoc: Codable {
-    public let context:String
+    public let context:String?
     public let id:String
     public let publicKey:[PublicKey]
     public let authentication:[Authentication]
