@@ -13,6 +13,7 @@
 		633F73A826F3E1A600474D73 /* Aries.h in Headers */ = {isa = PBXBuildFile; fileRef = 633F739A26F3E1A600474D73 /* Aries.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		633F73B626F3E21700474D73 /* Indy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633F73B426F3E20F00474D73 /* Indy.framework */; platformFilter = ios; };
 		633F73B726F3E21700474D73 /* Indy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 633F73B426F3E20F00474D73 /* Indy.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63973A9E2756D3830031DF0F /* IndyRetrievedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973A9D2756D3830031DF0F /* IndyRetrievedRecord.swift */; };
 		8F4094FA2755779F00DAC801 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F92755779F00DAC801 /* Agent.swift */; };
 		8F4094FC275577A300DAC801 /* AriesWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094FB275577A300DAC801 /* AriesWallet.swift */; };
 		8F40950C275577DB00DAC801 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40950B275577DB00DAC801 /* Events.swift */; };
@@ -127,6 +128,7 @@
 		633F73A526F3E1A600474D73 /* AriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesTests.swift; sourceTree = "<group>"; };
 		633F73A726F3E1A600474D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633F73B426F3E20F00474D73 /* Indy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Indy.framework; sourceTree = "<group>"; };
+		63973A9D2756D3830031DF0F /* IndyRetrievedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndyRetrievedRecord.swift; sourceTree = "<group>"; };
 		8F4094BE2755779900DAC801 /* BaseOutboundAdminMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOutboundAdminMessage.swift; sourceTree = "<group>"; };
 		8F4094BF2755779900DAC801 /* BaseAdminConfirmationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdminConfirmationMessage.swift; sourceTree = "<group>"; };
 		8F4094C22755779900DAC801 /* PresentationGetMatchingCredentialsMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationGetMatchingCredentialsMessage.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 			children = (
 				8F409521275577E200DAC801 /* Storage.swift */,
 				8F409522275577E200DAC801 /* BaseRecord.swift */,
+				63973A9D2756D3830031DF0F /* IndyRetrievedRecord.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				8FB730AC275578E8001C98EC /* Types.swift in Sources */,
 				8FB730E3275579F4001C98EC /* UpdateConnectionMessage.swift in Sources */,
 				8FB730ED275579F7001C98EC /* SendCredentialProposalMessage.swift in Sources */,
+				63973A9E2756D3830031DF0F /* IndyRetrievedRecord.swift in Sources */,
 				8FB730B1275579A7001C98EC /* ThreadDecorator.swift in Sources */,
 				8FB730C9275579E4001C98EC /* PresentationRequestApproveMessage.swift in Sources */,
 				8FB730E2275579F4001C98EC /* DeletedConnectionMessage.swift in Sources */,

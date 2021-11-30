@@ -159,7 +159,7 @@ public class AriesWallet {
         }
     }
 
-    public func retrieveRecord(type: String, id: String, completion: @escaping (_ result: Result<String, Error>) -> Void) -> Void{
+    public func retrieveRecord(type: String, id: String, completion: @escaping (_ result: Result<IndyRetrievedRecord, Error>) -> Void) -> Void{
         let config = [
             "retrieveType": true,
             "retrieveValue": true,
@@ -170,9 +170,15 @@ public class AriesWallet {
         do{
             let data = try encoder.encode(config)
             let configJson = String(data: data, encoding: .utf8)
-
+            
             IndyNonSecrets.getRecordFromWallet(indyHandle!, type: type, id: id, optionsJson: configJson){ error, data in
-                _ = self.complete(indyError: error! as Error, result: data! as String, completion: completion)
+                do {
+                    let decoder = JSONDecoder()
+                    let retreivedRecord = try! decoder.decode(IndyRetrievedRecord.self, from: data!.data(using: .utf8)!)
+                    _ = self.complete(indyError: error! as Error, result: retreivedRecord, completion: completion)
+                } catch {
+                    completion(.failure(error))
+                }
             }
         }catch{
             completion(.failure(error))

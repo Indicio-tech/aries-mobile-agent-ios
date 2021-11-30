@@ -46,6 +46,9 @@ public class Storage{
                     }
                 case (.failure(let e)):
                     print("Failed to fetch previous record")
+                    print(recordJson)
+                    
+                    print(e)
                     completion(.failure(e))
                 }
             }
@@ -57,9 +60,11 @@ public class Storage{
     public func retrieveRecord<recordObject: BaseRecord>(type: RecordType, id: String, completion: @escaping (_ result: Result<recordObject, Error>)->Void)-> Void{
         ariesWallet.retrieveRecord(type: type.rawValue, id: id){ result in
             switch(result){
-                case(.success(let recordString)):
+                
+                case(.success(let retrievedRecord)):
                     do {
-                        let record = try RecordUtils.buildRecord(recordObject.self, recordString.data(using: .utf8)!)
+                        print("Retreived record: \(retrievedRecord)")
+                        let record = try RecordUtils.buildRecord(recordObject.self, retrievedRecord.value.data(using: .utf8)!)
                         completion(.success(record))
                     } catch {
                         completion(.failure(error))

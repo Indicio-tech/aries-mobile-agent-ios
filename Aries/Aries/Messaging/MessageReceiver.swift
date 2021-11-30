@@ -53,11 +53,16 @@ public class MessageReceiver{
                     case .failure(let error):
                         print("\(error.localizedDescription)")
                     case .success(let parsedMessage):
-                        print("Parsed String:   >>>> \(parsedMessage)")
-                        let typeContainer = try! decoder.decode(TypeContainerMessage.self, from: parsedMessage.message.data(using: .utf8)!)
-                        let type = typeContainer.type
-                        print(parsedMessage.message)
-                        self.triggerEvent(type: type, payload: parsedMessage.message.data(using: .utf8)!, senderVerkey: parsedMessage.senderVerkey)
+                        do{
+                            print("Parsed String:   >>>> \(parsedMessage)")
+                            let typeContainer = try decoder.decode(TypeContainerMessage.self, from: parsedMessage.message.data(using: .utf8)!)
+                            let type = typeContainer.type
+                            print(parsedMessage.message)
+                            self.triggerEvent(type: type, payload: parsedMessage.message.data(using: .utf8)!, senderVerkey: parsedMessage.senderVerkey)
+                        } catch {
+                            print(error)
+                        }
+                        
                     }
                    
                 }
