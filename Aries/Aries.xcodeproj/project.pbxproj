@@ -14,6 +14,9 @@
 		633F73B626F3E21700474D73 /* Indy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633F73B426F3E20F00474D73 /* Indy.framework */; platformFilter = ios; };
 		633F73B726F3E21700474D73 /* Indy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 633F73B426F3E20F00474D73 /* Indy.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63973A9E2756D3830031DF0F /* IndyRetrievedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973A9D2756D3830031DF0F /* IndyRetrievedRecord.swift */; };
+		63973AA127580D360031DF0F /* AdminConnectedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AA027580D360031DF0F /* AdminConnectedRecord.swift */; };
+		63973AA3275827080031DF0F /* AdminConnectionListRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AA2275827080031DF0F /* AdminConnectionListRecord.swift */; };
+		63973AA527582BBD0031DF0F /* AdminConnectionPendingRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AA427582BBD0031DF0F /* AdminConnectionPendingRecord.swift */; };
 		8F4094FA2755779F00DAC801 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F92755779F00DAC801 /* Agent.swift */; };
 		8F4094FC275577A300DAC801 /* AriesWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094FB275577A300DAC801 /* AriesWallet.swift */; };
 		8F40950C275577DB00DAC801 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40950B275577DB00DAC801 /* Events.swift */; };
@@ -129,6 +132,9 @@
 		633F73A726F3E1A600474D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633F73B426F3E20F00474D73 /* Indy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Indy.framework; sourceTree = "<group>"; };
 		63973A9D2756D3830031DF0F /* IndyRetrievedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndyRetrievedRecord.swift; sourceTree = "<group>"; };
+		63973AA027580D360031DF0F /* AdminConnectedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConnectedRecord.swift; sourceTree = "<group>"; };
+		63973AA2275827080031DF0F /* AdminConnectionListRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConnectionListRecord.swift; sourceTree = "<group>"; };
+		63973AA427582BBD0031DF0F /* AdminConnectionPendingRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConnectionPendingRecord.swift; sourceTree = "<group>"; };
 		8F4094BE2755779900DAC801 /* BaseOutboundAdminMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOutboundAdminMessage.swift; sourceTree = "<group>"; };
 		8F4094BF2755779900DAC801 /* BaseAdminConfirmationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdminConfirmationMessage.swift; sourceTree = "<group>"; };
 		8F4094C22755779900DAC801 /* PresentationGetMatchingCredentialsMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationGetMatchingCredentialsMessage.swift; sourceTree = "<group>"; };
@@ -276,6 +282,16 @@
 				633F73A726F3E1A600474D73 /* Info.plist */,
 			);
 			path = AriesTests;
+			sourceTree = "<group>";
+		};
+		63973A9F27580D190031DF0F /* EventRecords */ = {
+			isa = PBXGroup;
+			children = (
+				63973AA027580D360031DF0F /* AdminConnectedRecord.swift */,
+				63973AA2275827080031DF0F /* AdminConnectionListRecord.swift */,
+				63973AA427582BBD0031DF0F /* AdminConnectionPendingRecord.swift */,
+			);
+			path = EventRecords;
 			sourceTree = "<group>";
 		};
 		8F4094BC2755779900DAC801 /* Admin */ = {
@@ -432,6 +448,7 @@
 		8F4094FD275577D600DAC801 /* Connections */ = {
 			isa = PBXGroup;
 			children = (
+				63973A9F27580D190031DF0F /* EventRecords */,
 				8F4094FE275577D700DAC801 /* Messages */,
 				8F409503275577D700DAC801 /* Connections.swift */,
 				8F409504275577D700DAC801 /* ConnectionRecord.swift */,
@@ -666,7 +683,9 @@
 				8FB730B4275579A7001C98EC /* IndyUnpackedMessage.swift in Sources */,
 				8FB730D8275579F0001C98EC /* NewBasicMessage.swift in Sources */,
 				8FB730CD275579E4001C98EC /* PresentationsGetListMessage.swift in Sources */,
+				63973AA127580D360031DF0F /* AdminConnectedRecord.swift in Sources */,
 				8FB730C8275579E1001C98EC /* BaseAdminConfirmationMessage.swift in Sources */,
+				63973AA527582BBD0031DF0F /* AdminConnectionPendingRecord.swift in Sources */,
 				8FB730E1275579F4001C98EC /* GetConnectionListMessage.swift in Sources */,
 				8FB730DF275579F0001C98EC /* DeletedBasicMessage.swift in Sources */,
 				8FB730CA275579E4001C98EC /* PresentationExchangeMessage.swift in Sources */,
@@ -678,6 +697,7 @@
 				8FB730C1275579BC001C98EC /* ConnectionRequestMessage.swift in Sources */,
 				8FB730F5275579FB001C98EC /* CredentialProposalDict.swift in Sources */,
 				8FB730F6275579FB001C98EC /* CredentialOffer.swift in Sources */,
+				63973AA3275827080031DF0F /* AdminConnectionListRecord.swift in Sources */,
 				8FB730C4275579C1001C98EC /* IndyService.swift in Sources */,
 				8FB730E9275579F7001C98EC /* CredentialExchangeMessage.swift in Sources */,
 				8F4094FC275577A300DAC801 /* AriesWallet.swift in Sources */,

@@ -8,6 +8,7 @@
 import Foundation
 
 public enum MessageType: String, Codable {
+
     case baseMessage = "base_message"
     case invitationMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/connections/1.0/invitation"
     case connectionRequestMessage = "https://didcomm.org/connections/1.0/request"
@@ -55,6 +56,9 @@ public enum RecordType: String, Codable {
     case baseRecord = "base_record"
     case connectionRecord = "connectionRecord"
     case adminMatchingCredentialsRecord = "admin_presentation_matching_credentials"
+    case adminConnectedRecord = "admin_connected"
+    case adminConnectionListRecord = "admin_connection_list"
+    case adminConnectionPendingRecord = "admin_new_connection"
 }
 
 public struct RequestedJson: Codable {
