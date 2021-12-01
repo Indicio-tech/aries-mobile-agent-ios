@@ -21,9 +21,9 @@ public class AriesConnections{
     public func receiveInvitationUrl(invitationUrl:String, autoAccept:Bool = true, completion: @escaping (_ result: Result<ConnectionRecord, Error>) -> Void) throws {
         print("Decoding invitation url: "+invitationUrl)
         let components = URLComponents(string: invitationUrl)
-        let encodedInvitation = components!.queryItems!.first(where: {queryItem -> Bool in
+        guard let encodedInvitation = components?.queryItems?.first(where: {queryItem -> Bool in
             queryItem.name == "c_i"
-        })!.value!
+        })?.value else { throw ConnectionsError.invalidInvitationUrl("Invalid URL protocol")}
 
         let decodedData = Data(base64Encoded: encodedInvitation)!
         let decodedInvitation = String(data: decodedData, encoding: .utf8)!
@@ -57,8 +57,6 @@ public class AriesConnections{
             }
             
         }
-
-
     }
 
     private func sendRequest(connectionRecord: ConnectionRecord, completion: @escaping (_ result: Result<ConnectionRecord, Error>) -> Void){
@@ -181,5 +179,6 @@ public class AriesConnections{
     
     enum ConnectionsError: Error {
         case connectionMismatch(String)
+        case invalidInvitationUrl(String)
     }
 }
