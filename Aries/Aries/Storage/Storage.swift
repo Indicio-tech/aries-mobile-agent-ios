@@ -31,6 +31,9 @@ public class Storage{
             let data = try RecordUtils.toData(record)
             let recordJson = String(data: data, encoding: .utf8)
             
+            print("Record tags: ")
+            print(record.tags)
+            
             //Fetch older version of record
             print("Fetching previous version of record for comparison...")
             retrieveRecord(type: record.type, id: record.id){(result:Result<Record, Error>) in

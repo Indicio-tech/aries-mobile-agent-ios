@@ -19,46 +19,48 @@ public class AriesConnections{
     }
 
     public func receiveInvitationUrl(invitationUrl:String, autoAccept:Bool = true, completion: @escaping (_ result: Result<ConnectionRecord, Error>) -> Void) throws {
-        print("Decoding invitation url: "+invitationUrl)
-        let components = URLComponents(string: invitationUrl)
-        let encodedInvitation = components!.queryItems!.first(where: {queryItem -> Bool in
-            queryItem.name == "c_i"
-        })!.value!
+        do{
+            print("Decoding invitation url: "+invitationUrl)
+            let components = URLComponents(string: invitationUrl)
+            guard let encodedInvitation = components?.queryItems?.first(where: {queryItem -> Bool in
+                queryItem.name == "c_i"
+            })?.value else { throw ConnectionsError.invalidInvitationUrl("Invalid URL protocol")}
 
-        let decodedData = Data(base64Encoded: encodedInvitation)!
-        let decodedInvitation = String(data: decodedData, encoding: .utf8)!
-        print("Decoded invitation: "+decodedInvitation)
-        let decoder = JSONDecoder()
-        let invitationMessage = try decoder.decode(InvitationMessage.self, from: decodedData)
+            let decodedData = Data(base64Encoded: encodedInvitation)!
+            let decodedInvitation = String(data: decodedData, encoding: .utf8)!
+            print("Decoded invitation: "+decodedInvitation)
+            let decoder = JSONDecoder()
+            let invitationMessage = try decoder.decode(InvitationMessage.self, from: decodedData)
 
-        let recordTags = ["invitationKey": invitationMessage.recipientKeys != nil && invitationMessage.recipientKeys?.count ?? -1 > 0 ? "true" : "false"]
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd HH:mm:ss'Z'"
-        let createdTime = df.string(from: Date())
+            let recordTags = ["invitationKey": invitationMessage.recipientKeys != nil && invitationMessage.recipientKeys?.count ?? -1 > 0 ? "true" : "false"]
+            let df = DateFormatter()
+            df.dateFormat = "yyyy-MM-dd HH:mm:ss'Z'"
+            let createdTime = df.string(from: Date())
 
-        let connectionRecord = ConnectionRecord(
-            id: UUID().uuidString,
-            createdAt: createdTime,
-            invitation: invitationMessage,
-            state: .INVITED,
-            autoAcceptConnection: autoAccept,
-            role: "invitee",
-            label: "AMAi Agent",
-            tags: recordTags
-        )
+            let connectionRecord = ConnectionRecord(
+                id: UUID().uuidString,
+                createdAt: createdTime,
+                invitation: invitationMessage,
+                state: .INVITED,
+                autoAcceptConnection: autoAccept,
+                role: "invitee",
+                label: "AMAi Agent",
+                tags: recordTags
+            )
 
-        storage.storeRecord(record: connectionRecord){result in
-            switch result{
-            case .success():
-                print("Record stored.")
-                self.sendRequest(connectionRecord: connectionRecord, completion: completion)
-            case .failure(let e):
-                completion(.failure(e))
+            storage.storeRecord(record: connectionRecord){result in
+                switch result{
+                case .success():
+                    print("Record stored.")
+                    self.sendRequest(connectionRecord: connectionRecord, completion: completion)
+                case .failure(let e):
+                    completion(.failure(e))
+                }
+                
             }
-            
+        }catch{
+            throw error
         }
-
-
     }
 
     private func sendRequest(connectionRecord: ConnectionRecord, completion: @escaping (_ result: Result<ConnectionRecord, Error>) -> Void){
@@ -181,5 +183,6 @@ public class AriesConnections{
     
     enum ConnectionsError: Error {
         case connectionMismatch(String)
+        case invalidInvitationUrl(String)
     }
 }

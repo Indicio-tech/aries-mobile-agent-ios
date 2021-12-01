@@ -12,7 +12,7 @@ public struct ConnectionRecord: BaseRecord{
     public var id: String
     public var tags: [String: String]
 
-    public var createdAt:String?
+    public var createdAt:String
     public var invitation:InvitationMessage
     public var state:ConnectionState
     public var autoAcceptConnection:Bool

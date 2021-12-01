@@ -139,13 +139,11 @@ public class AriesWallet {
         print("Updating record...")
 
         IndyNonSecrets.updateRecordValue(inWallet: indyHandle!, type: type, id: id, value: value){ error in
-            print("Record updated.")
-        }
-
-        print("Updating tags...")
-        IndyNonSecrets.addRecordTags(inWallet: indyHandle!, type: type, id: id, tagsJson: tagsJson){ error in
-            print("Tags updated.")
-            _ = self.complete(indyError: error! as Error, result: (), completion: completion)
+            print("Updating tags...")
+            IndyNonSecrets.addRecordTags(inWallet: self.indyHandle!, type: type, id: id, tagsJson: tagsJson){ error in
+                print("Tags updated.")
+                _ = self.complete(indyError: error! as Error, result: (), completion: completion)
+            }
         }
     }
     
@@ -233,15 +231,20 @@ public class AriesWallet {
                     if(code != 0){
                         completion(.failure(error!))
                     }else{
-                        let json = (try JSONSerialization.jsonObject(with: results!.data(using: .utf8)!) as! [String: Any])["records"] as! [String]
+                        print(results)
+                        guard let json = (try JSONSerialization.jsonObject(with: results!.data(using: .utf8)!) as! [String: Any])["records"] as? [[String: String?]] else {
+                            throw AriesWalletError.noResults("No matching records found.")
+                        }
+                        
                         var newArray = returnArray
-                        for record in json{
-                            let recordString = (try JSONSerialization.jsonObject( with: record.data(using: .utf8)!) as! [String: Any])["value"] as! String
+                        for (record) in json{
+                            let recordString = record["value"]!!
                             newArray.append(recordString)
                             self.recursiveFetching(searchHandle: searchHandle, limit: limit, returnArray: newArray, completion: completion)
                         }
                     }
                 }catch{
+                    print(error)
                     completion(.failure(error))
                 }
             }
@@ -257,5 +260,9 @@ public class AriesWallet {
             completion(.success(result!))
             return true
         }
+    }
+    
+    enum AriesWalletError: Error {
+        case noResults(String)
     }
 }
