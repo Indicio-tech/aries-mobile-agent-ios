@@ -18,6 +18,12 @@ public struct GetConnectionListMessage: BaseOutboundAdminMessage {
         case id = "@id"
         case transport = "~transport"
     }
+    
+    public init(){
+        self.id = UUID().uuidString
+        self.transport = TransportDecorator(returnRoute: "all")
+        self.type = .getConnectionsListMessage
+    }
 }
 
 

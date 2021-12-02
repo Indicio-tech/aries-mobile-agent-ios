@@ -31,7 +31,7 @@ public class Admin {
         self.adminInvitationUrl = adminInvitationUrl
         
         //Set event listener
-        self.events.registerListener("AriesAdminListener", self.eventListener)
+        self.events.registerListener("AriesAdminListener", self.externalEventListener)
     }
     
     public func connectToAdmin(completion: @escaping (_ result: Result<Void, Error>)->Void){
@@ -168,10 +168,69 @@ public class Admin {
     }
     
     
-    
+    private func internalEventListener(_ messageType: MessageType, _ payload: Data, _ senderVerkey: String){
+        if(adminConnection != nil){
+            do{
+                switch(messageType){
+            //Admin connections
+                case .connectionMessage:
+                    print("Admin received connection message.")
+                    let message = try MessageUtils.buildMessage(ConnectionMessage.self, payload)
+                    let record = AdminConnectionPendingRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
+                    break
+                case .connectedMessage:
+                    print("Admin received connected message.")
+                    let message = try MessageUtils.buildMessage(ConnectedMessage.self, payload)
+                    let record = AdminConnectedRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
+                    break
+                case .deletedConnectionMessage:
+                    print("Admin received connection deleted message.")
+                    let message = try MessageUtils.buildMessage(ConnectedMessage.self, payload)
+                    let record = try AdminMessageConfirmationRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
+                    break
+                case .connectionListMessage:
+                    print("Admin received connection list message.")
+                    let message = try MessageUtils.buildMessage(ConnectionListMessage.self, payload)
+                    let record = AdminConnectionListRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
+                    break
+            //Admin credentials
+                case .credentialOfferReceivedMessage:
+                    break
+                case .credentialReceivedMessage:
+                    break
+                case .credentialsListMessage:
+                    break
+            //Admin proofs
+                case .presentationsListMessage:
+                    break
+                case .presentationMatchingCredentialsMessage:
+                    break
+                case .presentationSentMessage:
+                    break
+            // Admin basic messaging
+                case .deletedBasicMessage:
+                    break
+                case .receivedBasicMessage:
+                    break
+                case .newBasicMessage:
+                    break
+                case .sentBasicMessage:
+                    break
+                    
+                default: break
+                }
+            }catch{
+                print(error)
+            }
+        }
+    }
     
     //Listen for external connection events NOT our internal events
-    private func eventListener(_ recordType: RecordType, _ latestRecord: Data, _ prevRecord: Data?){
+    private func externalEventListener(_ recordType: RecordType, _ latestRecord: Data, _ prevRecord: Data?){
         do{
             switch(recordType){
             case .connectionRecord:

@@ -11,19 +11,12 @@ public struct ReceiveInvitationMessage: BaseOutboundAdminMessage {
     public let type: MessageType
     public let id: String
     public let autoAccept: Bool
-    public let mediationId: String
+    public let mediationId: String?
     public let invitation: String
     public let transport: TransportDecorator
     
-    public init(invitationURL: String, mediationId: String) {
-        self.type = MessageType.receiveInvitationMessage
-        self.id = UUID().uuidString
-        self.autoAccept = true
-        self.mediationId = mediationId
-        self.invitation = invitationURL
-        self.transport = TransportDecorator(returnRoute: "all")
-    }
-    public init(invitation: String, autoAccept: Bool, mediationId: String) {
+
+    public init(invitation: String, autoAccept: Bool = true, mediationId: String? = nil) {
         self.type = MessageType.receiveInvitationMessage
         self.id = UUID().uuidString
         self.autoAccept = autoAccept

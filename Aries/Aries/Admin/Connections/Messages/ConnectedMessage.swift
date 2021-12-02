@@ -7,7 +7,9 @@
 
 import Foundation
 
-public struct ConnectedMessage: BaseMessage {
+public struct ConnectedMessage: BaseAdminConfirmationMessage {
+    public var thread: ThreadDecorator?
+    
     public let type: MessageType
     public let id: String
     public var connectionId: String?
@@ -31,6 +33,7 @@ public struct ConnectedMessage: BaseMessage {
         case state
         case theirDid = "their_did"
         case rawRepr = "raw_repr"
+        case thread = "~thread"
     }
 }
 

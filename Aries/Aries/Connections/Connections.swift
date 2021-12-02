@@ -163,11 +163,7 @@ public class AriesConnections{
             switch messageType {
             case .connectionResponseMessage:
                 print("Connection response received")
-                let decoder = JSONDecoder()
-                
-                print("Here's the payload: >>>> \(String(data: payload, encoding: .utf8)!)")
-                
-                let message = try decoder.decode(ConnectionResponse.self, from: payload)
+                let message = try MessageUtils.buildMessage(ConnectionResponse.self, payload)
                 processResponse(connectionResponse: message)
             default:
                 break;

@@ -28,7 +28,7 @@ public enum MessageType: String, Codable {
     case connectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/connection"
     case deleteConnectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/delete"
     case deletedConnectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/deleted"
-    case getConnectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/get-list"
+    case getConnectionsListMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/get-list"
     case receiveInvitationMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/receive-invitation"
     case updateConnectionMessage = "https://github.com/hyperledger/aries-toolbox/tree/master/docs/admin-connections/0.1/update"
     case credentialExchangeMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1/credential-exchange"
@@ -50,11 +50,13 @@ public enum MessageType: String, Codable {
     case presentationsListMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1/presentations-list"
     case sendPresentationProposalMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1/send-presentation-proposal"
     case signedMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/signature/1.0/ed25519Sha512_single"
+    case presentationMatchingCredentialsMessage = "did:sov:BzCbsNYhMrjHiqZDTUASHg;spec/admin-holder/0.1/presentation-matching-credentials"
 }
 
 public enum RecordType: String, Codable {
     case baseRecord = "base_record"
     case connectionRecord = "connectionRecord"
+    case adminConfirmation = "admin_confirmation"
     case adminMatchingCredentialsRecord = "admin_presentation_matching_credentials"
     case adminConnectedRecord = "admin_connected"
     case adminConnectionListRecord = "admin_connection_list"
