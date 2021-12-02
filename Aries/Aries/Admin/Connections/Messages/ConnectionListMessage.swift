@@ -12,7 +12,7 @@ public struct ConnectionListMessage: BaseMessage {
     public let type: MessageType
     public let id: String
     public let thread: ThreadDecorator
-    public let connections: AdminConnection
+    public let connections: [AdminConnection]
     
     
     enum CodingKeys : String, CodingKey {
