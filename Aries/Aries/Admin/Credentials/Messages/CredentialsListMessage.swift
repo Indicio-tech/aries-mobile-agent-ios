@@ -11,7 +11,7 @@ public struct CredentialsListMessage: BaseMessage {
     public let type: MessageType
     public let id: String
     public let thread: ThreadDecorator
-    public let results: CredentialExchangeItem
+    public let results: [CredentialExchangeItem]
     
     enum CodingKeys : String, CodingKey {
         case type = "@type"
