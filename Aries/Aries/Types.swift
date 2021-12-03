@@ -62,6 +62,7 @@ public enum RecordType: String, Codable {
     case adminCredentialOfferReceivedRecord = "admin_credential_offer_received_record"
     case adminCredentialReceivedRecord = "admin_credential_received_record"
     case adminCredentialsListReceivedRecord = "admin_credentials_list_received_record"
+    case adminPresentationsListRecord = "admin_presentation_list"
 }
 
 public struct RequestedJson: Codable {
