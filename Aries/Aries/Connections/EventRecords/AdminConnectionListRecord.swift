@@ -28,9 +28,7 @@ public class AdminConnectionListRecord: BaseRecord {
         self.threadId = message.thread.thid
         self.id = message.id
         self.connections = message.connections
-
-        self.tags = [:]
-        self.tags["adminConnection"] = adminConnection.id
+        self.tags = ["adminConnection" : adminConnection.id]
     }
-
+    
 }

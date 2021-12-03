@@ -26,9 +26,7 @@ public class AdminConnectionPendingRecord: BaseRecord {
         self.type = RecordType.adminConnectionPendingRecord
         self.threadId = message.thread.thid
         self.id = message.connectionId
-
-        self.tags = [:]
-        self.tags["adminConnection"] = adminConnection.id
+        self.tags = ["adminConnection" : adminConnection.id]
     }
 
 }
