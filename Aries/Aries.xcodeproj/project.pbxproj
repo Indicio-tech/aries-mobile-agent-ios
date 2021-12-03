@@ -20,6 +20,7 @@
 		63973AA827592F0B0031DF0F /* AdminCredentialOfferReceivedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AA727592F0B0031DF0F /* AdminCredentialOfferReceivedRecord.swift */; };
 		63973AAA275988990031DF0F /* AdminCredentialReceivedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AA9275988990031DF0F /* AdminCredentialReceivedRecord.swift */; };
 		63973AAC275989640031DF0F /* AdminCredentialsListReceivedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AAB275989640031DF0F /* AdminCredentialsListReceivedRecord.swift */; };
+		63973AAE27599A080031DF0F /* AdminPresentationsListRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AAD27599A080031DF0F /* AdminPresentationsListRecord.swift */; };
 		8F4094FA2755779F00DAC801 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F92755779F00DAC801 /* Agent.swift */; };
 		8F4094FC275577A300DAC801 /* AriesWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094FB275577A300DAC801 /* AriesWallet.swift */; };
 		8F40950C275577DB00DAC801 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40950B275577DB00DAC801 /* Events.swift */; };
@@ -141,6 +142,7 @@
 		63973AA727592F0B0031DF0F /* AdminCredentialOfferReceivedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCredentialOfferReceivedRecord.swift; sourceTree = "<group>"; };
 		63973AA9275988990031DF0F /* AdminCredentialReceivedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCredentialReceivedRecord.swift; sourceTree = "<group>"; };
 		63973AAB275989640031DF0F /* AdminCredentialsListReceivedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCredentialsListReceivedRecord.swift; sourceTree = "<group>"; };
+		63973AAD27599A080031DF0F /* AdminPresentationsListRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPresentationsListRecord.swift; sourceTree = "<group>"; };
 		8F4094BE2755779900DAC801 /* BaseOutboundAdminMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOutboundAdminMessage.swift; sourceTree = "<group>"; };
 		8F4094BF2755779900DAC801 /* BaseAdminConfirmationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdminConfirmationMessage.swift; sourceTree = "<group>"; };
 		8F4094C22755779900DAC801 /* PresentationGetMatchingCredentialsMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationGetMatchingCredentialsMessage.swift; sourceTree = "<group>"; };
@@ -373,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				8F4094D12755779900DAC801 /* AdminMatchingCredentialsRecord.swift */,
+				63973AAD27599A080031DF0F /* AdminPresentationsListRecord.swift */,
 			);
 			path = EventRecords;
 			sourceTree = "<group>";
@@ -724,6 +727,7 @@
 				8FB730B2275579A7001C98EC /* LocalizationDecorator.swift in Sources */,
 				8FB730D4275579E7001C98EC /* MatchingCredentials.swift in Sources */,
 				63973AAC275989640031DF0F /* AdminCredentialsListReceivedRecord.swift in Sources */,
+				63973AAE27599A080031DF0F /* AdminPresentationsListRecord.swift in Sources */,
 				8FB730E0275579F4001C98EC /* ConnectedMessage.swift in Sources */,
 				8FB730CB275579E4001C98EC /* PresentationMatchingCredentialsMessage.swift in Sources */,
 				8FB730C3275579C1001C98EC /* DIDDoc.swift in Sources */,
