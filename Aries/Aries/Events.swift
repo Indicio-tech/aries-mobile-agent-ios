@@ -17,6 +17,12 @@ public class AriesEvents {
         return callbacks.removeValue(forKey: listenerName) != nil
     }
     
+    public func triggerEvent<recordClass: BaseRecord>(_ record: recordClass) throws {
+        let type = record.type
+        let data = try RecordUtils.toData(record)
+        triggerEvent(type, data)
+    }
+    
     public func triggerEvent(_ recordType: RecordType, _ latestRecord: Data, _ prevRecord: Data? = nil){
         for (_, cb) in callbacks{
             DispatchQueue.global().async{

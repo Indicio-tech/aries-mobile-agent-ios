@@ -33,19 +33,19 @@ public class MessageReceiver{
     
     public func receiveMessage(message: Data) {
         
-        print("**** Message Received: ***")
+        print("Received message...")
         
         //Receive packed message: Data
         
         //Unpack message with IndyWallet
-        print("**** Unpacking message: ***")
+        print("Unpacking message...")
         wallet.unpackMessage(message: message) { result in
             switch result {
             case .failure(let error):
                 print("Failed to unpack... \(error)")
             case .success(let data):
                 
-                print("Unpacked Message: \(String(data: data, encoding: .utf8)!)")
+                print("Message unpacked, parsing decorators...")
                 let decoder = JSONDecoder()
                 
                 self.parseDecorators(message: String(data: data, encoding: .utf8)!) { result in
@@ -54,9 +54,9 @@ public class MessageReceiver{
                         print("\(error.localizedDescription)")
                     case .success(let parsedMessage):
                         do{
-                            print("Parsed String:   >>>> \(parsedMessage)")
                             let typeContainer = try decoder.decode(TypeContainerMessage.self, from: parsedMessage.message.data(using: .utf8)!)
                             let type = typeContainer.type
+                            print("Parsed message:")
                             print(parsedMessage.message)
                             self.triggerEvent(type: type, payload: parsedMessage.message.data(using: .utf8)!, senderVerkey: parsedMessage.senderVerkey)
                         } catch {
@@ -91,8 +91,6 @@ public class MessageReceiver{
                                     let signatureElements = try JSONSerialization.data(withJSONObject: object.value, options: .prettyPrinted)
                                     let signatureDecorator = try decoder.decode(SignatureDecorator.self, from: signatureElements)
                                     
-                                    print("Signature ---> \(signatureDecorator.signature)")
-                                    
                                     let newSignature = base64UrlTobase64(string: signatureDecorator.signature)
                                     let signature = Data(base64Encoded: newSignature)!
                                     let sigData = Data(base64Encoded: signatureDecorator.sigData)!
@@ -112,7 +110,7 @@ public class MessageReceiver{
                                                 let serializedData = try! JSONSerialization.data(withJSONObject: mutatedObject, options: .prettyPrinted)
                                                 let encodedString = String(data: serializedData, encoding: .utf8)
                                                 if let returnString = encodedString {
-                                                    var returnMessage = IndyUnpackedMessage(message: returnString, recipientVerkey: unpackedMessage.recipientVerkey, senderVerkey: unpackedMessage.senderVerkey)
+                                                    let returnMessage = IndyUnpackedMessage(message: returnString, recipientVerkey: unpackedMessage.recipientVerkey, senderVerkey: unpackedMessage.senderVerkey)
                                                     completion(.success(returnMessage))
                                                 }
                                             } else {

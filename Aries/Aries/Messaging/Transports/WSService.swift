@@ -40,6 +40,7 @@ private class WSDelegate: WebSocketDelegate {
     
     private let socket: WebSocket
     private var isConnected: Bool = false
+    private var hasConnected: Bool = false
     private var connectionRecords: [ConnectionRecord] = []
     private var messageSender: MessageSender
     private var messageReceiver: MessageReceiver
@@ -65,10 +66,12 @@ private class WSDelegate: WebSocketDelegate {
         }
         
         DispatchQueue.global(qos: .background).async {
-            self.socket.write(ping: Data())
 //          Wait for socket connection before sending message
-            self.semaphore.wait()
+            if(!self.isConnected){
+                self.semaphore.wait()
+            }
             self.socket.write(data: message.data(using: .utf8)!)
+            print("Message sent.")
         }
     }
     
@@ -106,8 +109,9 @@ private class WSDelegate: WebSocketDelegate {
                 reconnect()
             }
         case .connected(let headers):
+            isConnected = true
             semaphore.signal()
-            if (isConnected){
+            if (hasConnected){
                 print("Reconnected, sending trust pings")
                 //Send trust ping messages to all previous connections in this WS
                 for connectionRecord in connectionRecords {
@@ -115,7 +119,7 @@ private class WSDelegate: WebSocketDelegate {
                     self.messageSender.sendMessage(message: trustPingMessasge, connectionRecord: connectionRecord)
                 }
             } else {
-                isConnected = true
+                hasConnected = true
                 print("Websocket is connected: \(headers)")
             }
         case .disconnected(let reason, let code):
@@ -126,12 +130,14 @@ private class WSDelegate: WebSocketDelegate {
             print("Received data: \(data.count)")
             self.messageReceiver.receiveMessage(message: data)
         case .cancelled:
+            isConnected = false
             semaphore.signal()
-            if (isConnected){
+            if (hasConnected){
                 print("Socket \(self.endPoint) has been closed, retrying to connect")
                 reconnect()
             }
         case .error(let error):
+            isConnected = false
             semaphore.signal()
             handleError(error)
         default:

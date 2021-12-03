@@ -16,7 +16,7 @@ public struct PresentationMatchingCredentialsMessage: BaseMessage {
     public let page: PageDecorator
     
     public init(thread: String, presentationExchangeId: String, matchingCredentials: [MatchingCredentials], page: PageDecorator) {
-        self.type = MessageType.presentationGetMatchingCredentialsMessage
+        self.type = MessageType.presentationMatchingCredentialsMessage
         self.thread = thread
         self.presentationExchangeId = presentationExchangeId
         self.matchingCredentials = matchingCredentials

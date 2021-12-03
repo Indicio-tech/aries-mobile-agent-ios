@@ -24,6 +24,9 @@
 		8F4094FA2755779F00DAC801 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F92755779F00DAC801 /* Agent.swift */; };
 		8F4094FC275577A300DAC801 /* AriesWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094FB275577A300DAC801 /* AriesWallet.swift */; };
 		8F40950C275577DB00DAC801 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40950B275577DB00DAC801 /* Events.swift */; };
+		8F60BCC027596F360093D05E /* AdminConnections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F60BCBF27596F360093D05E /* AdminConnections.swift */; };
+		8F60BCC227597D960093D05E /* MessageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F60BCC127597D960093D05E /* MessageUtils.swift */; };
+		8F60BCC427597F840093D05E /* AdminMessageConfirmationRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F60BCC327597F840093D05E /* AdminMessageConfirmationRecord.swift */; };
 		8FB730AC275578E8001C98EC /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40951F275577DE00DAC801 /* Types.swift */; };
 		8FB730AD27557993001C98EC /* MessageSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40950E275577DE00DAC801 /* MessageSender.swift */; };
 		8FB730AE275579A1001C98EC /* BasicMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F409517275577DE00DAC801 /* BasicMessage.swift */; };
@@ -223,6 +226,9 @@
 		8F409521275577E200DAC801 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		8F409522275577E200DAC801 /* BaseRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRecord.swift; sourceTree = "<group>"; };
 		8F409524275577E700DAC801 /* RecordUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordUtils.swift; sourceTree = "<group>"; };
+		8F60BCBF27596F360093D05E /* AdminConnections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConnections.swift; sourceTree = "<group>"; };
+		8F60BCC127597D960093D05E /* MessageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageUtils.swift; sourceTree = "<group>"; };
+		8F60BCC327597F840093D05E /* AdminMessageConfirmationRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMessageConfirmationRecord.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -321,6 +327,7 @@
 				8F4094D32755779900DAC801 /* basicMessaging */,
 				8F4094DD2755779900DAC801 /* Connections */,
 				8F4094E82755779900DAC801 /* Credentials */,
+				8F60BCC327597F840093D05E /* AdminMessageConfirmationRecord.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -406,8 +413,10 @@
 		8F4094DD2755779900DAC801 /* Connections */ = {
 			isa = PBXGroup;
 			children = (
+				63973A9F27580D190031DF0F /* EventRecords */,
 				8F4094DE2755779900DAC801 /* Messages */,
 				8F4094E72755779900DAC801 /* AdminConnection.swift */,
+				8F60BCBF27596F360093D05E /* AdminConnections.swift */,
 			);
 			path = Connections;
 			sourceTree = "<group>";
@@ -468,7 +477,6 @@
 		8F4094FD275577D600DAC801 /* Connections */ = {
 			isa = PBXGroup;
 			children = (
-				63973A9F27580D190031DF0F /* EventRecords */,
 				8F4094FE275577D700DAC801 /* Messages */,
 				8F409503275577D700DAC801 /* Connections.swift */,
 				8F409504275577D700DAC801 /* ConnectionRecord.swift */,
@@ -551,6 +559,7 @@
 			isa = PBXGroup;
 			children = (
 				8F409524275577E700DAC801 /* RecordUtils.swift */,
+				8F60BCC127597D960093D05E /* MessageUtils.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -689,6 +698,7 @@
 				8FB730F1275579FB001C98EC /* AdminCredential.swift in Sources */,
 				8FB730AF275579A7001C98EC /* TransportDecorator.swift in Sources */,
 				8FB730D1275579E7001C98EC /* AdminPresentationProposal.swift in Sources */,
+				8F60BCC027596F360093D05E /* AdminConnections.swift in Sources */,
 				8FB730D9275579F0001C98EC /* DeleteBasicMessage.swift in Sources */,
 				8FB730F3275579FB001C98EC /* CredentialProposal.swift in Sources */,
 				8FB730E6275579F4001C98EC /* ReceiveInvitationMessage.swift in Sources */,
@@ -732,6 +742,7 @@
 				8FB730CB275579E4001C98EC /* PresentationMatchingCredentialsMessage.swift in Sources */,
 				8FB730C3275579C1001C98EC /* DIDDoc.swift in Sources */,
 				8FB730C7275579E1001C98EC /* BaseOutboundAdminMessage.swift in Sources */,
+				8F60BCC227597D960093D05E /* MessageUtils.swift in Sources */,
 				8FB730E8275579F4001C98EC /* AdminConnection.swift in Sources */,
 				8FB730D5275579E7001C98EC /* AdminCredentialInfo.swift in Sources */,
 				8FB730BA275579B1001C98EC /* WSService.swift in Sources */,
@@ -751,6 +762,7 @@
 				8FB730BE275579BC001C98EC /* ConnectionRecord.swift in Sources */,
 				8FB730DE275579F0001C98EC /* ReceivedBasicMessages.swift in Sources */,
 				8FB730B3275579A7001C98EC /* PageDecorator.swift in Sources */,
+				8F60BCC427597F840093D05E /* AdminMessageConfirmationRecord.swift in Sources */,
 				8FB730AC275578E8001C98EC /* Types.swift in Sources */,
 				8FB730E3275579F4001C98EC /* UpdateConnectionMessage.swift in Sources */,
 				8FB730ED275579F7001C98EC /* SendCredentialProposalMessage.swift in Sources */,

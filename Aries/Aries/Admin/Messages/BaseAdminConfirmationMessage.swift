@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol BaseAdminConfirmationMessage: BaseMessage {
+public protocol BaseAdminConfirmationMessage: BaseMessage {
     
     var type: MessageType { get }
     var id: String { get }

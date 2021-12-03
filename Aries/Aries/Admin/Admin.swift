@@ -16,6 +16,7 @@ public class Admin {
     private var events: AriesEvents
     private var agentConnections: AriesConnections
     private var adminInvitationUrl: String?
+    public var connections: AdminConnections? = nil
     
     //connectToAdmin data for reference in event handling... there might be a better way to do this?
     private var adminConnectionId: String? = nil
@@ -31,7 +32,7 @@ public class Admin {
         self.adminInvitationUrl = adminInvitationUrl
         
         //Set event listener
-        self.events.registerListener("AriesAdminListener", self.eventListener)
+        self.events.registerListener("AriesAdminListener", self.externalEventListener)
     }
     
     public func connectToAdmin(completion: @escaping (_ result: Result<Void, Error>)->Void){
@@ -95,6 +96,7 @@ public class Admin {
                     
                     //TODO: Set admin submodules here
                     //self.basicMessaging = AdminBasicMessaging(messageSender: self.messageSender, adminConnectionRecord: self.adminConnection)
+                    self.connections = AdminConnections(messageSender: self.messageSender, adminConnection: self.adminConnection!)
                     
                     
                     //Check to see if connectionRecord tags need to be updated
@@ -121,6 +123,13 @@ public class Admin {
                 }
             }
         }
+    }
+    
+    public func sendTrustPing(){
+        //Send trust ping to activate admin protocol
+        print("Sending admin trust ping")
+        let trustPing =  TrustPingMessage(responseRequested: false, comment: "adminConnection", returnRoute: "all")
+        self.messageSender.sendMessage(message: trustPing, connectionRecord: self.adminConnection!)
     }
     
     private func removeDuplicateAdminTag(newConnectionID: String, connectionName: String, completion: @escaping(_ result : Result<Void, Error>)->Void){
@@ -168,10 +177,69 @@ public class Admin {
     }
     
     
-    
+    public func _internalEventListener(_ messageType: MessageType, _ payload: Data, _ senderVerkey: String){
+        if(adminConnection != nil){
+            do{
+                switch(messageType){
+            //Admin connections
+                case .connectionMessage:
+                    print("Admin received connection message.")
+                    let message = try MessageUtils.buildMessage(ConnectionMessage.self, payload)
+                    let record = AdminConnectionPendingRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
+                    break
+                case .connectedMessage:
+                    print("Admin received connected message.")
+                    let message = try MessageUtils.buildMessage(ConnectedMessage.self, payload)
+                    let record = AdminConnectedRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
+                    break
+                case .deletedConnectionMessage:
+                    print("Admin received connection deleted message.")
+                    let message = try MessageUtils.buildMessage(ConnectedMessage.self, payload)
+                    let record = try AdminMessageConfirmationRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
+                    break
+                case .connectionListMessage:
+                    print("Admin received connection list message.")
+                    let message = try MessageUtils.buildMessage(ConnectionListMessage.self, payload)
+                    let record = AdminConnectionListRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
+                    break
+            //Admin credentials
+                case .credentialOfferReceivedMessage:
+                    break
+                case .credentialReceivedMessage:
+                    break
+                case .credentialsListMessage:
+                    break
+            //Admin proofs
+                case .presentationsListMessage:
+                    break
+                case .presentationMatchingCredentialsMessage:
+                    break
+                case .presentationSentMessage:
+                    break
+            // Admin basic messaging
+                case .deletedBasicMessage:
+                    break
+                case .receivedBasicMessage:
+                    break
+                case .newBasicMessage:
+                    break
+                case .sentBasicMessage:
+                    break
+                    
+                default: break
+                }
+            }catch{
+                print(error)
+            }
+        }
+    }
     
     //Listen for external connection events NOT our internal events
-    private func eventListener(_ recordType: RecordType, _ latestRecord: Data, _ prevRecord: Data?){
+    private func externalEventListener(_ recordType: RecordType, _ latestRecord: Data, _ prevRecord: Data?){
         do{
             switch(recordType){
             case .connectionRecord:
