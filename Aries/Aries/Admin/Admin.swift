@@ -16,6 +16,7 @@ public class Admin {
     private var events: AriesEvents
     private var agentConnections: AriesConnections
     private var adminInvitationUrl: String?
+    public var connections: AdminConnections? = nil
     
     //connectToAdmin data for reference in event handling... there might be a better way to do this?
     private var adminConnectionId: String? = nil
@@ -95,6 +96,7 @@ public class Admin {
                     
                     //TODO: Set admin submodules here
                     //self.basicMessaging = AdminBasicMessaging(messageSender: self.messageSender, adminConnectionRecord: self.adminConnection)
+                    self.connections = AdminConnections(messageSender: self.messageSender, adminConnection: self.adminConnection!)
                     
                     
                     //Check to see if connectionRecord tags need to be updated
@@ -121,6 +123,13 @@ public class Admin {
                 }
             }
         }
+    }
+    
+    public func sendTrustPing(){
+        //Send trust ping to activate admin protocol
+        print("Sending admin trust ping")
+        let trustPing =  TrustPingMessage(responseRequested: false, comment: "adminConnection", returnRoute: "all")
+        self.messageSender.sendMessage(message: trustPing, connectionRecord: self.adminConnection!)
     }
     
     private func removeDuplicateAdminTag(newConnectionID: String, connectionName: String, completion: @escaping(_ result : Result<Void, Error>)->Void){
@@ -168,7 +177,7 @@ public class Admin {
     }
     
     
-    private func internalEventListener(_ messageType: MessageType, _ payload: Data, _ senderVerkey: String){
+    public func _internalEventListener(_ messageType: MessageType, _ payload: Data, _ senderVerkey: String){
         if(adminConnection != nil){
             do{
                 switch(messageType){

@@ -42,11 +42,12 @@ public class AriesAgent {
                 self.messageSender = MessageSender(ariesWallet: self.ariesWallet, messageReceiver: self.messageReceiver)
                 self.storage = Storage(ariesWallet: self.ariesWallet, events: self.events)
                 self.connections = AriesConnections(ariesWallet: self.ariesWallet, messageSender: self.messageSender, storage: self.storage)
+                self.admin = Admin(messageSender: self.messageSender, storage: self.storage, connections: self.connections, events: self.events, adminInvitationUrl: self.adminInvitationUrl)
                 
                 //Register internal event listeners to message receiver
-                self.messageReceiver.subscribeToEvents(callback: self.connections.eventListener)
+                self.messageReceiver.subscribeToEvents(callback: self.connections._internalEventListener)
+                self.messageReceiver.subscribeToEvents(callback: self.admin._internalEventListener)
                 
-                self.admin = Admin(messageSender: self.messageSender, storage: self.storage, connections: self.connections, events: self.events, adminInvitationUrl: self.adminInvitationUrl)
                 self.initialized = true
                 completion(.success(()))
             case(.failure(let e)):

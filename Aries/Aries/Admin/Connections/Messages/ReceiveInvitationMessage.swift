@@ -16,7 +16,7 @@ public struct ReceiveInvitationMessage: BaseOutboundAdminMessage {
     public let transport: TransportDecorator
     
 
-    public init(invitation: String, autoAccept: Bool = true, mediationId: String? = nil) {
+    public init(invitation: String, autoAccept: Bool = true, mediationId: String?) {
         self.type = MessageType.receiveInvitationMessage
         self.id = UUID().uuidString
         self.autoAccept = autoAccept

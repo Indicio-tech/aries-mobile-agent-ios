@@ -158,7 +158,7 @@ public class AriesConnections{
         }
     }
     
-    public func eventListener(_ messageType: MessageType, _ payload: Data, _ senderVerkey: String){
+    public func _internalEventListener(_ messageType: MessageType, _ payload: Data, _ senderVerkey: String){
         do{
             switch messageType {
             case .connectionResponseMessage:
