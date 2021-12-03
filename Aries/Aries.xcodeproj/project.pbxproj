@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		37320E50270E621300C34367 /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 37320E4F270E621300C34367 /* Starscream */; };
+		633684062759C0F500C88B8F /* AdminProofs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633684052759C0F500C88B8F /* AdminProofs.swift */; };
 		633F73A126F3E1A600474D73 /* Aries.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633F739726F3E1A600474D73 /* Aries.framework */; };
 		633F73A626F3E1A600474D73 /* AriesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633F73A526F3E1A600474D73 /* AriesTests.swift */; };
 		633F73A826F3E1A600474D73 /* Aries.h in Headers */ = {isa = PBXBuildFile; fileRef = 633F739A26F3E1A600474D73 /* Aries.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -128,6 +129,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		633684052759C0F500C88B8F /* AdminProofs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminProofs.swift; sourceTree = "<group>"; };
 		633F739726F3E1A600474D73 /* Aries.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Aries.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		633F739A26F3E1A600474D73 /* Aries.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Aries.h; sourceTree = "<group>"; };
 		633F739B26F3E1A600474D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -315,9 +317,9 @@
 		8F4094BC2755779900DAC801 /* Admin */ = {
 			isa = PBXGroup;
 			children = (
+				8F4094D22755779900DAC801 /* Admin.swift */,
 				8F4094BD2755779900DAC801 /* Messages */,
 				8F4094C02755779900DAC801 /* Proofs */,
-				8F4094D22755779900DAC801 /* Admin.swift */,
 				8F4094D32755779900DAC801 /* basicMessaging */,
 				8F4094DD2755779900DAC801 /* Connections */,
 				8F4094E82755779900DAC801 /* Credentials */,
@@ -337,6 +339,7 @@
 		8F4094C02755779900DAC801 /* Proofs */ = {
 			isa = PBXGroup;
 			children = (
+				633684052759C0F500C88B8F /* AdminProofs.swift */,
 				8F4094C12755779900DAC801 /* Messages */,
 				8F4094CA2755779900DAC801 /* ProofObjects */,
 				8F4094D02755779900DAC801 /* EventRecords */,
@@ -677,6 +680,7 @@
 				8FB730D6275579E9001C98EC /* AdminMatchingCredentialsRecord.swift in Sources */,
 				8FB730BC275579BC001C98EC /* ConnectionResponseMessage.swift in Sources */,
 				8FB730EF275579F7001C98EC /* CredentialOfferReceivedMessage.swift in Sources */,
+				633684062759C0F500C88B8F /* AdminProofs.swift in Sources */,
 				8F40950C275577DB00DAC801 /* Events.swift in Sources */,
 				8FB730CE275579E4001C98EC /* PresentationGetMatchingCredentialsMessage.swift in Sources */,
 				8FB730B7275579AD001C98EC /* BaseMessage.swift in Sources */,
