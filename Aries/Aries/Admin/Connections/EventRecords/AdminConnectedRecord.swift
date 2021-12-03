@@ -33,9 +33,7 @@ public class AdminConnectedRecord: BaseRecord {
         self.myDid = message.myDid
         self.state = message.state
         self.label = message.label
-
-        self.tags = [:]
-        self.tags["adminConnection"] = adminConnection.id
+        self.tags = ["adminConnection" : adminConnection.id]
     }
 
 }
