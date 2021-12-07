@@ -13,6 +13,7 @@
 		633F73A826F3E1A600474D73 /* Aries.h in Headers */ = {isa = PBXBuildFile; fileRef = 633F739A26F3E1A600474D73 /* Aries.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		633F73B626F3E21700474D73 /* Indy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 633F73B426F3E20F00474D73 /* Indy.framework */; platformFilter = ios; };
 		633F73B726F3E21700474D73 /* Indy.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 633F73B426F3E20F00474D73 /* Indy.framework */; platformFilter = ios; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		638D830E275FDBD700A86CBD /* AdminCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638D830D275FDBD700A86CBD /* AdminCredentials.swift */; };
 		63973A9E2756D3830031DF0F /* IndyRetrievedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973A9D2756D3830031DF0F /* IndyRetrievedRecord.swift */; };
 		63973AA127580D360031DF0F /* AdminConnectedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AA027580D360031DF0F /* AdminConnectedRecord.swift */; };
 		63973AA3275827080031DF0F /* AdminConnectionListRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AA2275827080031DF0F /* AdminConnectionListRecord.swift */; };
@@ -138,6 +139,7 @@
 		633F73A526F3E1A600474D73 /* AriesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriesTests.swift; sourceTree = "<group>"; };
 		633F73A726F3E1A600474D73 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		633F73B426F3E20F00474D73 /* Indy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Indy.framework; sourceTree = "<group>"; };
+		638D830D275FDBD700A86CBD /* AdminCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCredentials.swift; sourceTree = "<group>"; };
 		63973A9D2756D3830031DF0F /* IndyRetrievedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndyRetrievedRecord.swift; sourceTree = "<group>"; };
 		63973AA027580D360031DF0F /* AdminConnectedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConnectedRecord.swift; sourceTree = "<group>"; };
 		63973AA2275827080031DF0F /* AdminConnectionListRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminConnectionListRecord.swift; sourceTree = "<group>"; };
@@ -442,6 +444,7 @@
 				63973AA627592EDF0031DF0F /* Records */,
 				8F4094E92755779900DAC801 /* Messages */,
 				8F4094F22755779900DAC801 /* OfferObjects */,
+				638D830D275FDBD700A86CBD /* AdminCredentials.swift */,
 			);
 			path = Credentials;
 			sourceTree = "<group>";
@@ -740,6 +743,7 @@
 				63973AAE27599A080031DF0F /* AdminPresentationsListRecord.swift in Sources */,
 				8FB730E0275579F4001C98EC /* ConnectedMessage.swift in Sources */,
 				8FB730CB275579E4001C98EC /* PresentationMatchingCredentialsMessage.swift in Sources */,
+				638D830E275FDBD700A86CBD /* AdminCredentials.swift in Sources */,
 				8FB730C3275579C1001C98EC /* DIDDoc.swift in Sources */,
 				8FB730C7275579E1001C98EC /* BaseOutboundAdminMessage.swift in Sources */,
 				8F60BCC227597D960093D05E /* MessageUtils.swift in Sources */,
@@ -921,7 +925,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = YCB9H9BT83;
+				DEVELOPMENT_TEAM = YQUAGSUXSU;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -953,7 +957,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = YCB9H9BT83;
+				DEVELOPMENT_TEAM = YQUAGSUXSU;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";

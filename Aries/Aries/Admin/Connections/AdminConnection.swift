@@ -8,22 +8,6 @@
 import Foundation
 import Indy
 
-//public protocol BaseMessage: Codable {
-//    var type: MessageType { get }
-//    var id: String { get }
-//}
-//
-//public struct TypeContainerMessage: BaseMessage {
-//    public var type: MessageType
-//    public var id: String
-//
-//    enum CodingKeys : String, CodingKey {
-//        case type = "@type"
-//        case id = "@id"
-//    }
-//}
-
-
 public struct AdminConnection: Codable {
     
     var theirDid: String?
@@ -51,32 +35,3 @@ public struct AdminConnection: Codable {
         
     }
 }
-
-
-
-//public class AdminConnection {
-//    @SerializedName("their_did")
-//    public String theirDid;
-//
-//    @SerializedName("connection_id")
-//    public String connectionId;
-//
-//    public String label;
-//
-//    public String state;
-//
-//    @SerializedName("raw_repr")
-//    public JsonObject rawRepr;
-//
-//    @SerializedName("my_did")
-//    public String myDid;
-//
-//    public AdminConnection(ConnectedMessage message) {
-//        this.theirDid = message.theirDid;
-//        this.connectionId = message.connectionId;
-//        this.label = message.label;
-//        this.state = message.state;
-//        this.rawRepr = message.rawRepr;
-//        this.myDid = message.myDid;
-//    }
-//}
