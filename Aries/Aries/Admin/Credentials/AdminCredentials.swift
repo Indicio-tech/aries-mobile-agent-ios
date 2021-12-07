@@ -14,20 +14,39 @@ public class AdminCredentials {
     private var adminConnection: ConnectionRecord
     
     public init(messageSender: MessageSender, adminConnection: ConnectionRecord){
-        
         self.messageSender = messageSender
         self.adminConnection = adminConnection
-        
     }
     
+    /**
+     Sets the instance's admin connection.
+      - Parameters:
+        - adminConenction: URL for the invitation.
+     - Returns:
+        - void
+     */
     private func setAdminConnection(adminConenction: ConnectionRecord){
         self.adminConnection = adminConenction
     }
     
+    /**
+     Sends a ReceiveInvitation message to the admin connection to start a connection process.
+     - Parameters:
+       - None.
+    - Returns:
+       - Void.
+     */
     public func sendGetAllCredentials(){
         
     }
     
+    /**
+     Sends the acceptance of the credential offer.
+     - Parameters:
+       - credentialExchangeId: ID for the credential exchange
+    - Returns:
+       - Void.
+     */
     public func sendAcceptCredentialOffer(credentialExchangeId: String){
         
     }
