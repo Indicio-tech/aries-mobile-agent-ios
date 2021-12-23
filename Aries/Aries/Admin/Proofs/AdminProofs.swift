@@ -17,27 +17,29 @@ public class AdminProofs {
         self.messageSender = messageSender
         self.adminConnection = adminConnection
     }
+
     
-    
-    /// Sets the admin connection
-    /// - Parameter adminConnection: admin connection to be set.
-    private func setAdminconnection(adminConnection: ConnectionRecord){
-        self.adminConnection = adminConnection
+    public func sendGetPresentations(){
+        let message = PresentationsGetListMessage(connectionId: "") //Figure out paramater
+        self.messageSender.sendMessage(message: message, connectionRecord: adminConnection)
     }
     
+    public func sendGetPresentationsByConnection(connectionId: String){
+        let message = PresentationsGetListMessage(connectionId: "") // Figure out parameter
+        self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
+    }
     
-    /// <#Description#>
-    public func sendGetAllCredentials(){
+    public func sendGetMatchingCredentials(presentationExchangeId: String) -> AdminMatchingCredentialsRecord {
+        let message = PresentationMatchingCredentialsMessage(thread: <#T##String#>, presentationExchangeId: <#T##String#>, matchingCredentials: <#T##[MatchingCredentials]#>, page: <#T##PageDecorator#>)
         
+        return AdminMatchingCredentialsRecord()
     }
     
-    
-    /// <#Description#>
-    /// - Parameter credentialExchangeId: <#credentialExchangeId description#>
-    public func sendAcceptCredentialOffer(credentialExchangeId: String){
-        
+    public func sendAcceptRequest(record: AdminMatchingCredentialsRecord, presentationRequest: PresentationRequest) -> AdminMessageConfirmationRecord {
+        let message = PresentationRequestApproveMessage(record: <#T##AdminMatchingCredentialsRecord#>, presentationRequest: <#T##PresentationRequest#>, selfAttestedAttributes: <#T##[String : String]#>, comment: <#T##String#>)
+        let sentMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
+        let returnMessage = AdminMessageConfirmationRecord(message: sentMessage, adminConnection: self.adminConnection)
+        return returnMessage
     }
-    
-    
     
 }
