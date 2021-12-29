@@ -18,12 +18,16 @@ public class AdminProofs {
         self.adminConnection = adminConnection
     }
 
+    private func setAdminConnection(adminConnection: ConnectionRecord){
+        self.adminConnection = adminConnection
+    }
     
     public func sendGetPresentations(){
         let message = PresentationsGetListMessage(connectionId: "") //Figure out paramater
         self.messageSender.sendMessage(message: message, connectionRecord: adminConnection)
     }
     
+    //TODO - PresentationsListMessage does not contain thread information
     public func sendGetPresentationsByConnection(connectionId: String){
         let message = PresentationsGetListMessage(connectionId: "") // Figure out parameter
         self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
