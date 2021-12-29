@@ -22,6 +22,7 @@ public class AdminProofs {
         self.adminConnection = adminConnection
     }
     
+    //TODO - PresentationsListMessage does not contain thread information (should I fix this?)
     public func sendGetPresentations(){
         let message = PresentationsGetListMessage(connectionId: "") //Figure out paramater
         self.messageSender.sendMessage(message: message, connectionRecord: adminConnection)
@@ -35,7 +36,7 @@ public class AdminProofs {
     
     public func sendGetMatchingCredentials(presentationExchangeId: String) -> AdminMatchingCredentialsRecord {
         let message = PresentationMatchingCredentialsMessage(thread: <#T##String#>, presentationExchangeId: <#T##String#>, matchingCredentials: <#T##[MatchingCredentials]#>, page: <#T##PageDecorator#>)
-        
+        let matchingMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
         return AdminMatchingCredentialsRecord()
     }
     

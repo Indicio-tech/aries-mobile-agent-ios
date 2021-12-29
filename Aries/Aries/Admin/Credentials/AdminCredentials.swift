@@ -36,8 +36,10 @@ public class AdminCredentials {
     - Returns:
        - Void.
      */
-    public func sendGetAllCredentials(){
-        
+    public func sendGetAllCredentials() -> AdminCredentialsListReceivedRecord {
+        let message = GetCredentialsListMessage()
+        let listMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
+        return AdminCredentialsListReceivedRecord(message: listMessage, adminConnection: self.adminConnection)
     }
     
     /**
@@ -47,32 +49,9 @@ public class AdminCredentials {
     - Returns:
        - Void.
      */
-    public func sendAcceptCredentialOffer(credentialExchangeId: String){
-        
+    public func sendAcceptCredentialOffer(credentialExchangeId: String)-> AdminCredentialReceivedRecord {
+        let message = CredentialOfferAcceptMessage(credentiaExchangeId: credentialExchangeId)
+        let credentialReceiveMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
+        return AdminCredentialReceivedRecord(message: credentialReceiveMessage, adminConnection: self.adminConnection)
     }
 }
-
-
-//
-//    public CompletableFuture<AdminCredentialsListReceivedRecord> sendGetAllCredentials() {
-//        return CompletableFuture.supplyAsync(() -> {
-//            try{
-//                GetCredentialsListMessage message = new GetCredentialsListMessage();
-//                CredentialsListMessage listMessage = (CredentialsListMessage) this.messageSender.sendMessage(message, this.adminConnection).get();
-//                return new AdminCredentialsListReceivedRecord(listMessage, this.adminConnection);
-//            }catch (Exception e){
-//                throw new CompletionException(e);
-//            }
-//        });
-//    }
-//
-//    public CompletableFuture<AdminCredentialReceivedRecord> sendAcceptCredentialOffer(String credentialExchangeId) {
-//        return CompletableFuture.supplyAsync(() -> {
-//            try{
-//                CredentialOfferAcceptMessage message = new CredentialOfferAcceptMessage(credentialExchangeId);
-//                CredentialReceivedMessage credentialReceivedMessage = (CredentialReceivedMessage) this.messageSender.sendMessage(message, this.adminConnection).get();
-//                return new AdminCredentialReceivedRecord(credentialReceivedMessage, this.adminConnection);
-//            }catch (Exception e){
-//                throw new CompletionException(e);
-//            }
-//        });
