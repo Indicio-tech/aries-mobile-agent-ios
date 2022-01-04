@@ -208,8 +208,13 @@ public class Admin {
                     break
             //Admin credentials
                 case .credentialOfferReceivedMessage:
+                    print("Admin received credential offer received message.")
+                    let message = try MessageUtils.buildMessage(CredentialOfferReceivedMessage.self, payload)
+                    let record = AdminCredentialReceivedRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
                 case .credentialReceivedMessage:
+                    print("Admin received credential received message.")
                     break
                 case .credentialsListMessage:
                     break

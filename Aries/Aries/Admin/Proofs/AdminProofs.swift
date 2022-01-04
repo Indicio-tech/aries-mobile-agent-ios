@@ -34,17 +34,17 @@ public class AdminProofs {
         self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
     }
     
-    public func sendGetMatchingCredentials(presentationExchangeId: String) -> AdminMatchingCredentialsRecord {
+    public func sendGetMatchingCredentials(presentationExchangeId: String) -> PresentationMatchingCredentialsMessage {
         let message = PresentationMatchingCredentialsMessage(thread: <#T##String#>, presentationExchangeId: <#T##String#>, matchingCredentials: <#T##[MatchingCredentials]#>, page: <#T##PageDecorator#>)
         let matchingMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
-        return AdminMatchingCredentialsRecord()
+        return message
     }
     
-    public func sendAcceptRequest(record: AdminMatchingCredentialsRecord, presentationRequest: PresentationRequest) -> AdminMessageConfirmationRecord {
+    public func sendAcceptRequest(record: AdminMatchingCredentialsRecord, presentationRequest: PresentationRequest) -> PresentationRequestApproveMessage {
         let message = PresentationRequestApproveMessage(record: <#T##AdminMatchingCredentialsRecord#>, presentationRequest: <#T##PresentationRequest#>, selfAttestedAttributes: <#T##[String : String]#>, comment: <#T##String#>)
         let sentMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
         let returnMessage = AdminMessageConfirmationRecord(message: sentMessage, adminConnection: self.adminConnection)
-        return returnMessage
+        return message
     }
     
 }
