@@ -18,12 +18,3 @@ public class TransportDecorator: Codable {
         case returnRoute = "return_route"
     }
 }
-
-//public class TransportDecorator {
-//    @SerializedName("return_route")
-//    public String returnRoute;
-//
-//    public TransportDecorator(String returnRoute) {
-//        this.returnRoute = returnRoute;
-//    }
-//}
