@@ -15,8 +15,8 @@ public struct GetCredentialsListMessage: BaseOutboundAdminMessage {
     
     public init(){
         self.type = MessageType.getCredentialsListMessage
-//        self.id = UUID.
-        self.transport
+        self.id = UUID().uuidString
+        self.transport = TransportDecorator(returnRoute: "all")
         
     }
     
