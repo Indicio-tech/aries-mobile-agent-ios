@@ -13,13 +13,13 @@ class AdminCredentialReceivedRecord: BaseRecord {
     public var id: String
     public var tags: [String : String]
     public var adminConnection: ConnectionRecord
-    public var messageObject: CredentialOfferReceivedMessage
+    public var messageObject: CredentialReceivedMessage
     public var attributes: [CredentialAttribute]
     public var credentialExchangeId: String
     public var connectionId: String
     
-    public init(message: CredentialOfferReceivedMessage, adminConnection: ConnectionRecord){
-        self.type = RecordType.adminCredentialOfferReceivedRecord
+    public init(message: CredentialReceivedMessage, adminConnection: ConnectionRecord){
+        self.type = RecordType.adminCredentialReceivedRecord
         self.adminConnection = adminConnection
         self.messageObject = message
         self.attributes = message.credentialProposalDict.credentialProposal.attributes
