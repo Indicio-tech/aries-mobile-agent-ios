@@ -34,12 +34,12 @@ public class AdminCredentials {
      - Parameters:
        - None.
     - Returns:
-       - Void.
+       - GetCredentialsListMessage.
      */
-    public func sendGetAllCredentials() -> AdminCredentialsListReceivedRecord {
+    public func sendGetAllCredentials() -> GetCredentialsListMessage {
         let message = GetCredentialsListMessage()
-        let listMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
-        return AdminCredentialsListReceivedRecord(message: listMessage, adminConnection: self.adminConnection)
+        self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
+        return message
     }
     
     /**
@@ -47,11 +47,11 @@ public class AdminCredentials {
      - Parameters:
        - credentialExchangeId: ID for the credential exchange
     - Returns:
-       - Void.
+       - CredentialOfferAcceptMessage.
      */
-    public func sendAcceptCredentialOffer(credentialExchangeId: String)-> AdminCredentialReceivedRecord {
+    public func sendAcceptCredentialOffer(credentialExchangeId: String)-> CredentialOfferAcceptMessage {
         let message = CredentialOfferAcceptMessage(credentiaExchangeId: credentialExchangeId)
-        let credentialReceiveMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
-        return AdminCredentialReceivedRecord(message: credentialReceiveMessage, adminConnection: self.adminConnection)
+        self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
+        return message
     }
 }

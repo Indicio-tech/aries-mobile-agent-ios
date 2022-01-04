@@ -26,3 +26,4 @@ public struct GetCredentialsListMessage: BaseOutboundAdminMessage {
         case transport = "~transport"
     }
 }
+
