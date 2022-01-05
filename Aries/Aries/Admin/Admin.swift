@@ -241,7 +241,7 @@ public class Admin {
                 case .presentationSentMessage:
                     print("Admin received presentations sent message.")
                     let message = try MessageUtils.buildMessage(PresentationSentMessage.self, payload)
-                    let record = AdminMessageConfirmationRecord(message: message, adminConnection: adminConnection!)
+                    let record = try AdminMessageConfirmationRecord(message: message, adminConnection: adminConnection!)
                     try events.triggerEvent(record)
                     break
             // Admin basic messaging
