@@ -34,16 +34,15 @@ public class AdminProofs {
         self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
     }
     
-    public func sendGetMatchingCredentials(presentationExchangeId: String) -> PresentationMatchingCredentialsMessage {
-        let message = PresentationMatchingCredentialsMessage(thread: <#T##String#>, presentationExchangeId: <#T##String#>, matchingCredentials: <#T##[MatchingCredentials]#>, page: <#T##PageDecorator#>)
-        let matchingMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
+    public func sendGetMatchingCredentials(presentationExchangeId: String) -> PresentationGetMatchingCredentialsMessage {
+        let message = PresentationGetMatchingCredentialsMessage(presentationExchangeId: presentationExchangeId)
+        self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
         return message
     }
     
     public func sendAcceptRequest(record: AdminMatchingCredentialsRecord, presentationRequest: PresentationRequest) -> PresentationRequestApproveMessage {
-        let message = PresentationRequestApproveMessage(record: <#T##AdminMatchingCredentialsRecord#>, presentationRequest: <#T##PresentationRequest#>, selfAttestedAttributes: <#T##[String : String]#>, comment: <#T##String#>)
-        let sentMessage = self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
-        let returnMessage = AdminMessageConfirmationRecord(message: sentMessage, adminConnection: self.adminConnection)
+        let message = PresentationRequestApproveMessage(record: record, presentationRequest: presentationRequest)
+        self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
         return message
     }
     
