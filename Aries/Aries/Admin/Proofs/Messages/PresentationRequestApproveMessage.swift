@@ -24,7 +24,7 @@ public struct PresentationRequestApproveMessage: BaseOutboundAdminMessage {
         self.transport = TransportDecorator(returnRoute: "all")
         self.presentationExchangeId = record.presentationExchangeId
         self.selfAttestedAttributes = nil
-        self.comment = ""
+        self.comment = nil
         
         for match in record.matchingCredentials {
            let referent = match.credInfo.referent
