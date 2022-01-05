@@ -220,13 +220,29 @@ public class Admin {
                     try events.triggerEvent(record)
                     break
                 case .credentialsListMessage:
+                    print("Admin received credential list message.")
+                    let message = try MessageUtils.buildMessage(CredentialsListMessage.self, payload)
+                    let record = AdminCredentialsListReceivedRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
             //Admin proofs
                 case .presentationsListMessage:
+                    print("Admin received presentations list message.")
+                    let message = try MessageUtils.buildMessage(PresentationsListMessage.self, payload)
+                    let record = AdminPresentationsListRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
                 case .presentationMatchingCredentialsMessage:
+                    print("Admin received presentations matching credential message.")
+                    let message = try MessageUtils.buildMessage(PresentationsListMessage.self, payload)
+                    let record = AdminPresentationsListRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
                 case .presentationSentMessage:
+                    print("Admin received presentations sent message.")
+                    let message = try MessageUtils.buildMessage(PresentationSentMessage.self, payload)
+                    let record = AdminMessageConfirmationRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
             // Admin basic messaging
                 case .deletedBasicMessage:
