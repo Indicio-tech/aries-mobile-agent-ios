@@ -80,8 +80,3 @@ public struct RequestedJson: Codable {
         case revealed
     }
 }
-
-//[{"@id": "asdf",
-//    "@type": "https://didcomm.org/connections/1.0/invitation",
-//   "recipientKeys": []
-//}]

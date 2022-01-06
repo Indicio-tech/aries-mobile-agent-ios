@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AdminCredentialsListReceivedRecord: BaseRecord {
+public class AdminCredentialsListReceivedRecord: BaseRecord {
     
     public var type: RecordType
     public var id: String

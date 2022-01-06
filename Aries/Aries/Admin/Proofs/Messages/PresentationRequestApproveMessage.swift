@@ -13,18 +13,17 @@ public struct PresentationRequestApproveMessage: BaseOutboundAdminMessage {
     public let id: String
     public let transport: TransportDecorator
     public let presentationExchangeId: String
-    public let selfAttestedAttributes: [String : String]
+    public var selfAttestedAttributes = [String : String]()
     public var requestedAttributes = [String : RequestedJson]()
     public var requestedPredicates = [String : RequestedJson]()
-    public let comment: String
+    public let comment: String?
     
-    public init(record: AdminMatchingCredentialsRecord, presentationRequest: PresentationRequest, selfAttestedAttributes: [String : String], comment: String) {
+    public init(record: AdminMatchingCredentialsRecord, presentationRequest: PresentationRequest) {
         self.type = MessageType.presentationRequestApproveMessage
         self.id = UUID().uuidString
         self.transport = TransportDecorator(returnRoute: "all")
         self.presentationExchangeId = record.presentationExchangeId
-        self.selfAttestedAttributes = selfAttestedAttributes
-        self.comment = comment
+        self.comment = nil
         
         for match in record.matchingCredentials {
            let referent = match.credInfo.referent

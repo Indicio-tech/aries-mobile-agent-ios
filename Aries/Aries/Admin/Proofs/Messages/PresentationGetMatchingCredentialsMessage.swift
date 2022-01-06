@@ -13,6 +13,13 @@ public struct PresentationGetMatchingCredentialsMessage: BaseOutboundAdminMessag
     public let transport: TransportDecorator
     public let presentationExchangeId: String
     
+    public init (presentationExchangeId: String){
+        self.type = MessageType.presentationGetMatchingCredentialsMessage
+        self.id = UUID().uuidString
+        self.transport = TransportDecorator(returnRoute: "all")
+        self.presentationExchangeId = presentationExchangeId
+    }
+    
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"

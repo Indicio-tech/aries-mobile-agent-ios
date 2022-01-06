@@ -17,6 +17,8 @@ public class Admin {
     private var agentConnections: AriesConnections
     private var adminInvitationUrl: String?
     public var connections: AdminConnections? = nil
+    public var proofs: AdminProofs? = nil
+    public var credentials: AdminCredentials? = nil
     
     //connectToAdmin data for reference in event handling... there might be a better way to do this?
     private var adminConnectionId: String? = nil
@@ -97,7 +99,8 @@ public class Admin {
                     //TODO: Set admin submodules here
                     //self.basicMessaging = AdminBasicMessaging(messageSender: self.messageSender, adminConnectionRecord: self.adminConnection)
                     self.connections = AdminConnections(messageSender: self.messageSender, adminConnection: self.adminConnection!)
-                    
+                    self.credentials = AdminCredentials(messageSender: self.messageSender, adminConnection: self.adminConnection!)
+                    self.proofs = AdminProofs(messageSender: self.messageSender, adminConnection: self.adminConnection!)
                     
                     //Check to see if connectionRecord tags need to be updated
                     if(self.adminConnection!.tags["admin_connection"] != connectionName){
@@ -208,17 +211,41 @@ public class Admin {
                     break
             //Admin credentials
                 case .credentialOfferReceivedMessage:
+                    print("Admin received credential offer received message.")
+                    let message = try MessageUtils.buildMessage(CredentialOfferReceivedMessage.self, payload)
+                    let record = AdminCredentialOfferReceivedRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
                 case .credentialReceivedMessage:
+                    print("Admin received credential received message.")
+                    let message = try MessageUtils.buildMessage(CredentialReceivedMessage.self, payload)
+                    let record = AdminCredentialReceivedRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
                 case .credentialsListMessage:
+                    print("Admin received credential list message.")
+                    let message = try MessageUtils.buildMessage(CredentialsListMessage.self, payload)
+                    let record = AdminCredentialsListReceivedRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
             //Admin proofs
                 case .presentationsListMessage:
+                    print("Admin received presentations list message.")
+                    let message = try MessageUtils.buildMessage(PresentationsListMessage.self, payload)
+                    let record = AdminPresentationsListRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
                 case .presentationMatchingCredentialsMessage:
+                    print("Admin received presentations matching credential message.")
+                    let message = try MessageUtils.buildMessage(PresentationsListMessage.self, payload)
+                    let record = AdminPresentationsListRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
                 case .presentationSentMessage:
+                    print("Admin received presentations sent message.")
+                    let message = try MessageUtils.buildMessage(PresentationSentMessage.self, payload)
+                    let record = try AdminMessageConfirmationRecord(message: message, adminConnection: adminConnection!)
+                    try events.triggerEvent(record)
                     break
             // Admin basic messaging
                 case .deletedBasicMessage:
