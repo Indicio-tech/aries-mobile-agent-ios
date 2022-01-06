@@ -15,6 +15,8 @@ public class Admin {
     private var storage: Storage
     private var events: AriesEvents
     private var agentConnections: AriesConnections
+    private var agentProofs: AdminProofs
+    private var agentCredentials: AdminCredentials
     private var adminInvitationUrl: String?
     public var connections: AdminConnections? = nil
     
@@ -22,10 +24,12 @@ public class Admin {
     private var adminConnectionId: String? = nil
     private var adminCompletion: (_ result: Result<Void, Error>)->Void
     
-    public init(messageSender: MessageSender, storage: Storage, connections: AriesConnections, events: AriesEvents, adminInvitationUrl: String? = nil){
+    public init(messageSender: MessageSender, storage: Storage, connections: AriesConnections, proofs: AdminProofs, credentials: AdminCredentials, events: AriesEvents, adminInvitationUrl: String? = nil){
         self.messageSender = messageSender
         self.storage = storage
         self.agentConnections = connections
+        self.agentProofs = proofs
+        self.agentCredentials = credentials
         self.events = events
         func tempFunc(_ result: Result<Void, Error>){}
         self.adminCompletion = tempFunc
