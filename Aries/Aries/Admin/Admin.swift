@@ -15,21 +15,19 @@ public class Admin {
     private var storage: Storage
     private var events: AriesEvents
     private var agentConnections: AriesConnections
-    private var agentProofs: AdminProofs
-    private var agentCredentials: AdminCredentials
     private var adminInvitationUrl: String?
     public var connections: AdminConnections? = nil
+    public var proofs: AdminProofs? = nil
+    public var credentials: AdminCredentials? = nil
     
     //connectToAdmin data for reference in event handling... there might be a better way to do this?
     private var adminConnectionId: String? = nil
     private var adminCompletion: (_ result: Result<Void, Error>)->Void
     
-    public init(messageSender: MessageSender, storage: Storage, connections: AriesConnections, proofs: AdminProofs, credentials: AdminCredentials, events: AriesEvents, adminInvitationUrl: String? = nil){
+    public init(messageSender: MessageSender, storage: Storage, connections: AriesConnections, events: AriesEvents, adminInvitationUrl: String? = nil){
         self.messageSender = messageSender
         self.storage = storage
         self.agentConnections = connections
-        self.agentProofs = proofs
-        self.agentCredentials = credentials
         self.events = events
         func tempFunc(_ result: Result<Void, Error>){}
         self.adminCompletion = tempFunc
@@ -101,7 +99,8 @@ public class Admin {
                     //TODO: Set admin submodules here
                     //self.basicMessaging = AdminBasicMessaging(messageSender: self.messageSender, adminConnectionRecord: self.adminConnection)
                     self.connections = AdminConnections(messageSender: self.messageSender, adminConnection: self.adminConnection!)
-                    
+                    self.credentials = AdminCredentials(messageSender: self.messageSender, adminConnection: self.adminConnection!)
+                    self.proofs = AdminProofs(messageSender: self.messageSender, adminConnection: self.adminConnection!)
                     
                     //Check to see if connectionRecord tags need to be updated
                     if(self.adminConnection!.tags["admin_connection"] != connectionName){

@@ -18,8 +18,6 @@ public class AriesAgent {
     private var storage: Storage!
     public var events: AriesEvents!
     public var connections: AriesConnections!
-    public var credentials: AdminCredentials!
-    public var proofs: AdminProofs!
     public var initialized: Bool
     public var admin: Admin!
     
@@ -43,8 +41,8 @@ public class AriesAgent {
                 self.messageReceiver = MessageReceiver(wallet: self.ariesWallet)
                 self.messageSender = MessageSender(ariesWallet: self.ariesWallet, messageReceiver: self.messageReceiver)
                 self.storage = Storage(ariesWallet: self.ariesWallet, events: self.events)
-                self.connections = AriesConnections(ariesWallet: self.ariesWallet, messageSender: self.messageSender, storage: self.storage)                
-                self.admin = Admin(messageSender: self.messageSender, storage: self.storage, connections: self.connections, proofs: self.proofs, credentials: self.credentials, events: self.events, adminInvitationUrl: self.adminInvitationUrl)
+                self.connections = AriesConnections(ariesWallet: self.ariesWallet, messageSender: self.messageSender, storage: self.storage)
+                self.admin = Admin(messageSender: self.messageSender, storage: self.storage, connections: self.connections, events: self.events, adminInvitationUrl: self.adminInvitationUrl)
                 
                 //Register internal event listeners to message receiver
                 self.messageReceiver.subscribeToEvents(callback: self.connections._internalEventListener)
