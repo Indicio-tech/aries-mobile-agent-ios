@@ -11,13 +11,13 @@ public struct PresentationsGetListMessage: BaseOutboundAdminMessage {
     public let type: MessageType
     public let id: String
     public let transport: TransportDecorator
-    public let connectionId: String
+    public var connectionId: String?
     
-    public init(connectionId: String) {
+    public init() {
         self.type = MessageType.presentationGetListMessage
         self.id = UUID().uuidString
         self.transport = TransportDecorator(returnRoute: "all")
-        self.connectionId = connectionId
+//        self.connectionId = connectionId
     }
     
     enum CodingKeys : String, CodingKey {

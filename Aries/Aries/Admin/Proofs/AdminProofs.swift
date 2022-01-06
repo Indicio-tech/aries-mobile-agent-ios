@@ -22,15 +22,15 @@ public class AdminProofs {
         self.adminConnection = adminConnection
     }
     
-    //TODO - PresentationsListMessage does not contain thread information (should I fix this?)
-    public func sendGetPresentations(){
-        let message = PresentationsGetListMessage(connectionId: "") //Figure out paramater
+    public func sendGetPresentations(connectionId: String? = nil){
+        let message = PresentationsGetListMessage()
         self.messageSender.sendMessage(message: message, connectionRecord: adminConnection)
     }
     
     //TODO - PresentationsListMessage does not contain thread information
     public func sendGetPresentationsByConnection(connectionId: String){
-        let message = PresentationsGetListMessage(connectionId: "") // Figure out parameter
+        var message = PresentationsGetListMessage()
+        message.connectionId = connectionId
         self.messageSender.sendMessage(message: message, connectionRecord: self.adminConnection)
     }
     

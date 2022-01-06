@@ -13,7 +13,7 @@ public struct PresentationRequestApproveMessage: BaseOutboundAdminMessage {
     public let id: String
     public let transport: TransportDecorator
     public let presentationExchangeId: String
-    public let selfAttestedAttributes: [String : String]?
+    public var selfAttestedAttributes = [String : String]()
     public var requestedAttributes = [String : RequestedJson]()
     public var requestedPredicates = [String : RequestedJson]()
     public let comment: String?
@@ -23,7 +23,6 @@ public struct PresentationRequestApproveMessage: BaseOutboundAdminMessage {
         self.id = UUID().uuidString
         self.transport = TransportDecorator(returnRoute: "all")
         self.presentationExchangeId = record.presentationExchangeId
-        self.selfAttestedAttributes = nil
         self.comment = nil
         
         for match in record.matchingCredentials {

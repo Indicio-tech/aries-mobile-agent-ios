@@ -31,8 +31,6 @@ public class AdminCredentials {
     
     /**
      Sends a ReceiveInvitation message to the admin connection to start a connection process.
-     - Parameters:
-       - None.
     - Returns:
        - GetCredentialsListMessage.
      */
