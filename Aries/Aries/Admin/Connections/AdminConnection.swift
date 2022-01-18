@@ -8,11 +8,10 @@
 import Foundation
 import Indy
 
-public struct AdminConnection: Codable, Identifiable {
+public struct AdminConnection: Codable {
     
-    public let id = UUID()
     var theirDid: String?
-    var connectionId: String?
+    public var connectionId: String
     public var label: String?
     var state: String?
     var myDid: String?

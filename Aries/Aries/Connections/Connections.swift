@@ -173,6 +173,10 @@ public class AriesConnections{
         }
     }
     
+    public func retrieveAllConnectionRecords(completion: @escaping (_ result: Result<[ConnectionRecord], Error>)->Void){
+            self.storage.retrieveRecordsByTags(type: .connectionRecord, tags: [:], limit: 1000, completion: completion)
+        }
+    
     enum ConnectionsError: Error {
         case connectionMismatch(String)
         case invalidInvitationUrl(String)

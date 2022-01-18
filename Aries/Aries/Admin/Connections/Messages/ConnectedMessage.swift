@@ -12,17 +12,12 @@ public struct ConnectedMessage: BaseAdminConfirmationMessage {
     
     public let type: MessageType
     public let id: String
-    public var connectionId: String?
+    public var connectionId: String
     public var label: String?
     public var myDid: String?
     public var state: String?
     public var theirDid: String?
     public var rawRepr: [String : String]?
-    
-    public init() {
-        self.id = UUID().uuidString
-        self.type = MessageType.connectedMessage
-    }
     
     enum CodingKeys : String, CodingKey {
         case type = "@type"
