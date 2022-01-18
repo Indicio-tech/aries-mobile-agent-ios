@@ -109,6 +109,10 @@ public class AriesConnections{
         self.storage.retrieveRecord(type: .connectionRecord, id: id, completion: completion)
     }
     
+    public func retrieveAllConnectionRecords(completion: @escaping (_ result: Result<[ConnectionRecord], Error>)->Void){
+        self.storage.retrieveRecordsByTags(type: .connectionRecord, tags: [:], limit: 1000, completion: completion)
+    }
+    
     public func processResponse(connectionResponse: ConnectionResponse) {
         do{
             retrieveConnectionRecord(connectionResponse.thread.thid){ result in
@@ -172,10 +176,6 @@ public class AriesConnections{
             print(error)
         }
     }
-    
-    public func retrieveAllConnectionRecords(completion: @escaping (_ result: Result<[ConnectionRecord], Error>)->Void){
-            self.storage.retrieveRecordsByTags(type: .connectionRecord, tags: [:], limit: 1000, completion: completion)
-        }
     
     enum ConnectionsError: Error {
         case connectionMismatch(String)

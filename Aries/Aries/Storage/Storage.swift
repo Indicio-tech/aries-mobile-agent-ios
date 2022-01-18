@@ -77,10 +77,9 @@ public class Storage{
             do{
                 switch(results){
                 case(.success(let recordsArray)):
-                    let decoder = JSONDecoder()
                     var recordArray = [] as [recordObject]
                     for recordString in recordsArray {
-                        let record = try decoder.decode(recordObject.self, from: recordString.data(using: .utf8)!)
+                        let record = try RecordUtils.buildRecord(recordObject.self, recordString.data(using: .utf8)!)
                         recordArray.append(record)
                     }
                     completion(.success(recordArray))
