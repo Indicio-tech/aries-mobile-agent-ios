@@ -197,12 +197,20 @@ public class AriesWallet {
         do{
             let queryJson = try JSONEncoder().encode(query)
             let options = try JSONEncoder().encode(["limit": limit])
+            print("Searching for "+type+"s with tags matching: "+(query.toString() ?? "error"))
             IndyNonSecrets.openSearch(inWallet: self.indyHandle!, type: type, queryJson: String(data: queryJson, encoding: .utf8), optionsJson: String(data: options, encoding: .utf8)){error, searchHandle in
                 let code = (error! as NSError).code
                 if(code != 0){
                     completion(.failure(error!))
                 }else{
-                    self.recursiveFetching(searchHandle: searchHandle, limit: limit){result in
+                    self.fetchFromQuery(searchHandle: searchHandle, limit: limit){result in
+                        //Close wallet search once done
+                        IndyNonSecrets.closeSearch(withHandle: searchHandle) { err in
+                            let code = (err! as NSError).code
+                            if(code != 0){
+                                print("Failed to close search: "+err!.localizedDescription)
+                            }
+                        }
                         switch(result){
                         case(.failure(let fetchError)):
                             completion(.failure(fetchError))
@@ -218,31 +226,27 @@ public class AriesWallet {
         }
     }
     
-    private func recursiveFetching(searchHandle: IndyHandle, limit: Int, returnArray: [String] = [], completion: @escaping (_ result: Result<[String], Error>) -> Void){
-        if(returnArray.count == limit){
-            completion(.success(returnArray))
-        }else{
-            IndyNonSecrets.fetchNextRecords(fromSearch: searchHandle, walletHandle: self.indyHandle!, count: limit as NSNumber){ error, results in
-                do{
-                    let code = (error! as NSError).code
-                    if(code != 0){
-                        completion(.failure(error!))
-                    }else{
-                        guard let json = (try JSONSerialization.jsonObject(with: results!.data(using: .utf8)!) as! [String: Any])["records"] as? [[String: String?]] else {
-                            throw AriesWalletError.noResults("No matching records found.")
-                        }
-                        
-                        var newArray = returnArray
-                        for (record) in json{
-                            let recordString = record["value"]!!
-                            newArray.append(recordString)
-                            self.recursiveFetching(searchHandle: searchHandle, limit: limit, returnArray: newArray, completion: completion)
-                        }
+    private func fetchFromQuery(searchHandle: IndyHandle, limit: Int, completion: @escaping (_ result: Result<[String], Error>) -> Void){
+        IndyNonSecrets.fetchNextRecords(fromSearch: searchHandle, walletHandle: self.indyHandle!, count: limit as NSNumber){ error, results in
+            do{
+                let code = (error! as NSError).code
+                if(code != 0){
+                    completion(.failure(error!))
+                }else{
+                    guard let json = (try JSONSerialization.jsonObject(with: results!.data(using: .utf8)!) as! [String: Any])["records"] as? [[String: String?]] else {
+                        throw AriesWalletError.noResults("No matching records found.")
                     }
-                }catch{
-                    print(error)
-                    completion(.failure(error))
+                    
+                    var newArray = [] as [String]
+                    for (record) in json{
+                        let recordString = record["value"]!!
+                        newArray.append(recordString)
+                    }
+                    
+                    completion(.success(newArray))
                 }
+            }catch{
+                completion(.failure(error))
             }
         }
     }
