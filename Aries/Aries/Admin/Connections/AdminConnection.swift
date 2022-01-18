@@ -11,11 +11,12 @@ import Indy
 public struct AdminConnection: Codable {
     
     var theirDid: String?
-    var connectionId: String?
-    var label: String?
+    public var connectionId: String
+    public var label: String?
     var state: String?
     var myDid: String?
     var rawRepr: [String : String]?
+    
     public init(message: ConnectedMessage) {
         self.theirDid = message.theirDid
         self.connectionId = message.connectionId
