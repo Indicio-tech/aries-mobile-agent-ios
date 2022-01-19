@@ -7,7 +7,7 @@
 
 import Foundation
 
-class AdminCredentialOfferReceivedRecord: BaseRecord {
+public class AdminCredentialOfferReceivedRecord: BaseRecord {
     
     public var type: RecordType
     public var id: String
@@ -28,4 +28,16 @@ class AdminCredentialOfferReceivedRecord: BaseRecord {
         self.id = message.id
         self.tags = ["adminConnection": adminConnection.id]
     }
+    
+    enum CodingKeys : String, CodingKey {
+        case type = "@type"
+        case id = "@id"
+        case tags
+        case adminConnection
+        case attributes
+        case messageObject
+        case credentialExchangeId
+        case connectionId
+    }
+    
 }

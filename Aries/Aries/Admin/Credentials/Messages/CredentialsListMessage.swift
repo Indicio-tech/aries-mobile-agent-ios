@@ -13,6 +13,13 @@ public struct CredentialsListMessage: BaseMessage {
     public let thread: ThreadDecorator
     public let results: [CredentialExchangeItem]
     
+    public init(thread: ThreadDecorator, results: [CredentialExchangeItem]) {
+        self.type = MessageType.credentialsListMessage
+        self.id = UUID().uuidString
+        self.thread = thread
+        self.results = results
+    }
+    
     enum CodingKeys : String, CodingKey {
         case type = "@type"
         case id = "@id"

@@ -16,7 +16,6 @@ public class AdminCredentialsListReceivedRecord: BaseRecord {
     public var threadId: String
     public var results: [CredentialExchangeItem]
     public var messageObject: CredentialsListMessage
-
     
     public init(message: CredentialsListMessage, adminConnection: ConnectionRecord){
         self.type = RecordType.adminCredentialsListReceivedRecord
@@ -26,5 +25,15 @@ public class AdminCredentialsListReceivedRecord: BaseRecord {
         self.results = message.results
         self.id = message.id
         self.tags = ["adminConnection": adminConnection.id]
+    }
+    
+    enum CodingKeys : String, CodingKey {
+        case type = "@type"
+        case id = "@id"
+        case tags
+        case adminConnection
+        case threadId
+        case results
+        case messageObject        
     }
 }
