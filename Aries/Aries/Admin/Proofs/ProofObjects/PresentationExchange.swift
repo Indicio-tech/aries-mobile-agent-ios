@@ -15,7 +15,7 @@ public struct PresentationExchange: Codable {
     public let presentationExchangeId: String
     public let connectionId: String
     public let threadId: String
-    public let presentationRequestDict: [String : String]
+    public let presentationRequestDict: AriesJSON
     public let presentationRequest: PresentationRequest
     public let state: String
     public let trace: Bool

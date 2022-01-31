@@ -29,10 +29,10 @@ public struct PresentationRequestApproveMessage: BaseOutboundAdminMessage {
            let referent = match.credInfo.referent
             for (specifier,_) in match.credInfo.attrs {
                 if (requestedAttributes[specifier] == nil) {
-                    if (presentationRequest.requestedAttributes[specifier] != nil) {
+                    if (presentationRequest.requestedAttributes?[specifier] != nil) {
                         let credDetails = RequestedJson(credId: referent, revealed: true)
                         self.requestedAttributes[specifier] = credDetails
-                    } else if (presentationRequest.requestedPredicates[specifier] == nil) {
+                    } else if (presentationRequest.requestedPredicates?[specifier] != nil) {
                         let credDetails = RequestedJson(credId: referent, revealed: nil)
                         self.requestedPredicates[specifier] = credDetails
                     }
@@ -53,6 +53,20 @@ public struct PresentationRequestApproveMessage: BaseOutboundAdminMessage {
         case comment
     }
     
+}
+
+public struct RequestedJson: Codable {
+    public let credId: String
+    public let revealed: Bool?
+    
+    public init(credId: String,revealed: Bool?) {
+        self.credId = credId
+        self.revealed = revealed
+    }
+    enum CodingKeys : String, CodingKey {
+        case credId = "cred_id"
+        case revealed
+    }
 }
 
 

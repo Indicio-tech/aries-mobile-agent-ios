@@ -9,11 +9,12 @@ import Foundation
 
 public struct MatchingCredentials: Codable {
     public let credInfo: AdminCredentialInfo
-    public let schemaId: String
-    public let credDefId: String
-    public let revRegId: String
-    public let credRev: String
-    public let presentationReferents: [String : String]
+    public let schemaId: String?
+    public let credDefId: String?
+    public let revRegId: String?
+    public let credRev: String?
+    public let presentationReferents: AriesJSON?
+    public let interval: AriesJSON?
     
     enum CodingKeys : String, CodingKey {
         case credInfo = "cred_info"
@@ -22,5 +23,6 @@ public struct MatchingCredentials: Codable {
         case revRegId = "rev_reg_id"
         case credRev = "cred_rev"
         case presentationReferents = "presentation_referents"
+        case interval
     }
 }

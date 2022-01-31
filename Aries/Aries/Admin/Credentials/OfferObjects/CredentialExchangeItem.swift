@@ -22,12 +22,12 @@ public struct CredentialExchangeItem: Codable {
     public let credentialDefinitionId: String?
     public let schemaId: String?
     public let credentialProposalDict: CredentialProposalDict?
-    public let credentialOfferDict: [String : String]?
+    public let credentialOfferDict: AriesJSON?
     public let credentialOffer: CredentialOffer?
-    public let credentialRequest: [String : String]?
-    public let credentialRequestMetadata: [String : String]?
+    public let credentialRequest: AriesJSON?
+    public let credentialRequestMetadata: AriesJSON?
     public let credentialId: String?
-    public let rawCredential: [String : String]?
+    public let rawCredential: AriesJSON?
     public let credential: AdminCredential?
     public let autoOffer: Bool?
     public let autoIssue: Bool?

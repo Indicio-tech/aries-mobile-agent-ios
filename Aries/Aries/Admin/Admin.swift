@@ -218,14 +218,12 @@ public class Admin {
                     break
                 case .credentialReceivedMessage:
                     print("Admin received credential received message.")
-                    print(String(data: payload, encoding: .utf8))
                     let message = try MessageUtils.buildMessage(CredentialReceivedMessage.self, payload)
                     let record = AdminCredentialReceivedRecord(message: message, adminConnection: adminConnection!)
                     try events.triggerEvent(record)
                     break
                 case .credentialsListMessage:
                     print("Admin received credential list message.")
-                    print(String(data: payload, encoding: .utf8))
                     let message = try MessageUtils.buildMessage(CredentialsListMessage.self, payload)
                     let record = AdminCredentialsListReceivedRecord(message: message, adminConnection: adminConnection!)
                     try events.triggerEvent(record)
@@ -239,8 +237,8 @@ public class Admin {
                     break
                 case .presentationMatchingCredentialsMessage:
                     print("Admin received presentations matching credential message.")
-                    let message = try MessageUtils.buildMessage(PresentationsListMessage.self, payload)
-                    let record = AdminPresentationsListRecord(message: message, adminConnection: adminConnection!)
+                    let message = try MessageUtils.buildMessage(PresentationMatchingCredentialsMessage.self, payload)
+                    let record = AdminMatchingCredentialsRecord(message: message, adminConnection: adminConnection!)
                     try events.triggerEvent(record)
                     break
                 case .presentationSentMessage:

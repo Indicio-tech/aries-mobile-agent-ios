@@ -23,6 +23,7 @@
 		63973AAA275988990031DF0F /* AdminCredentialReceivedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AA9275988990031DF0F /* AdminCredentialReceivedRecord.swift */; };
 		63973AAC275989640031DF0F /* AdminCredentialsListReceivedRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AAB275989640031DF0F /* AdminCredentialsListReceivedRecord.swift */; };
 		63973AAE27599A080031DF0F /* AdminPresentationsListRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63973AAD27599A080031DF0F /* AdminPresentationsListRecord.swift */; };
+		8F001553279F650F005B2E9D /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F001552279F650F005B2E9D /* JSON.swift */; };
 		8F4094FA2755779F00DAC801 /* Agent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094F92755779F00DAC801 /* Agent.swift */; };
 		8F4094FC275577A300DAC801 /* AriesWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4094FB275577A300DAC801 /* AriesWallet.swift */; };
 		8F40950C275577DB00DAC801 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F40950B275577DB00DAC801 /* Events.swift */; };
@@ -150,6 +151,7 @@
 		63973AA9275988990031DF0F /* AdminCredentialReceivedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCredentialReceivedRecord.swift; sourceTree = "<group>"; };
 		63973AAB275989640031DF0F /* AdminCredentialsListReceivedRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminCredentialsListReceivedRecord.swift; sourceTree = "<group>"; };
 		63973AAD27599A080031DF0F /* AdminPresentationsListRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminPresentationsListRecord.swift; sourceTree = "<group>"; };
+		8F001552279F650F005B2E9D /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSON.swift; path = Admin/JSON.swift; sourceTree = "<group>"; };
 		8F4094BE2755779900DAC801 /* BaseOutboundAdminMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseOutboundAdminMessage.swift; sourceTree = "<group>"; };
 		8F4094BF2755779900DAC801 /* BaseAdminConfirmationMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAdminConfirmationMessage.swift; sourceTree = "<group>"; };
 		8F4094C22755779900DAC801 /* PresentationGetMatchingCredentialsMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationGetMatchingCredentialsMessage.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 		633F739926F3E1A600474D73 /* Aries */ = {
 			isa = PBXGroup;
 			children = (
+				8F001552279F650F005B2E9D /* JSON.swift */,
 				8F40951F275577DE00DAC801 /* Types.swift */,
 				8F409523275577E700DAC801 /* Utilities */,
 				8F409520275577E200DAC801 /* Storage */,
@@ -773,6 +776,7 @@
 				8FB730AC275578E8001C98EC /* Types.swift in Sources */,
 				8FB730E3275579F4001C98EC /* UpdateConnectionMessage.swift in Sources */,
 				8FB730ED275579F7001C98EC /* SendCredentialProposalMessage.swift in Sources */,
+				8F001553279F650F005B2E9D /* JSON.swift in Sources */,
 				63973A9E2756D3830031DF0F /* IndyRetrievedRecord.swift in Sources */,
 				6335E21E2769366200DDBCBD /* AdminProofs.swift in Sources */,
 				8FB730B1275579A7001C98EC /* ThreadDecorator.swift in Sources */,
@@ -992,7 +996,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YQUAGSUXSU;
+				DEVELOPMENT_TEAM = 8GUD26WFN3;
 				INFOPLIST_FILE = AriesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1012,7 +1016,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YQUAGSUXSU;
+				DEVELOPMENT_TEAM = 8GUD26WFN3;
 				INFOPLIST_FILE = AriesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
