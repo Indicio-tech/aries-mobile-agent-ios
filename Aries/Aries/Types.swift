@@ -66,17 +66,3 @@ public enum RecordType: String, Codable {
     case adminCredentialsListReceivedRecord = "admin_credentials_list_received_record"
     case adminPresentationsListRecord = "admin_presentation_list"
 }
-
-public struct RequestedJson: Codable {
-    public let credId: String
-    public let revealed: Bool?
-    
-    public init(credId: String,revealed: Bool?) {
-        self.credId = credId
-        self.revealed = revealed
-    }
-    enum CodingKeys : String, CodingKey {
-        case credId = "cred_id"
-        case revealed
-    }
-}

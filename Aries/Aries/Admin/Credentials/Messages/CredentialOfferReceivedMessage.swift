@@ -18,25 +18,25 @@ public struct CredentialOfferReceivedMessage: BaseMessage {
     public let credentialExchangeId: String
     public let connectionId: String
     public let threadId: String
-    public let parentThreadId: String
+    public let parentThreadId: String?
     public let initiator: String
     public let role: String
     public let credentialDefinitionId: String
     public let schemaId: String
     public let credentialProposalDict: CredentialProposalDict
-    public let credentialOfferDict: [String : String]
+    public let credentialOfferDict: [String : String]?
     public let credentialOffer: CredentialOffer
-    public let credentialRequest: [String : String]
-    public let credentialRequestMetadata: [String : String]
-    public let credentialId: String
-    public let rawCredential: [String : String]
-    public let credential: AdminCredential
+    public let credentialRequest: [String : String]?
+    public let credentialRequestMetadata: [String : String]?
+    public let credentialId: String?
+    public let rawCredential: AriesJSON?
+    public let credential: AdminCredential?
     public let autoOffer: Bool
     public let autoIssue: Bool
     public let autoRemove: Bool
-    public let errorMsg: String
-    public let revocRegId: String
-    public let revocationId: String
+    public let errorMsg: String?
+    public let revocRegId: String?
+    public let revocationId: String?
     
     enum CodingKeys : String, CodingKey {
         case type = "@type"

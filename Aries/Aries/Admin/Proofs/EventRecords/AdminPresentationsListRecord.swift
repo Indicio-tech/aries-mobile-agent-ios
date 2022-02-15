@@ -7,10 +7,10 @@
 
 import Foundation
 
-class AdminPresentationsListRecord: BaseRecord {
-    var type: RecordType
-    var id: String
-    var tags: [String : String]
+public class AdminPresentationsListRecord: BaseRecord {
+    public var type: RecordType
+    public var id: String
+    public var tags: [String : String]
     
     public var adminConnection: ConnectionRecord
     public var messageObject: PresentationsListMessage

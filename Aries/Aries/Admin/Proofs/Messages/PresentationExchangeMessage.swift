@@ -19,10 +19,10 @@ public struct PresentationExchangeMessage: BaseMessage {
     public var threadId: String?
     public var initiator: String?
     public var role: String?
-    public var presentationProposalDict: [String : String]?
-    public var presentationRequest: [String : String]?
-    public var presentationRequestDict: [String : String]?
-    public var presentation: [String : String]?
+    public var presentationProposalDict: AriesJSON?
+    public var presentationRequest: AriesJSON?
+    public var presentationRequestDict: AriesJSON?
+    public var presentation: AriesJSON?
     public var verified: String?
     public var autoPresent: Bool?
     public var errorMsg: String?

@@ -22,7 +22,7 @@ public struct AdminMatchingCredentialsRecord: BaseRecord {
         self.id = message.id
         self.adminConnection = adminConnection
         self.messageObject = message
-        self.threadId = message.thread
+        self.threadId = message.thread.thid
         self.presentationExchangeId = message.presentationExchangeId
         self.matchingCredentials = message.matchingCredentials
         self.tags = ["adminConnection":adminConnection.id]

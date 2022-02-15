@@ -8,10 +8,10 @@
 import Foundation
 
 public struct CredentialOffer: Codable {
-    public let schemaId: String
-    public let credDefId: String
-    public let nonce: String
-    public let keyCorrectnessProof: [String : String]
+    public let schemaId: String?
+    public let credDefId: String?
+    public let nonce: String?
+    public let keyCorrectnessProof: [String: AriesJSON]?
     
     enum CodingKeys : String, CodingKey {
         case schemaId = "schema_id"

@@ -11,8 +11,8 @@ public struct PresentationRequest: Codable {
     public let nonce: String
     public let name: String
     public let version: String
-    public let requestedAttributes: [String : String]
-    public let requestedPredicates: [String : String]
+    public let requestedAttributes: AriesJSON?
+    public let requestedPredicates: AriesJSON?
     
     enum CodingKeys : String, CodingKey {
         case nonce

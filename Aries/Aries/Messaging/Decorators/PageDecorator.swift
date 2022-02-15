@@ -8,9 +8,9 @@
 import Foundation
 
 public struct PageDecorator: Codable {
-    var count: Int
-    var offset: Int
-    var remaining: Int
+    var count: Int?
+    var offset: Int?
+    var remaining: Int?
 }
 
 //public class PageDecorator {

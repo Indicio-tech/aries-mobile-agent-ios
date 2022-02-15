@@ -237,8 +237,8 @@ public class Admin {
                     break
                 case .presentationMatchingCredentialsMessage:
                     print("Admin received presentations matching credential message.")
-                    let message = try MessageUtils.buildMessage(PresentationsListMessage.self, payload)
-                    let record = AdminPresentationsListRecord(message: message, adminConnection: adminConnection!)
+                    let message = try MessageUtils.buildMessage(PresentationMatchingCredentialsMessage.self, payload)
+                    let record = AdminMatchingCredentialsRecord(message: message, adminConnection: adminConnection!)
                     try events.triggerEvent(record)
                     break
                 case .presentationSentMessage:
